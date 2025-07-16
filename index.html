@@ -1,0 +1,740 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Turzo Roy - Cybersecurity Engineer</title>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts: Roboto Mono -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Roboto+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <!-- Feather Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+
+    <style>
+        /* Custom Styles - Cybersecurity Theme */
+        body {
+            font-family: 'Roboto Mono', monospace;
+            background-color: #0d1117; /* GitHub Dark */
+            color: #c9d1d9; /* GitHub Dark Text */
+        }
+        .hero-bg, .hero-bg-alt {
+            background-color: #0d1117;
+        }
+        .section-bg {
+            background-color: #161b22; /* GitHub Dark Secondary */
+        }
+        .highlight {
+            color: #39ff14; /* Hacker Green */
+        }
+        .typing-cursor {
+            display: inline-block;
+            width: 3px;
+            height: 1.5rem;
+            background-color: #39ff14;
+            animation: blink 0.8s infinite;
+        }
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+        .card-hover {
+            border: 1px solid #30363d;
+            transition: transform 0.3s ease, box-shadow 0.3s ease, border-color 0.3s ease;
+        }
+        .card-hover:hover {
+            transform: translateY(-8px);
+            border-color: #39ff14;
+            box-shadow: 0 0 15px rgba(57, 255, 20, 0.2);
+        }
+        /* Timeline for Experience */
+        .timeline-item {
+            position: relative;
+            padding-left: 2.5rem;
+            padding-bottom: 2rem;
+            border-left: 2px solid #30363d;
+        }
+        .timeline-item:last-child {
+            border-left: 2px solid transparent;
+            padding-bottom: 0;
+        }
+        .timeline-dot {
+            position: absolute;
+            left: -0.6rem;
+            top: 0.15rem;
+            width: 1.2rem;
+            height: 1.2rem;
+            border-radius: 50%;
+            background-color: #0d1117;
+            border: 3px solid #39ff14;
+        }
+        .nav-link {
+            position: relative;
+            color: #c9d1d9;
+        }
+        .nav-link:before {
+            content: '>';
+            position: absolute;
+            left: -15px;
+            opacity: 0;
+            color: #39ff14;
+            transition: opacity 0.3s ease;
+        }
+        .nav-link:hover {
+            color: #39ff14;
+        }
+        .nav-link:hover:before {
+            opacity: 1;
+        }
+        
+        /* Modal Styles */
+        .modal {
+            display: none;
+            position: fixed;
+            z-index: 100;
+            padding-top: 50px;
+            left: 0;
+            top: 0;
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgba(0,0,0,0.9);
+        }
+        .modal-content {
+            margin: auto;
+            display: block;
+            width: 80%;
+            max-width: 800px;
+            animation-name: zoom;
+            animation-duration: 0.4s;
+        }
+        @keyframes zoom {
+            from {transform:scale(0)} 
+            to {transform:scale(1)}
+        }
+        .close-modal {
+            position: absolute;
+            top: 15px;
+            right: 35px;
+            color: #f1f1f1;
+            font-size: 40px;
+            font-weight: bold;
+            transition: 0.3s;
+        }
+        .close-modal:hover,
+        .close-modal:focus {
+            color: #39ff14;
+            text-decoration: none;
+            cursor: pointer;
+        }
+        /* Gallery Modal Navigation */
+        .modal-nav {
+            cursor: pointer;
+            position: absolute;
+            top: 50%;
+            width: auto;
+            padding: 16px;
+            margin-top: -50px;
+            color: white;
+            font-weight: bold;
+            font-size: 20px;
+            transition: 0.3s;
+            border-radius: 0 3px 3px 0;
+            user-select: none;
+            -webkit-user-select: none;
+        }
+        .modal-nav.prev {
+            left: 0;
+            border-radius: 3px 0 0 3px;
+        }
+        .modal-nav.next {
+            right: 0;
+            border-radius: 0 3px 3px 0;
+        }
+        .modal-nav:hover {
+            background-color: rgba(57, 255, 20, 0.3);
+        }
+        .education-logo {
+            width: 64px;
+            height: 64px;
+            object-fit: contain;
+            background-color: white;
+            border-radius: 50%;
+            padding: 4px;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Header -->
+    <header id="header" class="fixed top-0 left-0 right-0 z-50 bg-[#0d1117]/80 backdrop-blur-sm border-b border-gray-800">
+        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
+            <a href="#" class="text-2xl font-bold text-white">><span class="text-green-400">/</span>home<span class="text-green-400">/</span>turzo_roy</a>
+            <div class="hidden md:flex space-x-8">
+                <a href="#about" class="nav-link">about</a>
+                <a href="#experience" class="nav-link">experience</a>
+                <a href="#education" class="nav-link">education</a>
+                <a href="#certs" class="nav-link">certifications</a>
+                <a href="#partner-certs" class="nav-link">partners</a>
+                <a href="#projects" class="nav-link">projects</a>
+                <a href="#skills" class="nav-link">skills</a>
+                <a href="#contact" class="nav-link">contact</a>
+            </div>
+            <button id="mobile-menu-button" class="md:hidden text-white focus:outline-none">
+                <i data-feather="terminal"></i>
+            </button>
+        </nav>
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="hidden md:hidden bg-[#161b22]">
+            <a href="#about" class="block py-2 px-6 text-sm hover:bg-gray-800">> about</a>
+            <a href="#experience" class="block py-2 px-6 text-sm hover:bg-gray-800">> experience</a>
+            <a href="#education" class="block py-2 px-6 text-sm hover:bg-gray-800">> education</a>
+            <a href="#certs" class="block py-2 px-6 text-sm hover:bg-gray-800">> certifications</a>
+            <a href="#partner-certs" class="block py-2 px-6 text-sm hover:bg-gray-800">> partners</a>
+            <a href="#projects" class="block py-2 px-6 text-sm hover:bg-gray-800">> projects</a>
+            <a href="#skills" class="block py-2 px-6 text-sm hover:bg-gray-800">> skills</a>
+            <a href="#contact" class="block py-2 px-6 text-sm hover:bg-gray-800">> contact</a>
+        </div>
+    </header>
+
+    <main>
+        <!-- Hero Section -->
+        <section id="home" class="hero-bg pt-48 pb-32 flex items-center">
+            <div class="container mx-auto px-6 text-center">
+                <h1 class="text-4xl md:text-6xl font-bold text-white leading-tight mb-4">
+                    Turzo Roy
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-300 mb-8">
+                    <span id="typing-text" class="highlight font-semibold"></span><span class="typing-cursor"></span>
+                </p>
+                <a href="#projects" class="bg-green-500/10 border border-green-500 text-green-400 font-bold py-3 px-8 rounded-md hover:bg-green-500/20 transition-all duration-300 text-lg">
+                    Analyze My Work
+                </a>
+            </div>
+        </section>
+
+        <!-- About Me Section -->
+        <section id="about" class="py-20 section-bg">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold text-center text-white mb-12">[ About Me ]</h2>
+                <div class="flex flex-col md:flex-row items-center gap-12">
+                    <div class="md:w-1/3">
+                        <img src="https://placehold.co/400x400/0d1117/39ff14?text=Your+Headshot" alt="Turzo Roy" class="rounded-full mx-auto shadow-lg w-64 h-64 md:w-80 md:h-80 object-cover border-4 border-gray-700">
+                    </div>
+                    <div class="md:w-2/3 text-center md:text-left">
+                        <h3 class="text-2xl font-semibold text-white mb-4">system.out.println("Who I Am");</h3>
+                        <p class="mb-4">
+                           A dedicated and analytical Cybersecurity Engineer with a passion for digital forensics, threat hunting, and building secure systems. I thrive on deconstructing complex security challenges and architecting robust defenses to protect critical data and infrastructure.
+                        </p>
+                        <p>
+                           My goal is to stay one step ahead of emerging threats, continuously honing my skills in penetration testing, incident response, and security automation.
+                        </p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="py-20 hero-bg-alt">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold text-center text-white mb-12">[ Work Experience ]</h2>
+                <div class="max-w-3xl mx-auto">
+                    <!-- Timeline Item 1 -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="mb-2">
+                            <h3 class="text-xl font-bold text-white">Engineer - Enterprise Solutions Cyber Security</h3>
+                            <p class="highlight">Smart Technologies (BD) Ltd. | 1st May 2024 - Present</p>
+                        </div>
+                        <p class="text-gray-400">
+<br>•	Deliver comprehensive security solutions, including assessments, product recommendations, and implementations tailored to client needs.</br>
+<br>•	Provide technical support and promptly troubleshoot cybersecurity product issues for customers.</br>
+<br>•	Collaborate with external OEMs and support providers to ensure seamless integration and issue resolution.</br>
+<br>•	Implement, manage, and support VAPT, SIEM, NMS, and other cybersecurity solutions.</br>
+<br>•	Configure, manage, and maintain security tools such as FortiSIEM, FortiSOAR, and IBM QRadar.</br>
+<br>•	Lead SOC implementation and management for enhanced incident detection and response.</br>
+<br>•	Deploy configure and provide training for Tenable and Rapid7 products to enhance vulnerability management and threat detection capabilities.</br>
+</p>
+                    </div>
+                    <!-- Timeline Item 2 -->
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="mb-2">
+                            <h3 class="text-xl font-bold text-white">Technical Support Engineer (Intern)</h3>
+                            <p class="highlight">Infolink Limited | 29th Jan 2023 - 29th April 2023</p>
+                        </div>
+                        <p class="text-gray-400"><br>•	Provide low-level network administration services.</br>
+<br>•	Monitoring the health of the overall network, reporting problems and incidents as necessary.</br>
+<br>•	Configure and troubleshoot router and ONU devices.</br>
+<br>•	Assist in first line of support for network infrastructure.</br>
+<br>•	Working with external vendors and support providers as required.</br>
+</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Education Section -->
+        <section id="education" class="py-20 section-bg">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold text-center text-white mb-12">[ Education ]</h2>
+                <div class="max-w-5xl mx-auto space-y-8">
+                    <!-- Education Card 1 -->
+                    <div class="bg-[#0d1117] p-6 rounded-lg card-hover flex flex-col md:flex-row items-center gap-6">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/University_of_Dhaka_logo.svg/1200px-University_of_Dhaka_logo.svg.png" alt="University of Dhaka Logo" class="education-logo" onerror="this.onerror=null; this.src='https://placehold.co/100x100/ffffff/000000?text=DU';">
+                        <div class="text-center md:text-left">
+                            <h3 class="text-xl font-bold text-white">University of Dhaka</h3>
+                            <p class="highlight mb-1">Master's degree, Information and Cyber Security | Jun 2023 - Dec 2024</p>
+                            <p class="text-gray-400 mb-2">Grade: 3.33</p>
+                            <div class="flex flex-wrap justify-center md:justify-start gap-2 text-sm">
+                                <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded-md">SIEM</span>
+                                <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded-md">TCP/IP</span>
+                                <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded-md">Linux</span>
+                                <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded-md">OSI Model</span>
+                                <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded-md">Wireshark</span>
+                                <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded-md">VAPT</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Education Card 2 -->
+                    <div class="bg-[#0d1117] p-6 rounded-lg card-hover flex flex-col md:flex-row items-center gap-6">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e4/American_International_University-Bangladesh_Monogram.svg" alt="American International University-Bangladesh Logo" class="education-logo" onerror="this.onerror=null; this.src='https://placehold.co/100x100/ffffff/000000?text=AIUB';">
+                        <div class="text-center md:text-left">
+                            <h3 class="text-xl font-bold text-white">American International University-Bangladesh</h3>
+                            <p class="highlight mb-1">Bachelor's degree, Computer Science | Jan 2019 - May 2023</p>
+                            <p class="text-gray-400 mb-2">Grade: 3.26</p>
+                            <div class="flex flex-wrap justify-center md:justify-start gap-2 text-sm">
+                                <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded-md">Security Onion</span>
+                                <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded-md">Linux</span>
+                                <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded-md">TCP/IP</span>
+                                <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded-md">OSI Model</span>
+                                <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded-md">HTTP</span>
+                                <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded-md">Python</span>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- Education Card 3 -->
+                    <div class="bg-[#0d1117] p-6 rounded-lg card-hover flex flex-col md:flex-row items-center gap-6">
+                        <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Birshrestha_Noor_Mohammad_Public_College_Logo.png" alt="Birshreshtha Noor Mohammad Public College Logo" class="education-logo" onerror="this.onerror=null; this.src='https://placehold.co/100x100/ffffff/000000?text=BNMPC';">
+                        <div class="text-center md:text-left">
+                            <h3 class="text-xl font-bold text-white">Birshreshtha Noor Mohammad Public College</h3>
+                            <p class="highlight mb-1">HSC, Science | Feb 2016 - Dec 2018</p>
+                            <p class="text-gray-400 mb-2">Grade: 4.33</p>
+                            <p class="text-gray-400 text-sm">Activities: Associate General Secretary at BNMPC Science Club</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Certifications Section -->
+        <section id="certs" class="py-20 hero-bg-alt">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold text-center text-white mb-12">[ Certifications ]</h2>
+                <div class="max-w-4xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-8 text-center">
+                    <!-- Cert Card 1 -->
+                    <a href="#" class="single-cert-link bg-[#161b22] p-6 rounded-lg card-hover block" data-img-src="https://placehold.co/1200x800/161b22/c9d1d9?text=CEH+Certificate+Image">
+                        <i data-feather="lock" class="mx-auto h-12 w-12 text-green-400 mb-2"></i>
+                        <h3 class="font-bold text-white">Certified Ethical Hacker (CEH)</h3>
+                    </a>
+                    <!-- Cert Card 2 -->
+                    <a href="#" class="single-cert-link bg-[#161b22] p-6 rounded-lg card-hover block" data-img-src="https://placehold.co/1200x800/161b22/c9d1d9?text=CyberOps+Certificate+Image">
+                        <i data-feather="shield" class="mx-auto h-12 w-12 text-green-400 mb-2"></i>
+                        <h3 class="font-bold text-white">Cisco Certified CyberOps Associate</h3>
+                    </a>
+                    <!-- Cert Card 3 -->
+                    <a href="#" class="single-cert-link bg-[#161b22] p-6 rounded-lg card-hover block" data-img-src="https://placehold.co/1200x800/161b22/c9d1d9?text=IT+Essentials+Certificate+Image">
+                        <i data-feather="file-text" class="mx-auto h-12 w-12 text-green-400 mb-2"></i>
+                        <h3 class="font-bold text-white">IT Essentials</h3>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Partner Certifications Section -->
+        <section id="partner-certs" class="py-20 section-bg">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold text-center text-white mb-12">[ Partner Certifications ]</h2>
+                <div class="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                    <!-- Partner 1: Fortinet -->
+                    <a href="#" class="partner-link bg-[#0d1117] p-6 rounded-lg card-hover flex flex-col justify-center items-center" 
+                       data-partner-name="Fortinet"
+                       data-certs='["https://placehold.co/1200x800/161b22/c9d1d9?text=Fortinet+Cert+1", "https://placehold.co/1200x800/161b22/c9d1d9?text=Fortinet+Cert+2"]'>
+                        <img src="https://placehold.co/200x100/ffffff/000000?text=Fortinet" alt="Fortinet Logo" class="h-16 mb-2 object-contain">
+                        <h3 class="font-bold text-white mt-2">Fortinet</h3>
+                    </a>
+                    <!-- Partner 2: IBM -->
+                    <a href="#" class="partner-link bg-[#0d1117] p-6 rounded-lg card-hover flex flex-col justify-center items-center" 
+                       data-partner-name="IBM"
+                       data-certs='["https://placehold.co/1200x800/161b22/c9d1d9?text=IBM+Cert+1"]'>
+                        <img src="https://placehold.co/200x100/ffffff/000000?text=IBM" alt="IBM Logo" class="h-16 mb-2 object-contain">
+                        <h3 class="font-bold text-white mt-2">IBM</h3>
+                    </a>
+                    <!-- Partner 3: Tenable -->
+                    <a href="#" class="partner-link bg-[#0d1117] p-6 rounded-lg card-hover flex flex-col justify-center items-center" 
+                       data-partner-name="Tenable"
+                       data-certs='["https://placehold.co/1200x800/161b22/c9d1d9?text=Tenable+Cert+1", "https://placehold.co/1200x800/161b22/c9d1d9?text=Tenable+Cert+2", "https://placehold.co/1200x800/161b22/c9d1d9?text=Tenable+Cert+3"]'>
+                        <img src="https://placehold.co/200x100/ffffff/000000?text=Tenable" alt="Tenable Logo" class="h-16 mb-2 object-contain">
+                        <h3 class="font-bold text-white mt-2">Tenable</h3>
+                    </a>
+                     <!-- Partner 4: Rapid7 -->
+                    <a href="#" class="partner-link bg-[#0d1117] p-6 rounded-lg card-hover flex flex-col justify-center items-center" 
+                       data-partner-name="Rapid7"
+                       data-certs='["https://placehold.co/1200x800/161b22/c9d1d9?text=Rapid7+Cert+1"]'>
+                        <img src="https://placehold.co/200x100/ffffff/000000?text=Rapid7" alt="Rapid7 Logo" class="h-16 mb-2 object-contain">
+                        <h3 class="font-bold text-white mt-2">Rapid7</h3>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="py-20 hero-bg-alt">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold text-center text-white mb-12">[ Projects ]</h2>
+                <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    
+                    <!-- Project Card 1 -->
+                    <div class="bg-[#161b22] rounded-lg card-hover flex flex-col">
+                        <div class="p-6 flex-grow">
+                            <h3 class="text-xl font-bold text-white mb-2">Nessus Expert & Burp Suite Professional Deployment and Training at IPDC Finance Limited</h3>
+                            <p class="text-sm text-gray-400 mb-2">Jul 2025 | Associated with Smart Technologies (BD) Ltd</p>
+                            <p class="text-sm mb-4">
+                                Led the successful deployment and configuration of Tenable Nessus and Burp Suite Professional. Conducted hands-on training sessions for the internal security team covering policy-based scanning, vulnerability prioritization, Burp Suite setup, and web app testing methodologies.
+                            </p>
+                        </div>
+                        <div class="p-6 pt-0">
+                            <div class="flex flex-wrap gap-2 text-xs">
+                                <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded-md">VAPT</span>
+                                <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded-md">Tenable Nessus</span>
+                                <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded-md">Burp Suite</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project Card 2 -->
+                    <div class="bg-[#161b22] rounded-lg card-hover flex flex-col">
+                        <div class="p-6 flex-grow">
+                            <h3 class="text-xl font-bold text-white mb-2">Metasploit Pro Implementation & Training Workshop</h3>
+                            <p class="text-sm text-gray-400 mb-2">May 2025 | Associated with Smart Technologies (BD) Ltd</p>
+                            <p class="text-sm mb-4">
+                                Implemented and delivered a comprehensive 3-day Metasploit Pro training focused on real-world offensive security techniques, including custom payload generation, exploitation of SMB services, brute-force attacks, and post-exploitation techniques.
+                            </p>
+                        </div>
+                        <div class="p-6 pt-0">
+                            <div class="flex flex-wrap gap-2 text-xs">
+                                <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded-md">Metasploit</span>
+                                <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded-md">Red Teaming</span>
+                                <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded-md">VAPT</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project Card 3 -->
+                    <div class="bg-[#161b22] rounded-lg card-hover flex flex-col">
+                        <div class="p-6 flex-grow">
+                            <h3 class="text-xl font-bold text-white mb-2">Manual Migration of Tenable Core + SecurityCenter at IBBL</h3>
+                            <p class="text-sm text-gray-400 mb-2">Mar 2025 | Associated with Smart Technologies (BD) Ltd</p>
+                            <p class="text-sm mb-4">
+                                Performed a manual migration of Tenable Core + SecurityCenter from Core 7 to Core 8 at Islami Bank Bangladesh PLC. Rebuilt and reconfigured the new environment, ensuring seamless continuity of vulnerability management operations.
+                            </p>
+                        </div>
+                        <div class="p-6 pt-0">
+                            <div class="flex flex-wrap gap-2 text-xs">
+                                <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded-md">Tenable.sc</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project Card 4 -->
+                    <div class="bg-[#161b22] rounded-lg card-hover flex flex-col">
+                        <div class="p-6 flex-grow">
+                            <h3 class="text-xl font-bold text-white mb-2">Strengthening Enterprise Infrastructure: A Holistic Approach</h3>
+                            <p class="text-sm text-gray-400 mb-2">Oct 2024 - Mar 2025 | Associated with University of Dhaka</p>
+                            <p class="text-sm mb-4">
+                                Focused on developing a cost-effective, open-source infrastructure security framework for SMEs, integrating tools like WAZUH, OpenVAS, and pfSense to enable threat monitoring, assessment, and incident response.
+                            </p>
+                        </div>
+                        <div class="p-6 pt-0">
+                            <div class="flex flex-wrap gap-2 text-xs">
+                                <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded-md">IT Infrastructure</span>
+                                <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded-md">VAPT</span>
+                                <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded-md">Nmap</span>
+                                <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded-md">SIEM</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project Card 5 -->
+                    <div class="bg-[#161b22] rounded-lg card-hover flex flex-col">
+                        <div class="p-6 flex-grow">
+                            <h3 class="text-xl font-bold text-white mb-2">Bangladesh Police SOC Deployment - SIEM & SOAR Implementation</h3>
+                            <p class="text-sm text-gray-400 mb-2">Oct 2024 - Feb 2025 | Associated with Smart Technologies (BD) Ltd</p>
+                            <p class="text-sm mb-4">
+                                Led the deployment and configuration of a SOC for Bangladesh law enforcement. Configured SIEM for log collection and alerting, along with SOAR to automate incident handling and enhance response times.
+                            </p>
+                        </div>
+                        <div class="p-6 pt-0">
+                            <div class="flex flex-wrap gap-2 text-xs">
+                                <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded-md">SIEM</span>
+                                <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded-md">SOAR</span>
+                                <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded-md">CTI</span>
+                                <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded-md">Compliance</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project Card 6 -->
+                    <div class="bg-[#161b22] rounded-lg card-hover flex flex-col">
+                        <div class="p-6 flex-grow">
+                            <h3 class="text-xl font-bold text-white mb-2">Training on Burp Suite SSL Pinning Bypass for EBL</h3>
+                            <p class="text-sm text-gray-400 mb-2">Feb 2025 | Associated with Smart Technologies (BD) Ltd</p>
+                            <p class="text-sm mb-4">
+                                Conducted a specialized training for Eastern Bank PLC, focusing on SSL Pinning Bypass in mobile apps using Burp Suite and Frida to enhance the bank’s mobile security posture.
+                            </p>
+                        </div>
+                        <div class="p-6 pt-0">
+                            <div class="flex flex-wrap gap-2 text-xs">
+                                <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded-md">Burp Suite</span>
+                                <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded-md">Frida</span>
+                                <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded-md">Mobile Security</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Project Card 7 -->
+                     <div class="bg-[#161b22] rounded-lg card-hover flex flex-col">
+                        <div class="p-6 flex-grow">
+                            <h3 class="text-xl font-bold text-white mb-2">Tenable.sc & Nessus Scanner Deployment at SIBL</h3>
+                            <p class="text-sm text-gray-400 mb-2">May 2024 | Associated with Smart Technologies (BD) Ltd</p>
+                            <p class="text-sm mb-4">
+                                Successfully deployed and configured Tenable.sc and Nessus Scanner on CentOS at Social Islami Bank PLC (SIBL), enhancing the bank’s vulnerability management capabilities and training internal teams.
+                            </p>
+                        </div>
+                        <div class="p-6 pt-0">
+                            <div class="flex flex-wrap gap-2 text-xs">
+                                <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded-md">Tenable.sc</span>
+                                <span class="bg-gray-700 text-gray-300 px-3 py-1 rounded-md">Nessus Scanner</span>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="py-20 section-bg">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold text-center text-white mb-12">[ Technical Skills ]</h2>
+                <div class="flex flex-wrap justify-center items-center gap-4">
+                    <span class="bg-gray-700 text-gray-300 px-4 py-2 rounded-md">Python</span>
+                    <span class="bg-gray-700 text-gray-300 px-4 py-2 rounded-md">Bash</span>
+                    <span class="bg-gray-700 text-gray-300 px-4 py-2 rounded-md">Linux</span>
+                    <span class="bg-gray-700 text-gray-300 px-4 py-2 rounded-md">Nmap</span>
+                    <span class="bg-gray-700 text-gray-300 px-4 py-2 rounded-md">Wireshark</span>
+                    <span class="bg-gray-700 text-gray-300 px-4 py-2 rounded-md">Metasploit</span>
+                    <span class="bg-gray-700 text-gray-300 px-4 py-2 rounded-md">Burp Suite</span>
+                    <span class="bg-gray-700 text-gray-300 px-4 py-2 rounded-md">SIEM (Splunk)</span>
+                    <span class="bg-gray-700 text-gray-300 px-4 py-2 rounded-md">Vulnerability Assessment</span>
+                    <span class="bg-gray-700 text-gray-300 px-4 py-2 rounded-md">Incident Response</span>
+                    <span class="bg-gray-700 text-gray-300 px-4 py-2 rounded-md">Cryptography</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="py-20 hero-bg-alt">
+            <div class="container mx-auto px-6">
+                <h2 class="text-3xl font-bold text-center text-white mb-12">[ Contact ]</h2>
+                <div class="max-w-2xl mx-auto text-center">
+                    <p class="mb-8">Open to new challenges and collaborations. If you want to talk about security, a project, or just connect, feel free to establish a connection.</p>
+                    <a href="mailto:your.email@example.com" class="bg-green-500/10 border border-green-500 text-green-400 font-bold py-3 px-8 rounded-md hover:bg-green-500/20 transition-all duration-300 text-lg">
+                        Initiate Contact
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="section-bg py-8 border-t border-gray-800">
+        <div class="container mx-auto px-6 text-center text-gray-500">
+            <div class="flex justify-center space-x-6 mb-4">
+                <a href="#" class="hover:text-green-400"><i data-feather="github"></i></a>
+                <a href="#" class="hover:text-green-400"><i data-feather="linkedin"></i></a>
+                <a href="#" class="hover:text-green-400"><i data-feather="twitter"></i></a>
+            </div>
+            <p class="text-sm">session.end(); // &copy; 2024 Turzo Roy</p>
+        </div>
+    </footer>
+
+    <!-- Single Image Modal -->
+    <div id="single-image-modal" class="modal">
+        <span class="close-modal single-close">&times;</span>
+        <img class="modal-content" id="single-modal-image">
+    </div>
+
+    <!-- Gallery Modal -->
+    <div id="gallery-modal" class="modal">
+        <span class="close-modal gallery-close">&times;</span>
+        <img class="modal-content" id="gallery-modal-image">
+        <a class="modal-nav prev">&#10094;</a>
+        <a class="modal-nav next">&#10095;</a>
+    </div>
+
+
+    <script>
+        // --- Feather Icons ---
+        feather.replace();
+
+        // --- Mobile Menu Toggle ---
+        const mobileMenuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        mobileMenuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // --- Typing Effect ---
+        const typingText = document.getElementById('typing-text');
+        const words = ["Cybersecurity Engineer", "Penetration Tester", "Threat Hunter", "Ethical Hacker", "Security Architect"];
+        let wordIndex = 0;
+        let charIndex = 0;
+        let isDeleting = false;
+
+        function type() {
+            const currentWord = words[wordIndex];
+            const currentChar = isDeleting 
+                ? currentWord.substring(0, charIndex - 1)
+                : currentWord.substring(0, charIndex + 1);
+
+            typingText.textContent = currentChar;
+            
+            if (!isDeleting && charIndex < currentWord.length) {
+                charIndex++;
+                setTimeout(type, 100);
+            } else if (isDeleting && charIndex > 0) {
+                charIndex--;
+                setTimeout(type, 60);
+            } else {
+                isDeleting = !isDeleting;
+                if (!isDeleting) {
+                    wordIndex = (wordIndex + 1) % words.length;
+                }
+                setTimeout(type, 1200);
+            }
+        }
+        
+        document.addEventListener('DOMContentLoaded', () => {
+            if (typingText) {
+                setTimeout(type, 1000);
+            }
+        });
+
+        // --- Smooth Scrolling ---
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                // We don't prevent default for cert links
+                if (this.classList.contains('single-cert-link') || this.classList.contains('partner-link')) {
+                    return;
+                }
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                
+                if (targetId === '#') {
+                    window.scrollTo({ top: 0, behavior: 'smooth' });
+                } else {
+                    const targetElement = document.querySelector(targetId);
+                    if (targetElement) {
+                        targetElement.scrollIntoView({ behavior: 'smooth' });
+                    }
+                }
+                
+                // Close mobile menu on click
+                if (!mobileMenu.classList.contains('hidden')) {
+                    mobileMenu.classList.add('hidden');
+                }
+            });
+        });
+
+        // --- Single Certificate Modal Logic ---
+        const singleModal = document.getElementById("single-image-modal");
+        const singleModalImg = document.getElementById("single-modal-image");
+        const singleCertLinks = document.querySelectorAll('.single-cert-link');
+        const singleCloseModal = document.querySelector(".single-close");
+
+        singleCertLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                singleModal.style.display = "block";
+                singleModalImg.src = this.dataset.imgSrc;
+            });
+        });
+
+        singleCloseModal.onclick = function() {
+            singleModal.style.display = "none";
+        }
+
+        // --- Gallery Modal Logic ---
+        const galleryModal = document.getElementById("gallery-modal");
+        const galleryModalImg = document.getElementById("gallery-modal-image");
+        const partnerLinks = document.querySelectorAll('.partner-link');
+        const galleryCloseModal = document.querySelector(".gallery-close");
+        const prevBtn = document.querySelector(".prev");
+        const nextBtn = document.querySelector(".next");
+
+        let currentCerts = [];
+        let currentIndex = 0;
+
+        function showImage(index) {
+            galleryModalImg.src = currentCerts[index];
+            currentIndex = index;
+        }
+
+        partnerLinks.forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                currentCerts = JSON.parse(this.dataset.certs);
+                galleryModal.style.display = "block";
+                showImage(0);
+            });
+        });
+
+        prevBtn.addEventListener('click', () => {
+            let newIndex = currentIndex - 1;
+            if (newIndex < 0) {
+                newIndex = currentCerts.length - 1;
+            }
+            showImage(newIndex);
+        });
+
+        nextBtn.addEventListener('click', () => {
+            let newIndex = currentIndex + 1;
+            if (newIndex >= currentCerts.length) {
+                newIndex = 0;
+            }
+            showImage(newIndex);
+        });
+
+        galleryCloseModal.onclick = function() {
+            galleryModal.style.display = "none";
+        }
+
+        window.onclick = function(event) {
+            if (event.target == singleModal) {
+                singleModal.style.display = "none";
+            }
+            if (event.target == galleryModal) {
+                galleryModal.style.display = "none";
+            }
+        }
+
+    </script>
+
+</body>
+</html>

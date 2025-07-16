@@ -167,6 +167,16 @@
             border-radius: 50%;
             padding: 4px;
         }
+        .partner-logo {
+            height: 64px; /* 4rem */
+            margin-bottom: 0.5rem; /* mb-2 */
+            object-fit: contain;
+            filter: grayscale(100%) brightness(3); /* Makes logos white-ish */
+            transition: filter 0.3s ease;
+        }
+        .partner-link:hover .partner-logo {
+            filter: grayscale(0%) brightness(1); /* Original color on hover */
+        }
     </style>
 </head>
 <body class="antialiased">
@@ -229,10 +239,10 @@
                     <div class="md:w-2/3 text-center md:text-left">
                         <h3 class="text-2xl font-semibold text-white mb-4">system.out.println("Who I Am");</h3>
                         <p class="mb-4">
-                           A dedicated and analytical Cybersecurity Engineer with a passion for digital forensics, threat hunting, and building secure systems. I thrive on deconstructing complex security challenges and architecting robust defenses to protect critical data and infrastructure.
+                            A dedicated and analytical Cybersecurity Engineer with a passion for digital forensics, threat hunting, and building secure systems. I thrive on deconstructing complex security challenges and architecting robust defenses to protect critical data and infrastructure.
                         </p>
                         <p>
-                           My goal is to stay one step ahead of emerging threats, continuously honing my skills in penetration testing, incident response, and security automation.
+                            My goal is to stay one step ahead of emerging threats, continuously honing my skills in penetration testing, incident response, and security automation.
                         </p>
                     </div>
                 </div>
@@ -286,7 +296,7 @@
                 <div class="max-w-5xl mx-auto space-y-8">
                     <!-- Education Card 1 -->
                     <div class="bg-[#0d1117] p-6 rounded-lg card-hover flex flex-col md:flex-row items-center gap-6">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/a/a2/University_of_Dhaka_logo.svg/1200px-University_of_Dhaka_logo.svg.png" alt="University of Dhaka Logo" class="education-logo" onerror="this.onerror=null; this.src='https://placehold.co/100x100/ffffff/000000?text=DU';">
+                        <img src="https://raw.githubusercontent.com/Turzo2134/turzo2134.github.io/main/images/du.png" alt="University of Dhaka Logo" class="education-logo" onerror="this.onerror=null; this.src='https://placehold.co/100x100/ffffff/000000?text=DU';">
                         <div class="text-center md:text-left">
                             <h3 class="text-xl font-bold text-white">University of Dhaka</h3>
                             <p class="highlight mb-1">Master's degree, Information and Cyber Security | Jun 2023 - Dec 2024</p>
@@ -303,7 +313,7 @@
                     </div>
                     <!-- Education Card 2 -->
                     <div class="bg-[#0d1117] p-6 rounded-lg card-hover flex flex-col md:flex-row items-center gap-6">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/e/e4/American_International_University-Bangladesh_Monogram.svg" alt="American International University-Bangladesh Logo" class="education-logo" onerror="this.onerror=null; this.src='https://placehold.co/100x100/ffffff/000000?text=AIUB';">
+                        <img src="https://raw.githubusercontent.com/Turzo2134/turzo2134.github.io/main/images/aiub.png" alt="American International University-Bangladesh Logo" class="education-logo" onerror="this.onerror=null; this.src='https://placehold.co/100x100/ffffff/000000?text=AIUB';">
                         <div class="text-center md:text-left">
                             <h3 class="text-xl font-bold text-white">American International University-Bangladesh</h3>
                             <p class="highlight mb-1">Bachelor's degree, Computer Science | Jan 2019 - May 2023</p>
@@ -320,7 +330,7 @@
                     </div>
                     <!-- Education Card 3 -->
                     <div class="bg-[#0d1117] p-6 rounded-lg card-hover flex flex-col md:flex-row items-center gap-6">
-                        <img src="https://upload.wikimedia.org/wikipedia/commons/4/41/Birshrestha_Noor_Mohammad_Public_College_Logo.png" alt="Birshreshtha Noor Mohammad Public College Logo" class="education-logo" onerror="this.onerror=null; this.src='https://placehold.co/100x100/ffffff/000000?text=BNMPC';">
+                        <img src="https://raw.githubusercontent.com/Turzo2134/turzo2134.github.io/main/images/bnmpc.png" alt="Birshreshtha Noor Mohammad Public College Logo" class="education-logo" onerror="this.onerror=null; this.src='https://placehold.co/100x100/ffffff/000000?text=BNMPC';">
                         <div class="text-center md:text-left">
                             <h3 class="text-xl font-bold text-white">Birshreshtha Noor Mohammad Public College</h3>
                             <p class="highlight mb-1">HSC, Science | Feb 2016 - Dec 2018</p>
@@ -365,28 +375,28 @@
                     <a href="#" class="partner-link bg-[#0d1117] p-6 rounded-lg card-hover flex flex-col justify-center items-center" 
                        data-partner-name="Fortinet"
                        data-certs='["https://placehold.co/1200x800/161b22/c9d1d9?text=Fortinet+Cert+1", "https://placehold.co/1200x800/161b22/c9d1d9?text=Fortinet+Cert+2"]'>
-                        <img src="https://placehold.co/200x100/ffffff/000000?text=Fortinet" alt="Fortinet Logo" class="h-16 mb-2 object-contain">
+                        <img src="https://raw.githubusercontent.com/Turzo2134/turzo2134.github.io/main/images/fortinet.png" alt="Fortinet Logo" class="partner-logo">
                         <h3 class="font-bold text-white mt-2">Fortinet</h3>
                     </a>
                     <!-- Partner 2: IBM -->
                     <a href="#" class="partner-link bg-[#0d1117] p-6 rounded-lg card-hover flex flex-col justify-center items-center" 
                        data-partner-name="IBM"
                        data-certs='["https://placehold.co/1200x800/161b22/c9d1d9?text=IBM+Cert+1"]'>
-                        <img src="https://placehold.co/200x100/ffffff/000000?text=IBM" alt="IBM Logo" class="h-16 mb-2 object-contain">
+                        <img src="https://raw.githubusercontent.com/Turzo2134/turzo2134.github.io/main/images/ibm.png" alt="IBM Logo" class="partner-logo">
                         <h3 class="font-bold text-white mt-2">IBM</h3>
                     </a>
                     <!-- Partner 3: Tenable -->
                     <a href="#" class="partner-link bg-[#0d1117] p-6 rounded-lg card-hover flex flex-col justify-center items-center" 
                        data-partner-name="Tenable"
                        data-certs='["https://placehold.co/1200x800/161b22/c9d1d9?text=Tenable+Cert+1", "https://placehold.co/1200x800/161b22/c9d1d9?text=Tenable+Cert+2", "https://placehold.co/1200x800/161b22/c9d1d9?text=Tenable+Cert+3"]'>
-                        <img src="https://placehold.co/200x100/ffffff/000000?text=Tenable" alt="Tenable Logo" class="h-16 mb-2 object-contain">
+                        <img src="https://raw.githubusercontent.com/Turzo2134/turzo2134.github.io/main/images/tenable.png" alt="Tenable Logo" class="partner-logo">
                         <h3 class="font-bold text-white mt-2">Tenable</h3>
                     </a>
                      <!-- Partner 4: Rapid7 -->
                     <a href="#" class="partner-link bg-[#0d1117] p-6 rounded-lg card-hover flex flex-col justify-center items-center" 
                        data-partner-name="Rapid7"
                        data-certs='["https://placehold.co/1200x800/161b22/c9d1d9?text=Rapid7+Cert+1"]'>
-                        <img src="https://placehold.co/200x100/ffffff/000000?text=Rapid7" alt="Rapid7 Logo" class="h-16 mb-2 object-contain">
+                        <img src="https://raw.githubusercontent.com/Turzo2134/turzo2134.github.io/main/images/rapid7.jpg" alt="Rapid7 Logo" class="partner-logo" style="background-color: #fff; padding: 5px; border-radius: 5px;">
                         <h3 class="font-bold text-white mt-2">Rapid7</h3>
                     </a>
                 </div>
@@ -403,7 +413,7 @@
                     <div class="bg-[#161b22] rounded-lg card-hover flex flex-col">
                         <div class="p-6 flex-grow">
                             <h3 class="text-xl font-bold text-white mb-2">Nessus Expert & Burp Suite Professional Deployment and Training at IPDC Finance Limited</h3>
-                            <p class="text-sm text-gray-400 mb-2">Jul 2025 | Associated with Smart Technologies (BD) Ltd</p>
+                            <p class="text-sm text-gray-400 mb-2">Jul 2024 | Associated with Smart Technologies (BD) Ltd</p>
                             <p class="text-sm mb-4">
                                 Led the successful deployment and configuration of Tenable Nessus and Burp Suite Professional. Conducted hands-on training sessions for the internal security team covering policy-based scanning, vulnerability prioritization, Burp Suite setup, and web app testing methodologies.
                             </p>
@@ -421,7 +431,7 @@
                     <div class="bg-[#161b22] rounded-lg card-hover flex flex-col">
                         <div class="p-6 flex-grow">
                             <h3 class="text-xl font-bold text-white mb-2">Metasploit Pro Implementation & Training Workshop at ibas+</h3>
-                            <p class="text-sm text-gray-400 mb-2">May 2025 | Associated with Smart Technologies (BD) Ltd</p>
+                            <p class="text-sm text-gray-400 mb-2">May 2024 | Associated with Smart Technologies (BD) Ltd</p>
                             <p class="text-sm mb-4">
                                 Implemented and delivered a comprehensive 3-day Metasploit Pro training focused on real-world offensive security techniques, including custom payload generation, exploitation of SMB services, brute-force attacks, and post-exploitation techniques.
                             </p>
@@ -439,7 +449,7 @@
                     <div class="bg-[#161b22] rounded-lg card-hover flex flex-col">
                         <div class="p-6 flex-grow">
                             <h3 class="text-xl font-bold text-white mb-2">Manual Migration of Tenable Core + SecurityCenter at IBBL</h3>
-                            <p class="text-sm text-gray-400 mb-2">Mar 2025 | Associated with Smart Technologies (BD) Ltd</p>
+                            <p class="text-sm text-gray-400 mb-2">Mar 2024 | Associated with Smart Technologies (BD) Ltd</p>
                             <p class="text-sm mb-4">
                                 Performed a manual migration of Tenable Core + SecurityCenter from Core 7 to Core 8 at Islami Bank Bangladesh PLC. Rebuilt and reconfigured the new environment, ensuring seamless continuity of vulnerability management operations.
                             </p>
@@ -455,7 +465,7 @@
                     <div class="bg-[#161b22] rounded-lg card-hover flex flex-col">
                         <div class="p-6 flex-grow">
                             <h3 class="text-xl font-bold text-white mb-2">Strengthening Enterprise Infrastructure: A Holistic Approach</h3>
-                            <p class="text-sm text-gray-400 mb-2">Oct 2024 - Mar 2025 | Associated with University of Dhaka</p>
+                            <p class="text-sm text-gray-400 mb-2">Oct 2023 - Mar 2024 | Associated with University of Dhaka</p>
                             <p class="text-sm mb-4">
                                 Focused on developing a cost-effective, open-source infrastructure security framework for SMEs, integrating tools like WAZUH, OpenVAS, and pfSense to enable threat monitoring, assessment, and incident response.
                             </p>
@@ -474,7 +484,7 @@
                     <div class="bg-[#161b22] rounded-lg card-hover flex flex-col">
                         <div class="p-6 flex-grow">
                             <h3 class="text-xl font-bold text-white mb-2">Bangladesh Police SOC Deployment - SIEM & SOAR Implementation</h3>
-                            <p class="text-sm text-gray-400 mb-2">Oct 2024 - Feb 2025 | Associated with Smart Technologies (BD) Ltd</p>
+                            <p class="text-sm text-gray-400 mb-2">Oct 2023 - Feb 2024 | Associated with Smart Technologies (BD) Ltd</p>
                             <p class="text-sm mb-4">
                                 Led the deployment and configuration of a SOC for Bangladesh law enforcement. Configured SIEM for log collection and alerting, along with SOAR to automate incident handling and enhance response times.
                             </p>
@@ -493,7 +503,7 @@
                     <div class="bg-[#161b22] rounded-lg card-hover flex flex-col">
                         <div class="p-6 flex-grow">
                             <h3 class="text-xl font-bold text-white mb-2">Training on Burp Suite SSL Pinning Bypass for EBL</h3>
-                            <p class="text-sm text-gray-400 mb-2">Feb 2025 | Associated with Smart Technologies (BD) Ltd</p>
+                            <p class="text-sm text-gray-400 mb-2">Feb 2024 | Associated with Smart Technologies (BD) Ltd</p>
                             <p class="text-sm mb-4">
                                 Conducted a specialized training for Eastern Bank PLC, focusing on SSL Pinning Bypass in mobile apps using Burp Suite and Frida to enhance the bank’s mobile security posture.
                             </p>
@@ -555,7 +565,7 @@
                 <h2 class="text-3xl font-bold text-center text-white mb-12">[ Contact ]</h2>
                 <div class="max-w-2xl mx-auto text-center">
                     <p class="mb-8">Open to new challenges and collaborations. If you want to talk about security, a project, or just connect, feel free to establish a connection.</p>
-                    <a href="mailto:your.email@example.com" class="bg-green-500/10 border border-green-500 text-green-400 font-bold py-3 px-8 rounded-md hover:bg-green-500/20 transition-all duration-300 text-lg">
+                    <a href="mailto:turzo1027@gmail.com" class="bg-green-500/10 border border-green-500 text-green-400 font-bold py-3 px-8 rounded-md hover:bg-green-500/20 transition-all duration-300 text-lg">
                         Initiate Contact
                     </a>
                 </div>
@@ -567,11 +577,11 @@
     <footer class="section-bg py-8 border-t border-gray-800">
         <div class="container mx-auto px-6 text-center text-gray-500">
             <div class="flex justify-center space-x-6 mb-4">
-                <a href="#" class="hover:text-green-400"><i data-feather="github"></i></a>
-                <a href="#" class="hover:text-green-400"><i data-feather="linkedin"></i></a>
+                <a href="https://github.com/Turzo2134" target="_blank" rel="noopener noreferrer" class="hover:text-green-400"><i data-feather="github"></i></a>
+                <a href="https://www.linkedin.com/in/turzoroy/" target="_blank" rel="noopener noreferrer" class="hover:text-green-400"><i data-feather="linkedin"></i></a>
                 <a href="#" class="hover:text-green-400"><i data-feather="twitter"></i></a>
             </div>
-            <p class="text-sm">session.end(); // &copy; 2024 Turzo Roy</p>
+            <p class="text-sm">session.end(); // &copy; 2025 Turzo Roy</p>
         </div>
     </footer>
 

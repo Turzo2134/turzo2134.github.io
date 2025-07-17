@@ -16,6 +16,8 @@
     
     <!-- Feather Icons -->
     <script src="https://unpkg.com/feather-icons"></script>
+    <!-- jsPDF for PDF Generation -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
 
     <style>
         /* Custom Styles - Cybersecurity Theme */
@@ -605,7 +607,7 @@
     </main>
 
     <!-- Footer -->
-    <footer class="hero-bg-alt py-8 border-t border-gray-800">
+    <footer id="footer" class="hero-bg-alt py-8 border-t border-gray-800">
         <div class="container mx-auto px-6 text-center text-gray-500">
             <div class="flex justify-center space-x-6 mb-4">
                 <a href="https://github.com/Turzo2134" target="_blank" rel="noopener noreferrer" class="hover:text-green-400"><i data-feather="github"></i></a>
@@ -632,9 +634,9 @@
     </div>
 
     <!-- Floating Resume Download Button -->
-    <a href="REPLACE_WITH_LINK_TO_YOUR_RESUME.pdf" download="Turzo_Roy_Resume.pdf" title="Download Resume" class="fixed bottom-8 right-8 bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 transition-colors duration-300 z-50 flex items-center justify-center" aria-label="Download Resume">
+    <button id="download-resume-btn" title="Download Resume" class="fixed bottom-8 right-8 bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 transition-colors duration-300 z-50 flex items-center justify-center" aria-label="Download Resume">
         <i data-feather="download" class="w-6 h-6"></i>
-    </a>
+    </button>
 
 
     <script>
@@ -781,6 +783,144 @@
                 galleryModal.style.display = "none";
             }
         }
+
+        // --- CV Generation Logic ---
+        document.getElementById('download-resume-btn').addEventListener('click', function() {
+            const { jsPDF } = window.jspdf;
+            const doc = new jsPDF('p', 'mm', 'a4');
+
+            let yPos = 20;
+            const leftMargin = 15;
+            const rightMargin = 195;
+            const contentWidth = rightMargin - leftMargin;
+            const lineSpacing = 7;
+            const sectionSpacing = 10;
+            const pageHeight = doc.internal.pageSize.height;
+
+            function checkPageBreak(requiredHeight) {
+                if (yPos + requiredHeight > pageHeight - 20) {
+                    doc.addPage();
+                    yPos = 20;
+                }
+            }
+
+            // --- Header ---
+            const name = document.querySelector('#home h1').innerText;
+            const title = document.querySelector('#typing-text').innerText;
+            const email = document.querySelector('#contact a[href^="mailto:"]').href.replace('mailto:', '');
+            const linkedin = document.querySelector('#footer a[href*="linkedin.com"]').href;
+            const github = document.querySelector('#footer a[href*="github.com"]').href;
+            
+            doc.setFont('helvetica', 'bold');
+            doc.setFontSize(24);
+            doc.text(name, doc.internal.pageSize.width / 2, yPos, { align: 'center' });
+            yPos += lineSpacing * 1.5;
+
+            doc.setFont('helvetica', 'normal');
+            doc.setFontSize(12);
+            doc.text(title, doc.internal.pageSize.width / 2, yPos, { align: 'center' });
+            yPos += lineSpacing;
+
+            doc.setFontSize(10);
+            const contactInfo = `${email} | ${linkedin} | ${github}`;
+            doc.text(contactInfo, doc.internal.pageSize.width / 2, yPos, { align: 'center' });
+            yPos += sectionSpacing * 1.5;
+
+            // --- Summary ---
+            doc.setFontSize(14);
+            doc.setFont('helvetica', 'bold');
+            doc.text('Summary', leftMargin, yPos);
+            doc.line(leftMargin, yPos + 1, rightMargin, yPos + 1);
+            yPos += sectionSpacing;
+            
+            doc.setFontSize(10);
+            doc.setFont('helvetica', 'normal');
+            const summaryText = document.querySelector('#about .md\\:w-2\\/3').querySelectorAll('p');
+            const summary = Array.from(summaryText).map(p => p.innerText).join('\n');
+            const summaryLines = doc.splitTextToSize(summary, contentWidth);
+            doc.text(summaryLines, leftMargin, yPos);
+            yPos += summaryLines.length * lineSpacing;
+
+            // --- Experience ---
+            checkPageBreak(20);
+            yPos += sectionSpacing;
+            doc.setFontSize(14);
+            doc.setFont('helvetica', 'bold');
+            doc.text('Experience', leftMargin, yPos);
+            doc.line(leftMargin, yPos + 1, rightMargin, yPos + 1);
+            yPos += sectionSpacing;
+
+            document.querySelectorAll('#experience .timeline-item').forEach(item => {
+                const jobTitle = item.querySelector('h3').innerText;
+                const companyAndDate = item.querySelector('p.highlight').innerText;
+                const responsibilities = Array.from(item.querySelectorAll('ul li')).map(li => li.innerText);
+
+                checkPageBreak(responsibilities.length * lineSpacing + 15);
+                
+                doc.setFontSize(12);
+                doc.setFont('helvetica', 'bold');
+                doc.text(jobTitle, leftMargin, yPos);
+                yPos += lineSpacing;
+
+                doc.setFontSize(10);
+                doc.setFont('helvetica', 'italic');
+                doc.text(companyAndDate, leftMargin, yPos);
+                yPos += lineSpacing;
+
+                doc.setFont('helvetica', 'normal');
+                responsibilities.forEach(res => {
+                    const resLines = doc.splitTextToSize(`• ${res}`, contentWidth - 5);
+                    checkPageBreak(resLines.length * lineSpacing);
+                    doc.text(resLines, leftMargin + 5, yPos);
+                    yPos += resLines.length * lineSpacing;
+                });
+                yPos += lineSpacing;
+            });
+
+            // --- Skills ---
+            checkPageBreak(20);
+            yPos += sectionSpacing;
+            doc.setFontSize(14);
+            doc.setFont('helvetica', 'bold');
+            doc.text('Technical Skills', leftMargin, yPos);
+            doc.line(leftMargin, yPos + 1, rightMargin, yPos + 1);
+            yPos += sectionSpacing;
+
+            doc.setFontSize(10);
+            doc.setFont('helvetica', 'normal');
+            const skills = Array.from(document.querySelectorAll('#skills span')).map(s => s.innerText).join(', ');
+            const skillLines = doc.splitTextToSize(skills, contentWidth);
+            doc.text(skillLines, leftMargin, yPos);
+            yPos += skillLines.length * lineSpacing;
+            
+            // --- Education ---
+            checkPageBreak(20);
+            yPos += sectionSpacing;
+            doc.setFontSize(14);
+            doc.setFont('helvetica', 'bold');
+            doc.text('Education', leftMargin, yPos);
+            doc.line(leftMargin, yPos + 1, rightMargin, yPos + 1);
+            yPos += sectionSpacing;
+
+            document.querySelectorAll('#education .card-hover').forEach(item => {
+                const degree = item.querySelector('h3').innerText;
+                const details = item.querySelector('p.highlight').innerText;
+                
+                checkPageBreak(15);
+                doc.setFontSize(12);
+                doc.setFont('helvetica', 'bold');
+                doc.text(degree, leftMargin, yPos);
+                yPos += lineSpacing;
+
+                doc.setFontSize(10);
+                doc.setFont('helvetica', 'italic');
+                doc.text(details, leftMargin, yPos);
+                yPos += lineSpacing * 1.5;
+            });
+
+            // --- Download ---
+            doc.save('Turzo_Roy_CV.pdf');
+        });
 
     </script>
 

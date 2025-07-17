@@ -185,7 +185,7 @@
     <!-- Header -->
     <header id="header" class="fixed top-0 left-0 right-0 z-50 bg-[#0d1117]/80 backdrop-blur-sm border-b border-gray-800">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="text-2xl font-bold text-white">><span class="text-green-400">/</span>home<span class="text-green-400">/</span>turzo_roy</a>
+            <a href="#" class="text-xl font-bold text-white truncate">><span class="text-green-400">/</span>home<span class="text-green-400">/</span>turzo_roy</a>
             <div class="hidden md:flex space-x-8">
                 <a href="#about" class="nav-link">about</a>
                 <a href="#experience" class="nav-link">experience</a>
@@ -220,7 +220,7 @@
                 <h1 class="text-4xl md:text-6xl font-bold text-white leading-tight mb-4">
                     Turzo Roy
                 </h1>
-                <p class="text-xl md:text-2xl text-gray-300 mb-8">
+                <p class="text-xl md:text-2xl text-gray-300 mb-8 min-h-[2.25rem]">
                     <span id="typing-text" class="highlight font-semibold"></span><span class="typing-cursor"></span>
                 </p>
                 <a href="#projects" class="bg-green-500/10 border border-green-500 text-green-400 font-bold py-3 px-8 rounded-md hover:bg-green-500/20 transition-all duration-300 text-lg">
@@ -233,16 +233,16 @@
         <section id="about" class="py-20 section-bg">
             <div class="container mx-auto px-6">
                 <h2 class="text-3xl font-bold text-center text-white mb-12">[ About Me ]</h2>
-                <div class="flex flex-col md:flex-row items-center gap-12">
-                    <div class="md:w-1/3">
-                        <img src="https://raw.githubusercontent.com/Turzo2134/turzo2134.github.io/main/images/myphoto.jpg" alt="Turzo Roy" class="rounded-full mx-auto shadow-lg w-64 h-64 md:w-80 md:h-80 object-cover border-4 border-gray-700">
+                <div class="flex flex-col md:flex-row items-center gap-8 md:gap-12">
+                    <div class="md:w-1/3 flex-shrink-0">
+                        <img src="https://raw.githubusercontent.com/Turzo2134/turzo2134.github.io/main/images/myphoto.jpg" alt="Turzo Roy" class="rounded-full mx-auto shadow-lg w-64 h-64 object-cover border-4 border-gray-700">
                     </div>
                     <div class="md:w-2/3 text-center md:text-left">
                         <h3 class="text-2xl font-semibold text-white mb-4">system.out.println("Who I Am");</h3>
-                        <p class="mb-4">
+                        <p class="mb-4 text-gray-300">
                             A dedicated and analytical Cybersecurity Engineer with a passion for digital forensics, threat hunting, and building secure systems. I thrive on deconstructing complex security challenges and architecting robust defenses to protect critical data and infrastructure.
                         </p>
-                        <p>
+                        <p class="text-gray-300">
                             My goal is to stay one step ahead of emerging threats, continuously honing my skills in penetration testing, incident response, and security automation.
                         </p>
                     </div>
@@ -260,31 +260,32 @@
                         <div class="timeline-dot"></div>
                         <div class="mb-2">
                             <h3 class="text-xl font-bold text-white">Engineer - Enterprise Solutions Cyber Security</h3>
-                            <p class="highlight">Smart Technologies (BD) Ltd. | 1st May 2024 - Present</p>
+                            <p class="highlight">Smart Technologies (BD) Ltd. | May 2024 - Present</p>
                         </div>
-                        <p class="text-gray-400">
-<br>•	Deliver comprehensive security solutions, including assessments, product recommendations, and implementations tailored to client needs.</br>
-<br>•	Provide technical support and promptly troubleshoot cybersecurity product issues for customers.</br>
-<br>•	Collaborate with external OEMs and support providers to ensure seamless integration and issue resolution.</br>
-<br>•	Implement, manage, and support VAPT, SIEM, NMS, and other cybersecurity solutions.</br>
-<br>•	Configure, manage, and maintain security tools such as FortiSIEM, FortiSOAR, and IBM QRadar.</br>
-<br>•	Lead SOC implementation and management for enhanced incident detection and response.</br>
-<br>•	Deploy configure and provide training for Tenable and Rapid7 products to enhance vulnerability management and threat detection capabilities.</br>
-</p>
+                        <ul class="text-gray-400 list-disc list-inside space-y-2">
+                            <li>Deliver comprehensive security solutions, including assessments, product recommendations, and implementations tailored to client needs.</li>
+                            <li>Provide technical support and promptly troubleshoot cybersecurity product issues for customers.</li>
+                            <li>Collaborate with external OEMs and support providers to ensure seamless integration and issue resolution.</li>
+                            <li>Implement, manage, and support VAPT, SIEM, NMS, and other cybersecurity solutions.</li>
+                            <li>Configure, manage, and maintain security tools such as FortiSIEM, FortiSOAR, and IBM QRadar.</li>
+                            <li>Lead SOC implementation and management for enhanced incident detection and response.</li>
+                            <li>Deploy, configure and provide training for Tenable and Rapid7 products to enhance vulnerability management and threat detection capabilities.</li>
+                        </ul>
                     </div>
                     <!-- Timeline Item 2 -->
                     <div class="timeline-item">
                         <div class="timeline-dot"></div>
                         <div class="mb-2">
                             <h3 class="text-xl font-bold text-white">Technical Support Engineer (Intern)</h3>
-                            <p class="highlight">Infolink Limited | 29th Jan 2023 - 29th April 2023</p>
+                            <p class="highlight">Infolink Limited | Jan 2023 - Apr 2023</p>
                         </div>
-                        <p class="text-gray-400"><br>•	Provide low-level network administration services.</br>
-<br>•	Monitoring the health of the overall network, reporting problems and incidents as necessary.</br>
-<br>•	Configure and troubleshoot router and ONU devices.</br>
-<br>•	Assist in first line of support for network infrastructure.</br>
-<br>•	Working with external vendors and support providers as required.</br>
-</p>
+                         <ul class="text-gray-400 list-disc list-inside space-y-2">
+                            <li>Provided low-level network administration services.</li>
+                            <li>Monitored the health of the overall network, reporting problems and incidents as necessary.</li>
+                            <li>Configured and troubleshooted router and ONU devices.</li>
+                            <li>Assisted in first line of support for network infrastructure.</li>
+                            <li>Worked with external vendors and support providers as required.</li>
+                        </ul>
                     </div>
                 </div>
             </div>
@@ -297,7 +298,7 @@
                 <div class="max-w-5xl mx-auto space-y-8">
                     <!-- Education Card 1 -->
                     <div class="bg-[#0d1117] p-6 rounded-lg card-hover flex flex-col md:flex-row items-center gap-6">
-                        <img src="https://raw.githubusercontent.com/Turzo2134/turzo2134.github.io/main/images/du.png" alt="University of Dhaka Logo" class="education-logo" onerror="this.onerror=null; this.src='https://placehold.co/100x100/ffffff/000000?text=DU';">
+                        <img src="https://raw.githubusercontent.com/Turzo2134/turzo2134.github.io/main/images/du.png" alt="University of Dhaka Logo" class="education-logo flex-shrink-0" onerror="this.onerror=null; this.src='https://placehold.co/100x100/ffffff/000000?text=DU';">
                         <div class="text-center md:text-left">
                             <h3 class="text-xl font-bold text-white">University of Dhaka</h3>
                             <p class="highlight mb-1">Master's degree, Information and Cyber Security | Jun 2023 - Dec 2024</p>
@@ -314,7 +315,7 @@
                     </div>
                     <!-- Education Card 2 -->
                     <div class="bg-[#0d1117] p-6 rounded-lg card-hover flex flex-col md:flex-row items-center gap-6">
-                        <img src="https://raw.githubusercontent.com/Turzo2134/turzo2134.github.io/main/images/aiub.png" alt="American International University-Bangladesh Logo" class="education-logo" onerror="this.onerror=null; this.src='https://placehold.co/100x100/ffffff/000000?text=AIUB';">
+                        <img src="https://raw.githubusercontent.com/Turzo2134/turzo2134.github.io/main/images/aiub.png" alt="American International University-Bangladesh Logo" class="education-logo flex-shrink-0" onerror="this.onerror=null; this.src='https://placehold.co/100x100/ffffff/000000?text=AIUB';">
                         <div class="text-center md:text-left">
                             <h3 class="text-xl font-bold text-white">American International University-Bangladesh</h3>
                             <p class="highlight mb-1">Bachelor's degree, Computer Science | Jan 2019 - May 2023</p>
@@ -331,7 +332,7 @@
                     </div>
                     <!-- Education Card 3 -->
                     <div class="bg-[#0d1117] p-6 rounded-lg card-hover flex flex-col md:flex-row items-center gap-6">
-                        <img src="https://raw.githubusercontent.com/Turzo2134/turzo2134.github.io/main/images/bnmpc.png" alt="Birshreshtha Noor Mohammad Public College Logo" class="education-logo" onerror="this.onerror=null; this.src='https://placehold.co/100x100/ffffff/000000?text=BNMPC';">
+                        <img src="https://raw.githubusercontent.com/Turzo2134/turzo2134.github.io/main/images/bnmpc.png" alt="Birshreshtha Noor Mohammad Public College Logo" class="education-logo flex-shrink-0" onerror="this.onerror=null; this.src='https://placehold.co/100x100/ffffff/000000?text=BNMPC';">
                         <div class="text-center md:text-left">
                             <h3 class="text-xl font-bold text-white">Birshreshtha Noor Mohammad Public College</h3>
                             <p class="highlight mb-1">HSC, Science | Feb 2016 - Dec 2018</p>
@@ -371,7 +372,7 @@
         <section id="partner-certs" class="py-20 section-bg">
             <div class="container mx-auto px-6">
                 <h2 class="text-3xl font-bold text-center text-white mb-12">[ Partner Certifications ]</h2>
-                <div class="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div class="max-w-5xl mx-auto grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 text-center">
                     <!-- Partner 1: Fortinet -->
                     <a href="#" class="partner-link bg-[#0d1117] p-6 rounded-lg card-hover flex flex-col justify-center items-center" 
                        data-partner-name="Fortinet"
@@ -383,7 +384,7 @@
                     <a href="#" class="partner-link bg-[#0d1117] p-6 rounded-lg card-hover flex flex-col justify-center items-center" 
                        data-partner-name="IBM"
                        data-certs='["https://raw.githubusercontent.com/Turzo2134/turzo2134.github.io/main/images/ibmqradarsales.jpg","https://raw.githubusercontent.com/Turzo2134/turzo2134.github.io/main/images/ibmqradarsoar.jpg","https://raw.githubusercontent.com/Turzo2134/turzo2134.github.io/main/images/ibmqradartechnical.jpg","https://raw.githubusercontent.com/Turzo2134/turzo2134.github.io/main/images/ibmsiemfoundation.jpg"]'>
-                        <img src="https://raw.githubusercontent.com/Turzo2134/turzo2134.github.io/main/images/ibm2.png" alt="IBM Logo" class="partner-logo">
+                        <img src="https://raw.githubusercontent.com/Turzo2134/turzo2134.github.io/main/images/ibm.png" alt="IBM Logo" class="partner-logo">
                         <h3 class="font-bold text-white mt-2">IBM</h3>
                     </a>
                     <!-- Partner 3: Tenable -->
@@ -583,7 +584,7 @@
                 <a href="https://www.facebook.com/turzo.roy.435318/" target="_blank" rel="noopener noreferrer" class="hover:text-green-400"><i data-feather="facebook"></i></a>
                 <a href="https://tryhackme.com/p/turzo.roy" target="_blank" rel="noopener noreferrer" class="hover:text-green-400"><i data-feather="shield"></i></a>
             </div>
-            <p class="text-sm">session.end(); // &copy; 2024 Turzo Roy</p>
+            <p class="text-sm">session.end(); // &copy; 2025 Turzo Roy</p>
         </div>
     </footer>
 
@@ -615,7 +616,7 @@
 
         // --- Typing Effect ---
         const typingText = document.getElementById('typing-text');
-        const words = ["Cybersecurity Engineer", "Penetration Tester", "Threat Hunter", "Ethical Hacker", "Security Architect"];
+        const words = ["Cybersecurity Engineer", "Penetration Tester", "Threat Hunter", "Ethical Hacker", "SOC Analyst", "Security Architect"];
         let wordIndex = 0;
         let charIndex = 0;
         let isDeleting = false;

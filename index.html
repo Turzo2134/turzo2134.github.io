@@ -190,12 +190,12 @@
             color: #39ff14;
             border-color: #39ff14;
         }
-        /* Floating News Tab */
-        #news-panel {
+        /* Floating Panels */
+        .floating-panel {
             transform: translateX(-100%);
             transition: transform 0.3s ease-in-out;
         }
-        #news-panel.open {
+        .floating-panel.open {
             transform: translateX(0);
         }
     </style>
@@ -206,7 +206,7 @@
     <header id="header" class="fixed top-0 left-0 right-0 z-50 bg-[#0d1117]/80 backdrop-blur-sm border-b border-gray-800">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
             <a href="#" class="text-xl font-bold text-white truncate">><span class="text-green-400">/</span>home<span class="text-green-400">/</span>turzo_roy</a>
-            <div class="hidden md:flex space-x-8">
+            <div class="hidden md:flex space-x-6">
                 <a href="#about" class="nav-link">about</a>
                 <a href="#experience" class="nav-link">experience</a>
                 <a href="#education" class="nav-link">education</a>
@@ -652,7 +652,7 @@
     </div>
 
     <!-- Floating News Panel -->
-    <div id="news-panel" class="fixed top-0 left-0 h-full w-full max-w-md bg-[#161b22] shadow-2xl z-50 p-6 overflow-y-auto">
+    <div id="news-panel" class="floating-panel fixed top-0 left-0 h-full w-full max-w-md bg-[#161b22] shadow-2xl z-50 p-6 overflow-y-auto">
         <div class="flex justify-between items-center mb-6">
             <h2 class="text-2xl font-bold text-white">[ Latest Cyber News ]</h2>
             <button id="close-news-panel" class="text-gray-400 hover:text-white">
@@ -676,6 +676,12 @@
             <!-- News content will be injected here -->
         </div>
     </div>
+
+    <!-- Floating TryHackMe Badge -->
+    <div id="floating-thm-badge" class="fixed bottom-24 left-0 z-40">
+        <iframe src="https://tryhackme.com/api/v2/badges/public-profile?userPublicId=2042931" style="width: 350px; height: 180px; border:none;" loading="lazy"></iframe>
+    </div>
+
 
     <!-- Floating Resume Download Button -->
     <button id="download-resume-btn" title="Download Resume" class="fixed bottom-8 right-8 bg-green-500 text-white p-4 rounded-full shadow-lg hover:bg-green-600 transition-colors duration-300 z-50 flex items-center justify-center" aria-label="Download Resume">
@@ -970,8 +976,8 @@
             const newsTab = document.getElementById('news-tab');
             const closeNewsPanel = document.getElementById('close-news-panel');
             const newsContent = document.getElementById('news-content-panel');
-            const tabButtons = newsPanel.querySelectorAll('.tab-button');
-
+            const newsTabButtons = newsPanel.querySelectorAll('.tab-button');
+            
             newsTab.addEventListener('click', () => newsPanel.classList.add('open'));
             closeNewsPanel.addEventListener('click', () => newsPanel.classList.remove('open'));
 
@@ -1017,9 +1023,9 @@
                 }
             };
 
-            tabButtons.forEach(button => {
+            newsTabButtons.forEach(button => {
                 button.addEventListener('click', () => {
-                    tabButtons.forEach(btn => {
+                    newsTabButtons.forEach(btn => {
                         btn.classList.remove('active');
                         btn.classList.add('text-gray-400', 'border-transparent', 'hover:text-gray-200', 'hover:border-gray-500');
                     });

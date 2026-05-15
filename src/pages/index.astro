@@ -1,0 +1,467 @@
+---
+import Layout from '../layouts/Layout.astro';
+import type { CollectionEntry } from 'astro:content';
+import { getCollection } from 'astro:content';
+
+const projects = await getCollection('projects');
+const experience = await getCollection('experience');
+const education = await getCollection('education');
+const skills = await getCollection('skills');
+
+const siteConfig = {
+  title: "Turzo Roy - Cybersecurity Engineer",
+  description: "Portfolio of Turzo Roy - Cybersecurity Engineer specializing in SIEM, SOC, and penetration testing.",
+  author: "Turzo Roy",
+  email: "turzo1027@gmail.com",
+  social: {
+    github: "https://github.com/Turzo2134",
+    linkedin: "https://www.linkedin.com/in/turzoroy/",
+    twitter: "https://twitter.com/turzo_roy"
+  }
+};
+---
+
+<Layout title={siteConfig.title}>
+  <!-- Hero Section -->
+  <section id="hero" class="hero-section">
+    <div class="container">
+      <div class="hero-content">
+        <h1>Turzo Roy</h1>
+        <p class="hero-subtitle">Cybersecurity Engineer | Penetration Tester | Threat Hunter</p>
+        <p class="hero-description">
+          Building secure systems, hunting threats, and staying ahead of emerging cyber risks.
+        </p>
+        <div class="hero-buttons">
+          <a href="#projects" class="btn btn-primary">View My Work</a>
+          <a href={`mailto:${siteConfig.email}`} class="btn btn-secondary">Get in Touch</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- About Section -->
+  <section id="about" class="about-section">
+    <div class="container">
+      <h2>About Me</h2>
+      <div class="about-content">
+        <div class="about-text">
+          <p>
+            A dedicated and analytical Cybersecurity Engineer with a passion for digital forensics, threat hunting, and building secure systems. I thrive on deconstructing complex security challenges and implementing robust solutions.
+          </p>
+          <p>
+            My goal is to stay one step ahead of emerging threats, continuously honing my skills in penetration testing, incident response, and security automation.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Experience Section -->
+  {experience.length > 0 && (
+    <section id="experience" class="experience-section">
+      <div class="container">
+        <h2>Experience</h2>
+        <div class="timeline">
+          {experience.map((exp) => (
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h3>{exp.data.title}</h3>
+                <p class="company">{exp.data.company}</p>
+                <p class="date">{exp.data.startDate} - {exp.data.endDate}</p>
+                <p class="description">{exp.data.description}</p>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Education Section -->
+  {education.length > 0 && (
+    <section id="education" class="education-section">
+      <div class="container">
+        <h2>Education</h2>
+        <div class="education-grid">
+          {education.map((edu) => (
+            <div class="education-card">
+              <h3>{edu.data.school}</h3>
+              <p class="degree">{edu.data.degree}</p>
+              <p class="grade">Grade: {edu.data.grade}</p>
+              <p class="duration">{edu.data.startDate} - {edu.data.endDate}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Projects Section -->
+  {projects.length > 0 && (
+    <section id="projects" class="projects-section">
+      <div class="container">
+        <h2>Projects</h2>
+        <div class="projects-grid">
+          {projects.map((project) => (
+            <div class="project-card">
+              <h3>{project.data.title}</h3>
+              <p class="date">{project.data.date}</p>
+              <p class="description">{project.data.description}</p>
+              <div class="tags">
+                {project.data.tags.map((tag) => (
+                  <span class="tag">{tag}</span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Skills Section -->
+  {skills.length > 0 && (
+    <section id="skills" class="skills-section">
+      <div class="container">
+        <h2>Technical Skills</h2>
+        <div class="skills-grid">
+          {skills.map((skill) => (
+            <div class="skill-card">
+              <h3>{skill.data.category}</h3>
+              <div class="skill-items">
+                {skill.data.items.map((item) => (
+                  <span class="skill-item">{item}</span>
+                ))}
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <!-- Contact Section -->
+  <section id="contact" class="contact-section">
+    <div class="container">
+      <h2>Get in Touch</h2>
+      <p>Open to new opportunities and collaborations. Feel free to reach out!</p>
+      <a href={`mailto:${siteConfig.email}`} class="btn btn-primary">Send Email</a>
+    </div>
+  </section>
+</Layout>
+
+<style>
+  .container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  /* Hero Section */
+  .hero-section {
+    background: linear-gradient(135deg, #0d1117 0%, #161b22 100%);
+    color: #c9d1d9;
+    padding: 6rem 0;
+    text-align: center;
+  }
+
+  .hero-content h1 {
+    font-size: 3.5rem;
+    color: #39ff14;
+    margin-bottom: 1rem;
+  }
+
+  .hero-subtitle {
+    font-size: 1.5rem;
+    color: #58a6ff;
+    margin-bottom: 1rem;
+  }
+
+  .hero-description {
+    font-size: 1.1rem;
+    color: #c9d1d9;
+    max-width: 600px;
+    margin: 0 auto 2rem;
+  }
+
+  .hero-buttons {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+
+  /* Buttons */
+  .btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
+    text-decoration: none;
+    font-weight: 600;
+    transition: all 0.3s ease;
+    display: inline-block;
+  }
+
+  .btn-primary {
+    background: #39ff14;
+    color: #0d1117;
+  }
+
+  .btn-primary:hover {
+    background: #2dd60e;
+    transform: translateY(-2px);
+  }
+
+  .btn-secondary {
+    background: transparent;
+    color: #58a6ff;
+    border: 2px solid #58a6ff;
+  }
+
+  .btn-secondary:hover {
+    background: #58a6ff;
+    color: #0d1117;
+  }
+
+  /* Sections */
+  section {
+    padding: 4rem 0;
+  }
+
+  section h2 {
+    font-size: 2.5rem;
+    color: #39ff14;
+    text-align: center;
+    margin-bottom: 3rem;
+  }
+
+  /* About Section */
+  .about-section {
+    background: #0d1117;
+    color: #c9d1d9;
+  }
+
+  .about-text {
+    max-width: 800px;
+    margin: 0 auto;
+    line-height: 1.8;
+  }
+
+  .about-text p {
+    margin-bottom: 1rem;
+    font-size: 1.1rem;
+  }
+
+  /* Experience Timeline */
+  .experience-section {
+    background: #161b22;
+    color: #c9d1d9;
+  }
+
+  .timeline {
+    max-width: 800px;
+    margin: 0 auto;
+  }
+
+  .timeline-item {
+    position: relative;
+    padding-left: 3rem;
+    margin-bottom: 2rem;
+  }
+
+  .timeline-dot {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 1.2rem;
+    height: 1.2rem;
+    background: #39ff14;
+    border-radius: 50%;
+    border: 3px solid #0d1117;
+  }
+
+  .timeline-content h3 {
+    color: #39ff14;
+    font-size: 1.3rem;
+  }
+
+  .company {
+    color: #58a6ff;
+    font-weight: 600;
+  }
+
+  .date {
+    color: #8b949e;
+    font-size: 0.9rem;
+  }
+
+  .description {
+    margin-top: 0.5rem;
+    line-height: 1.6;
+  }
+
+  /* Education */
+  .education-section {
+    background: #0d1117;
+    color: #c9d1d9;
+  }
+
+  .education-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .education-card {
+    background: #161b22;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    border-left: 4px solid #39ff14;
+  }
+
+  .education-card h3 {
+    color: #39ff14;
+    margin-bottom: 0.5rem;
+  }
+
+  .degree {
+    color: #58a6ff;
+    font-weight: 600;
+  }
+
+  .grade,
+  .duration {
+    color: #8b949e;
+    font-size: 0.9rem;
+  }
+
+  /* Projects */
+  .projects-section {
+    background: #161b22;
+    color: #c9d1d9;
+  }
+
+  .projects-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 2rem;
+  }
+
+  .project-card {
+    background: #0d1117;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    border: 1px solid #30363d;
+    transition: all 0.3s ease;
+  }
+
+  .project-card:hover {
+    border-color: #39ff14;
+    box-shadow: 0 0 15px rgba(57, 255, 20, 0.2);
+    transform: translateY(-5px);
+  }
+
+  .project-card h3 {
+    color: #39ff14;
+    margin-bottom: 0.5rem;
+  }
+
+  .project-card .date {
+    color: #8b949e;
+    font-size: 0.9rem;
+  }
+
+  .project-card .description {
+    margin: 1rem 0;
+    line-height: 1.6;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  .tag {
+    background: #30363d;
+    color: #8b949e;
+    padding: 0.25rem 0.75rem;
+    border-radius: 2rem;
+    font-size: 0.85rem;
+  }
+
+  /* Skills */
+  .skills-section {
+    background: #0d1117;
+    color: #c9d1d9;
+  }
+
+  .skills-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+
+  .skill-card {
+    background: #161b22;
+    padding: 2rem;
+    border-radius: 0.5rem;
+    border: 1px solid #30363d;
+  }
+
+  .skill-card h3 {
+    color: #39ff14;
+    margin-bottom: 1rem;
+  }
+
+  .skill-items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+
+  .skill-item {
+    background: #0d1117;
+    color: #c9d1d9;
+    padding: 0.5rem 1rem;
+    border-radius: 0.25rem;
+    border: 1px solid #30363d;
+    font-size: 0.9rem;
+  }
+
+  /* Contact Section */
+  .contact-section {
+    background: #161b22;
+    color: #c9d1d9;
+    text-align: center;
+  }
+
+  .contact-section p {
+    font-size: 1.1rem;
+    margin-bottom: 2rem;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .hero-content h1 {
+      font-size: 2rem;
+    }
+
+    .hero-subtitle {
+      font-size: 1.1rem;
+    }
+
+    section h2 {
+      font-size: 1.8rem;
+    }
+
+    .hero-buttons {
+      flex-direction: column;
+    }
+
+    .btn {
+      width: 100%;
+    }
+  }
+</style>

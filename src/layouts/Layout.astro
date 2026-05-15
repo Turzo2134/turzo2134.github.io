@@ -1,0 +1,98 @@
+---
+interface Props {
+	title: string;
+	description?: string;
+}
+
+const { title, description = "Turzo Roy - Cybersecurity Engineer Portfolio" } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<meta name="description" content={description} />
+		<meta name="viewport" content="width=device-width" />
+		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+		<meta name="generator" content={Astro.generator} />
+		<title>{title}</title>
+		<style is:global>
+			* {
+				margin: 0;
+				padding: 0;
+				box-sizing: border-box;
+			}
+
+			html {
+				font-family: system-ui, sans-serif;
+				background: #0d1117;
+				color: #c9d1d9;
+			}
+
+			body {
+				background: #0d1117;
+				color: #c9d1d9;
+				line-height: 1.6;
+			}
+
+			a {
+				color: #58a6ff;
+				text-decoration: none;
+				transition: color 0.3s ease;
+			}
+
+			a:hover {
+				color: #39ff14;
+			}
+
+			h1, h2, h3, h4, h5, h6 {
+				color: #c9d1d9;
+				font-weight: 600;
+			}
+
+			code {
+				font-family: 'Courier New', monospace;
+				background: #161b22;
+				padding: 0.2rem 0.4rem;
+				border-radius: 0.25rem;
+				color: #39ff14;
+			}
+
+			pre {
+				background: #161b22;
+				padding: 1rem;
+				border-radius: 0.5rem;
+				overflow-x: auto;
+				margin: 1rem 0;
+			}
+
+			pre code {
+				background: none;
+				padding: 0;
+				color: #c9d1d9;
+			}
+
+			/* Scrollbar styling */
+			::-webkit-scrollbar {
+				width: 10px;
+				height: 10px;
+			}
+
+			::-webkit-scrollbar-track {
+				background: #0d1117;
+			}
+
+			::-webkit-scrollbar-thumb {
+				background: #30363d;
+				border-radius: 5px;
+			}
+
+			::-webkit-scrollbar-thumb:hover {
+				background: #39ff14;
+			}
+		</style>
+	</head>
+	<body>
+		<slot />
+	</body>
+</html>

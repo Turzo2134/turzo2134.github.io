@@ -1,50 +1,47 @@
 ---
 import Layout from '../layouts/Layout.astro';
-import type { CollectionEntry } from 'astro:content';
-import { getCollection } from 'astro:content';
-
-const projects = await getCollection('projects');
-const experience = await getCollection('experience');
-const education = await getCollection('education');
-const skills = await getCollection('skills');
-
-const siteConfig = {
-  title: "Turzo Roy - Cybersecurity Engineer",
-  description: "Portfolio of Turzo Roy - Cybersecurity Engineer specializing in SIEM, SOC, and penetration testing.",
-  author: "Turzo Roy",
-  email: "turzo1027@gmail.com",
-  social: {
-    github: "https://github.com/Turzo2134",
-    linkedin: "https://www.linkedin.com/in/turzoroy/",
-    twitter: "https://twitter.com/turzo_roy"
-  }
-};
 ---
 
-<Layout title={siteConfig.title}>
+<Layout title="Turzo Roy - Cybersecurity Engineer">
+  <!-- Navigation -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="#" class="logo">><span class="accent">/</span>home<span class="accent">/</span>turzo_roy</a>
+      <div class="nav-links">
+        <a href="#about" class="nav-link">about</a>
+        <a href="#experience" class="nav-link">experience</a>
+        <a href="#education" class="nav-link">education</a>
+        <a href="#certifications" class="nav-link">certifications</a>
+        <a href="#projects" class="nav-link">projects</a>
+        <a href="#skills" class="nav-link">skills</a>
+        <a href="#contact" class="nav-link">contact</a>
+      </div>
+    </div>
+  </nav>
+
   <!-- Hero Section -->
-  <section id="hero" class="hero-section">
+  <section id="hero" class="hero">
     <div class="container">
-      <div class="hero-content">
-        <h1>Turzo Roy</h1>
-        <p class="hero-subtitle">Cybersecurity Engineer | Penetration Tester | Threat Hunter</p>
-        <p class="hero-description">
-          Building secure systems, hunting threats, and staying ahead of emerging cyber risks.
-        </p>
-        <div class="hero-buttons">
-          <a href="#projects" class="btn btn-primary">View My Work</a>
-          <a href={`mailto:${siteConfig.email}`} class="btn btn-secondary">Get in Touch</a>
-        </div>
+      <h1>Turzo Roy</h1>
+      <p class="typing-effect"><span id="typing-text"></span><span class="cursor"></span></p>
+      <p class="hero-description">Building secure systems, hunting threats, and staying ahead of emerging cyber risks.</p>
+      <div class="hero-buttons">
+        <a href="#projects" class="btn btn-primary">Analyze My Work</a>
+        <a href="#contact" class="btn btn-secondary">Contact Me</a>
       </div>
     </div>
   </section>
 
   <!-- About Section -->
-  <section id="about" class="about-section">
+  <section id="about" class="section">
     <div class="container">
-      <h2>About Me</h2>
+      <h2>[ About Me ]</h2>
       <div class="about-content">
+        <div class="about-image">
+          <img src="/images/myphoto.jpg" alt="Turzo Roy" class="profile-image" />
+        </div>
         <div class="about-text">
+          <h3>system.out.println("Who I Am");</h3>
           <p>
             A dedicated and analytical Cybersecurity Engineer with a passion for digital forensics, threat hunting, and building secure systems. I thrive on deconstructing complex security challenges and implementing robust solutions.
           </p>
@@ -57,125 +54,447 @@ const siteConfig = {
   </section>
 
   <!-- Experience Section -->
-  {experience.length > 0 && (
-    <section id="experience" class="experience-section">
-      <div class="container">
-        <h2>Experience</h2>
-        <div class="timeline">
-          {experience.map((exp) => (
-            <div class="timeline-item">
-              <div class="timeline-dot"></div>
-              <div class="timeline-content">
-                <h3>{exp.data.title}</h3>
-                <p class="company">{exp.data.company}</p>
-                <p class="date">{exp.data.startDate} - {exp.data.endDate}</p>
-                <p class="description">{exp.data.description}</p>
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  )}
-
-  <!-- Education Section -->
-  {education.length > 0 && (
-    <section id="education" class="education-section">
-      <div class="container">
-        <h2>Education</h2>
-        <div class="education-grid">
-          {education.map((edu) => (
-            <div class="education-card">
-              <h3>{edu.data.school}</h3>
-              <p class="degree">{edu.data.degree}</p>
-              <p class="grade">Grade: {edu.data.grade}</p>
-              <p class="duration">{edu.data.startDate} - {edu.data.endDate}</p>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  )}
-
-  <!-- Projects Section -->
-  {projects.length > 0 && (
-    <section id="projects" class="projects-section">
-      <div class="container">
-        <h2>Projects</h2>
-        <div class="projects-grid">
-          {projects.map((project) => (
-            <div class="project-card">
-              <h3>{project.data.title}</h3>
-              <p class="date">{project.data.date}</p>
-              <p class="description">{project.data.description}</p>
-              <div class="tags">
-                {project.data.tags.map((tag) => (
-                  <span class="tag">{tag}</span>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  )}
-
-  <!-- Skills Section -->
-  {skills.length > 0 && (
-    <section id="skills" class="skills-section">
-      <div class="container">
-        <h2>Technical Skills</h2>
-        <div class="skills-grid">
-          {skills.map((skill) => (
-            <div class="skill-card">
-              <h3>{skill.data.category}</h3>
-              <div class="skill-items">
-                {skill.data.items.map((item) => (
-                  <span class="skill-item">{item}</span>
-                ))}
-              </div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </section>
-  )}
-
-  <!-- Contact Section -->
-  <section id="contact" class="contact-section">
+  <section id="experience" class="section alt-bg">
     <div class="container">
-      <h2>Get in Touch</h2>
-      <p>Open to new opportunities and collaborations. Feel free to reach out!</p>
-      <a href={`mailto:${siteConfig.email}`} class="btn btn-primary">Send Email</a>
+      <h2>[ Work Experience ]</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h3>Engineer - Enterprise Solutions Cyber Security</h3>
+            <p class="company">Smart Technologies (BD) Ltd. | May 2024 - Present</p>
+            <ul class="responsibilities">
+              <li>Deliver comprehensive security solutions, including assessments, product recommendations, and implementations tailored to client needs.</li>
+              <li>Provide technical support and promptly troubleshoot cybersecurity product issues for customers.</li>
+              <li>Collaborate with external OEMs and support providers to ensure seamless integration and issue resolution.</li>
+              <li>Implement, manage, and support VAPT, SIEM, NMS, and other cybersecurity solutions.</li>
+              <li>Configure, manage, and maintain security tools such as FortiSIEM, FortiSOAR, and IBM QRadar.</li>
+              <li>Lead SOC implementation and management for enhanced incident detection and response.</li>
+              <li>Deploy, configure and provide training for Tenable and Rapid7 products to enhance vulnerability management and threat detection capabilities.</li>
+            </ul>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-dot"></div>
+          <div class="timeline-content">
+            <h3>Technical Support Engineer (Intern)</h3>
+            <p class="company">Infolink Limited | Jan 2023 - Apr 2023</p>
+            <ul class="responsibilities">
+              <li>Provided low-level network administration services.</li>
+              <li>Monitored the health of the overall network, reporting problems and incidents as necessary.</li>
+              <li>Configured and troubleshooted router and ONU devices.</li>
+              <li>Assisted in first line of support for network infrastructure.</li>
+              <li>Worked with external vendors and support providers as required.</li>
+            </ul>
+          </div>
+        </div>
+      </div>
     </div>
   </section>
+
+  <!-- Education Section -->
+  <section id="education" class="section">
+    <div class="container">
+      <h2>[ Education ]</h2>
+      <div class="education-grid">
+        <div class="education-card">
+          <img src="/images/du.png" alt="University of Dhaka" class="edu-logo" />
+          <div class="edu-content">
+            <h3>University of Dhaka</h3>
+            <p class="degree">Master's degree, Information and Cyber Security</p>
+            <p class="date">Jun 2023 - Dec 2024</p>
+            <p class="grade">Grade: 3.33</p>
+            <div class="tags">
+              <span>SIEM</span>
+              <span>TCP/IP</span>
+              <span>Linux</span>
+              <span>OSI Model</span>
+              <span>Wireshark</span>
+              <span>VAPT</span>
+            </div>
+          </div>
+        </div>
+        <div class="education-card">
+          <img src="/images/aiub.png" alt="AIUB" class="edu-logo" />
+          <div class="edu-content">
+            <h3>American International University-Bangladesh</h3>
+            <p class="degree">Bachelor's degree, Computer Science</p>
+            <p class="date">Jan 2019 - May 2023</p>
+            <p class="grade">Grade: 3.26</p>
+            <div class="tags">
+              <span>Security Onion</span>
+              <span>Linux</span>
+              <span>TCP/IP</span>
+              <span>OSI Model</span>
+              <span>HTTP</span>
+              <span>Python</span>
+            </div>
+          </div>
+        </div>
+        <div class="education-card">
+          <img src="/images/bnmpc.png" alt="BNMPC" class="edu-logo" />
+          <div class="edu-content">
+            <h3>Birshreshtha Noor Mohammad Public College</h3>
+            <p class="degree">HSC, Science</p>
+            <p class="date">Feb 2016 - Dec 2018</p>
+            <p class="grade">Grade: 4.33</p>
+            <p class="activity">Associate General Secretary at BNMPC Science Club</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Certifications Section -->
+  <section id="certifications" class="section alt-bg">
+    <div class="container">
+      <h2>[ Certifications ]</h2>
+      <div class="certs-grid">
+        <div class="cert-card">
+          <img src="/images/ceh.png" alt="CEH" class="cert-image" />
+          <h3>Certified Ethical Hacker (CEH)</h3>
+        </div>
+        <div class="cert-card">
+          <img src="/images/cyberopsbadge.png" alt="CyberOps" class="cert-image" />
+          <h3>Cisco Certified CyberOps Associate</h3>
+        </div>
+        <div class="cert-card">
+          <img src="/images/itessentialbadge.png" alt="IT Essentials" class="cert-image" />
+          <h3>IT Essentials</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Partner Certifications -->
+  <section id="partners" class="section">
+    <div class="container">
+      <h2>[ Partner Certifications ]</h2>
+      <div class="partners-grid">
+        <div class="partner-card">
+          <img src="/images/fortinet.png" alt="Fortinet" />
+          <h3>Fortinet</h3>
+        </div>
+        <div class="partner-card">
+          <img src="/images/ibm.png" alt="IBM" />
+          <h3>IBM</h3>
+        </div>
+        <div class="partner-card">
+          <img src="/images/tenable.png" alt="Tenable" />
+          <h3>Tenable</h3>
+        </div>
+        <div class="partner-card">
+          <img src="/images/rapid7.jpg" alt="Rapid7" />
+          <h3>Rapid7</h3>
+        </div>
+        <div class="partner-card">
+          <img src="/images/thm.png" alt="TryHackMe" />
+          <h3>TryHackMe</h3>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Badges Section -->
+  <section id="badges" class="section alt-bg">
+    <div class="container">
+      <h2>[ Badges ]</h2>
+      <div class="badges-grid">
+        <img src="/images/CEHPRACTICALbadge.png" alt="CEH Practical Badge" />
+        <img src="/images/cyberopsbadge.png" alt="CyberOps Badge" />
+        <img src="/images/howthewebworksbadge.png" alt="How The Web Works Badge" />
+        <img src="/images/ibm-qradar-siem-foundationbadge.png" alt="IBM QRadar SIEM Foundation Badge" />
+        <img src="/images/ibm-qradar-siem-technicalbadge.png" alt="IBM QRadar SIEM Technical Badge" />
+        <img src="/images/ibm-qradar-siembadge.png" alt="IBM QRadar SIEM Badge" />
+        <img src="/images/ibm-qradar-soarfoundationbadge.png" alt="IBM QRadar SOAR Foundation Badge" />
+        <img src="/images/introtooffensivesecuritybadge.png" alt="Intro to Offensive Security Badge" />
+        <img src="/images/itessentialbadge.png" alt="IT Essentials Badge" />
+        <img src="/images/owasptop10badge.png" alt="OWASP Top 10 Badge" />
+        <img src="/images/streak7badge.png" alt="Streak 7 Badge" />
+        <img src="/images/webbedbadge.png" alt="Webbed Badge" />
+        <img src="/images/linuxbadge.png" alt="Linux Badge" />
+        <img src="/images/league-silverbadge.png" alt="League Silver Badge" />
+        <img src="/images/metasploitbadge.png" alt="Metasploit Badge" />
+        <img src="/images/networkfundamentalsbadge.png" alt="Network Fundamentals Badge" />
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects Section -->
+  <section id="projects" class="section">
+    <div class="container">
+      <h2>[ Projects ]</h2>
+      <div class="projects-grid">
+        <div class="project-card">
+          <h3>Nessus Expert & Burp Suite Professional Deployment and Training at IPDC Finance Limited</h3>
+          <p class="date">Jul 2024 | Smart Technologies (BD) Ltd</p>
+          <p class="description">Led the successful deployment and configuration of Tenable Nessus and Burp Suite Professional. Conducted hands-on training sessions for the internal security team.</p>
+          <div class="tags">
+            <span>VAPT</span>
+            <span>Tenable Nessus</span>
+            <span>Burp Suite</span>
+          </div>
+        </div>
+        <div class="project-card">
+          <h3>Metasploit Pro Implementation & Training Workshop at ibas+</h3>
+          <p class="date">May 2024 | Smart Technologies (BD) Ltd</p>
+          <p class="description">Implemented and delivered a comprehensive 3-day Metasploit Pro training focused on real-world offensive security techniques.</p>
+          <div class="tags">
+            <span>Metasploit</span>
+            <span>Red Teaming</span>
+            <span>VAPT</span>
+          </div>
+        </div>
+        <div class="project-card">
+          <h3>Manual Migration of Tenable Core + SecurityCenter at IBBL</h3>
+          <p class="date">Mar 2024 | Smart Technologies (BD) Ltd</p>
+          <p class="description">Performed a manual migration of Tenable Core + SecurityCenter from Core 7 to Core 8 at Islami Bank Bangladesh PLC.</p>
+          <div class="tags">
+            <span>Tenable.sc</span>
+          </div>
+        </div>
+        <div class="project-card">
+          <h3>Strengthening Enterprise Infrastructure: A Holistic Approach</h3>
+          <p class="date">Oct 2023 - Mar 2024 | University of Dhaka</p>
+          <p class="description">Focused on developing a cost-effective, open-source infrastructure security framework for SMEs.</p>
+          <div class="tags">
+            <span>IT Infrastructure</span>
+            <span>VAPT</span>
+            <span>Nmap</span>
+            <span>SIEM</span>
+          </div>
+        </div>
+        <div class="project-card">
+          <h3>Bangladesh Police SOC Deployment - SIEM & SOAR Implementation</h3>
+          <p class="date">Oct 2023 - Feb 2024 | Smart Technologies (BD) Ltd</p>
+          <p class="description">Led the deployment and configuration of a SOC for Bangladesh law enforcement.</p>
+          <div class="tags">
+            <span>SIEM</span>
+            <span>SOAR</span>
+            <span>CTI</span>
+            <span>Compliance</span>
+          </div>
+        </div>
+        <div class="project-card">
+          <h3>Training on Burp Suite SSL Pinning Bypass for EBL</h3>
+          <p class="date">Feb 2024 | Smart Technologies (BD) Ltd</p>
+          <p class="description">Conducted a specialized training for Eastern Bank PLC, focusing on SSL Pinning Bypass in mobile apps.</p>
+          <div class="tags">
+            <span>Burp Suite</span>
+            <span>Frida</span>
+            <span>Mobile Security</span>
+          </div>
+        </div>
+        <div class="project-card">
+          <h3>Tenable.sc & Nessus Scanner Deployment at SIBL</h3>
+          <p class="date">May 2024 | Smart Technologies (BD) Ltd</p>
+          <p class="description">Successfully deployed and configured Tenable.sc and Nessus Scanner on CentOS at Social Islami Bank PLC.</p>
+          <div class="tags">
+            <span>Tenable.sc</span>
+            <span>Nessus Scanner</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Skills Section -->
+  <section id="skills" class="section alt-bg">
+    <div class="container">
+      <h2>[ Technical Skills ]</h2>
+      <div class="skills-container">
+        <div class="skills-list">
+          <span class="skill">Python</span>
+          <span class="skill">Bash</span>
+          <span class="skill">Linux</span>
+          <span class="skill">Nmap</span>
+          <span class="skill">Wireshark</span>
+          <span class="skill">Metasploit</span>
+          <span class="skill">Burp Suite</span>
+          <span class="skill">SIEM (FortiSIEM)</span>
+          <span class="skill">SOAR (FortiSOAR)</span>
+          <span class="skill">Vulnerability Assessment</span>
+          <span class="skill">Incident Response</span>
+          <span class="skill">Cryptography</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Contact Section -->
+  <section id="contact" class="section">
+    <div class="container">
+      <h2>[ Contact ]</h2>
+      <p class="contact-desc">Open to new challenges and collaborations. If you want to talk about security, a project, or just connect, feel free to establish a connection.</p>
+      <div class="contact-buttons">
+        <a href="mailto:turzo1027@gmail.com" class="btn btn-primary">Initiate Contact</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    <div class="container">
+      <div class="social-links">
+        <a href="https://github.com/Turzo2134" target="_blank" rel="noopener noreferrer">GitHub</a>
+        <a href="https://www.linkedin.com/in/turzoroy/" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        <a href="https://www.facebook.com/turzo.roy.435318/" target="_blank" rel="noopener noreferrer">Facebook</a>
+        <a href="https://tryhackme.com/p/turzo.roy" target="_blank" rel="noopener noreferrer">TryHackMe</a>
+      </div>
+      <p>session.end(); // © 2024 Turzo Roy</p>
+    </div>
+  </footer>
 </Layout>
 
+<script>
+  // Typing effect
+  const words = ["Cybersecurity Engineer", "Penetration Tester", "Threat Hunter", "Ethical Hacker", "SOC Analyst", "Security Architect"];
+  let wordIndex = 0;
+  let charIndex = 0;
+  let isDeleting = false;
+
+  function type() {
+    const typingText = document.getElementById('typing-text');
+    if (!typingText) return;
+    
+    const currentWord = words[wordIndex];
+    const currentChar = isDeleting 
+      ? currentWord.substring(0, charIndex - 1)
+      : currentWord.substring(0, charIndex + 1);
+
+    typingText.textContent = currentChar;
+    
+    if (!isDeleting && charIndex < currentWord.length) {
+      charIndex++;
+      setTimeout(type, 100);
+    } else if (isDeleting && charIndex > 0) {
+      charIndex--;
+      setTimeout(type, 60);
+    } else {
+      isDeleting = !isDeleting;
+      if (!isDeleting) {
+        wordIndex = (wordIndex + 1) % words.length;
+      }
+      setTimeout(type, 1200);
+    }
+  }
+
+  // Start typing on load
+  document.addEventListener('DOMContentLoaded', () => {
+    setTimeout(type, 500);
+  });
+
+  // Smooth scrolling
+  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      e.preventDefault();
+      const target = document.querySelector(this.getAttribute('href'));
+      if (target) {
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+</script>
+
 <style>
+  :global(body) {
+    margin: 0;
+    padding: 0;
+    background: #0d1117;
+    color: #c9d1d9;
+    font-family: 'Roboto Mono', monospace;
+  }
+
+  .navbar {
+    position: fixed;
+    top: 0;
+    width: 100%;
+    background: rgba(13, 17, 23, 0.95);
+    border-bottom: 1px solid #30363d;
+    z-index: 1000;
+    padding: 1rem 0;
+  }
+
+  .nav-container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .logo {
+    color: white;
+    font-weight: bold;
+    font-size: 1.2rem;
+    text-decoration: none;
+  }
+
+  .accent {
+    color: #39ff14;
+  }
+
+  .nav-links {
+    display: flex;
+    gap: 2rem;
+  }
+
+  .nav-link {
+    color: #c9d1d9;
+    text-decoration: none;
+    transition: color 0.3s;
+    position: relative;
+  }
+
+  .nav-link:hover {
+    color: #39ff14;
+  }
+
+  .nav-link:hover::before {
+    content: '>';
+    margin-right: 0.5rem;
+    color: #39ff14;
+  }
+
   .container {
     max-width: 1200px;
     margin: 0 auto;
     padding: 0 2rem;
   }
 
-  /* Hero Section */
-  .hero-section {
+  .hero {
     background: linear-gradient(135deg, #0d1117 0%, #161b22 100%);
-    color: #c9d1d9;
-    padding: 6rem 0;
+    padding: 10rem 0 6rem;
     text-align: center;
+    margin-top: 60px;
   }
 
-  .hero-content h1 {
+  .hero h1 {
     font-size: 3.5rem;
     color: #39ff14;
     margin-bottom: 1rem;
   }
 
-  .hero-subtitle {
+  .typing-effect {
     font-size: 1.5rem;
     color: #58a6ff;
+    min-height: 2rem;
     margin-bottom: 1rem;
+  }
+
+  .cursor {
+    display: inline-block;
+    width: 3px;
+    height: 1.5rem;
+    background: #39ff14;
+    animation: blink 0.8s infinite;
+    margin-left: 2px;
+  }
+
+  @keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0; }
   }
 
   .hero-description {
@@ -192,7 +511,6 @@ const siteConfig = {
     flex-wrap: wrap;
   }
 
-  /* Buttons */
   .btn {
     padding: 0.75rem 1.5rem;
     border-radius: 0.5rem;
@@ -200,6 +518,8 @@ const siteConfig = {
     font-weight: 600;
     transition: all 0.3s ease;
     display: inline-block;
+    cursor: pointer;
+    border: none;
   }
 
   .btn-primary {
@@ -210,6 +530,7 @@ const siteConfig = {
   .btn-primary:hover {
     background: #2dd60e;
     transform: translateY(-2px);
+    box-shadow: 0 0 15px rgba(57, 255, 20, 0.3);
   }
 
   .btn-secondary {
@@ -223,12 +544,15 @@ const siteConfig = {
     color: #0d1117;
   }
 
-  /* Sections */
-  section {
+  .section {
     padding: 4rem 0;
   }
 
-  section h2 {
+  .alt-bg {
+    background: #161b22;
+  }
+
+  .section h2 {
     font-size: 2.5rem;
     color: #39ff14;
     text-align: center;
@@ -236,28 +560,38 @@ const siteConfig = {
   }
 
   /* About Section */
-  .about-section {
-    background: #0d1117;
-    color: #c9d1d9;
+  .about-content {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3rem;
+    align-items: center;
   }
 
-  .about-text {
-    max-width: 800px;
-    margin: 0 auto;
-    line-height: 1.8;
+  .about-image {
+    text-align: center;
+  }
+
+  .profile-image {
+    width: 250px;
+    height: 250px;
+    border-radius: 50%;
+    border: 3px solid #39ff14;
+    object-fit: cover;
+  }
+
+  .about-text h3 {
+    color: #39ff14;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
   }
 
   .about-text p {
     margin-bottom: 1rem;
-    font-size: 1.1rem;
-  }
-
-  /* Experience Timeline */
-  .experience-section {
-    background: #161b22;
+    line-height: 1.8;
     color: #c9d1d9;
   }
 
+  /* Timeline */
   .timeline {
     max-width: 800px;
     margin: 0 auto;
@@ -290,22 +624,26 @@ const siteConfig = {
     font-weight: 600;
   }
 
-  .date {
-    color: #8b949e;
-    font-size: 0.9rem;
-  }
-
-  .description {
+  .responsibilities {
+    list-style: none;
     margin-top: 0.5rem;
-    line-height: 1.6;
   }
 
-  /* Education */
-  .education-section {
-    background: #0d1117;
+  .responsibilities li {
     color: #c9d1d9;
+    margin: 0.5rem 0;
+    padding-left: 1.5rem;
+    position: relative;
   }
 
+  .responsibilities li:before {
+    content: '▪';
+    position: absolute;
+    left: 0;
+    color: #39ff14;
+  }
+
+  /* Education Grid */
   .education-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
@@ -313,13 +651,25 @@ const siteConfig = {
   }
 
   .education-card {
-    background: #161b22;
+    background: #0d1117;
     padding: 2rem;
     border-radius: 0.5rem;
-    border-left: 4px solid #39ff14;
+    border: 1px solid #30363d;
+    display: flex;
+    gap: 1.5rem;
   }
 
-  .education-card h3 {
+  .edu-logo {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    object-fit: contain;
+    background: white;
+    padding: 4px;
+    flex-shrink: 0;
+  }
+
+  .edu-content h3 {
     color: #39ff14;
     margin-bottom: 0.5rem;
   }
@@ -327,20 +677,127 @@ const siteConfig = {
   .degree {
     color: #58a6ff;
     font-weight: 600;
+    font-size: 0.9rem;
   }
 
-  .grade,
-  .duration {
+  .date {
     color: #8b949e;
     font-size: 0.9rem;
   }
 
-  /* Projects */
-  .projects-section {
-    background: #161b22;
-    color: #c9d1d9;
+  .grade {
+    color: #8b949e;
+    font-size: 0.85rem;
   }
 
+  .activity {
+    color: #8b949e;
+    font-size: 0.85rem;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  .tags span {
+    background: #30363d;
+    color: #8b949e;
+    padding: 0.25rem 0.75rem;
+    border-radius: 0.25rem;
+    font-size: 0.8rem;
+  }
+
+  /* Certifications */
+  .certs-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+
+  .cert-card {
+    text-align: center;
+    padding: 2rem;
+    background: #0d1117;
+    border: 1px solid #30363d;
+    border-radius: 0.5rem;
+    transition: all 0.3s;
+  }
+
+  .cert-card:hover {
+    border-color: #39ff14;
+    box-shadow: 0 0 15px rgba(57, 255, 20, 0.2);
+  }
+
+  .cert-image {
+    max-width: 100%;
+    height: auto;
+    margin-bottom: 1rem;
+  }
+
+  .cert-card h3 {
+    color: #39ff14;
+    font-size: 1rem;
+  }
+
+  /* Partners */
+  .partners-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 2rem;
+  }
+
+  .partner-card {
+    text-align: center;
+    padding: 2rem;
+    background: #0d1117;
+    border: 1px solid #30363d;
+    border-radius: 0.5rem;
+    transition: all 0.3s;
+  }
+
+  .partner-card:hover {
+    border-color: #39ff14;
+  }
+
+  .partner-card img {
+    height: 60px;
+    object-fit: contain;
+    margin-bottom: 1rem;
+    filter: grayscale(100%) brightness(1.5);
+    transition: filter 0.3s;
+  }
+
+  .partner-card:hover img {
+    filter: grayscale(0%) brightness(1);
+  }
+
+  .partner-card h3 {
+    color: #39ff14;
+    font-size: 1rem;
+  }
+
+  /* Badges */
+  .badges-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+    gap: 2rem;
+    align-items: center;
+  }
+
+  .badges-grid img {
+    max-width: 100%;
+    height: auto;
+    transition: transform 0.3s;
+  }
+
+  .badges-grid img:hover {
+    transform: scale(1.1);
+  }
+
+  /* Projects */
   .projects-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
@@ -348,11 +805,11 @@ const siteConfig = {
   }
 
   .project-card {
-    background: #0d1117;
+    background: #161b22;
     padding: 2rem;
-    border-radius: 0.5rem;
     border: 1px solid #30363d;
-    transition: all 0.3s ease;
+    border-radius: 0.5rem;
+    transition: all 0.3s;
   }
 
   .project-card:hover {
@@ -373,90 +830,107 @@ const siteConfig = {
 
   .project-card .description {
     margin: 1rem 0;
-    line-height: 1.6;
+    color: #c9d1d9;
   }
 
-  .tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 0.5rem;
+  .project-card .tags {
     margin-top: 1rem;
   }
 
-  .tag {
-    background: #30363d;
-    color: #8b949e;
-    padding: 0.25rem 0.75rem;
-    border-radius: 2rem;
-    font-size: 0.85rem;
-  }
-
   /* Skills */
-  .skills-section {
-    background: #0d1117;
-    color: #c9d1d9;
+  .skills-container {
+    display: flex;
+    justify-content: center;
   }
 
-  .skills-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 2rem;
-  }
-
-  .skill-card {
-    background: #161b22;
-    padding: 2rem;
-    border-radius: 0.5rem;
-    border: 1px solid #30363d;
-  }
-
-  .skill-card h3 {
-    color: #39ff14;
-    margin-bottom: 1rem;
-  }
-
-  .skill-items {
+  .skills-list {
     display: flex;
     flex-wrap: wrap;
-    gap: 0.5rem;
+    gap: 1rem;
+    justify-content: center;
   }
 
-  .skill-item {
+  .skill {
     background: #0d1117;
     color: #c9d1d9;
-    padding: 0.5rem 1rem;
-    border-radius: 0.25rem;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
     border: 1px solid #30363d;
-    font-size: 0.9rem;
+    transition: all 0.3s;
   }
 
-  /* Contact Section */
-  .contact-section {
-    background: #161b22;
+  .skill:hover {
+    border-color: #39ff14;
+    color: #39ff14;
+  }
+
+  /* Contact */
+  .contact-desc {
+    text-align: center;
+    font-size: 1.1rem;
     color: #c9d1d9;
+    max-width: 600px;
+    margin: 0 auto 2rem;
+  }
+
+  .contact-buttons {
     text-align: center;
   }
 
-  .contact-section p {
-    font-size: 1.1rem;
-    margin-bottom: 2rem;
+  /* Footer */
+  .footer {
+    background: #161b22;
+    border-top: 1px solid #30363d;
+    padding: 3rem 0;
+    text-align: center;
+  }
+
+  .social-links {
+    display: flex;
+    gap: 2rem;
+    justify-content: center;
+    margin-bottom: 1rem;
+  }
+
+  .social-links a {
+    color: #58a6ff;
+    text-decoration: none;
+    transition: color 0.3s;
+  }
+
+  .social-links a:hover {
+    color: #39ff14;
+  }
+
+  .footer p {
+    color: #8b949e;
+    font-size: 0.9rem;
   }
 
   /* Responsive */
   @media (max-width: 768px) {
-    .hero-content h1 {
+    .nav-links {
+      display: none;
+    }
+
+    .hero h1 {
       font-size: 2rem;
     }
 
-    .hero-subtitle {
+    .typing-effect {
       font-size: 1.1rem;
     }
 
-    section h2 {
+    .section h2 {
       font-size: 1.8rem;
     }
 
-    .hero-buttons {
+    .about-content {
+      grid-template-columns: 1fr;
+    }
+
+    .hero-buttons,
+    .contact-buttons {
       flex-direction: column;
     }
 

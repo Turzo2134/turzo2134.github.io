@@ -1,0 +1,88 @@
+backend:
+  name: github
+  repo: Turzo2134/turzo2134.github.io
+  branch: astro-cms-rebuild
+  auth_endpoint: api/auth
+  base_url: https://api.netlify.com
+
+media_folder: "public/images"
+public_folder: "/images"
+
+collections:
+  - name: "portfolio"
+    label: "Portfolio Content"
+    files:
+      - name: "hero"
+        label: "Hero Section"
+        file: "src/data/hero.json"
+        fields:
+          - {label: "Name", name: "name", widget: "string"}
+          - {label: "Title", name: "title", widget: "string"}
+          - {label: "Description", name: "description", widget: "text"}
+      
+      - name: "about"
+        label: "About Section"
+        file: "src/data/about.json"
+        fields:
+          - {label: "Title", name: "title", widget: "string"}
+          - {label: "Description", name: "description", widget: "markdown"}
+          - {label: "Photo", name: "photo", widget: "image"}
+      
+      - name: "experience"
+        label: "Work Experience"
+        file: "src/data/experience.json"
+        fields:
+          - label: "Experiences"
+            name: "experiences"
+            widget: "list"
+            fields:
+              - {label: "Job Title", name: "title", widget: "string"}
+              - {label: "Company", name: "company", widget: "string"}
+              - {label: "Start Date", name: "startDate", widget: "string"}
+              - {label: "End Date", name: "endDate", widget: "string"}
+              - {label: "Description", name: "description", widget: "markdown"}
+      
+      - name: "education"
+        label: "Education"
+        file: "src/data/education.json"
+        fields:
+          - label: "Education Entries"
+            name: "education"
+            widget: "list"
+            fields:
+              - {label: "School", name: "school", widget: "string"}
+              - {label: "Degree", name: "degree", widget: "string"}
+              - {label: "Start Date", name: "startDate", widget: "string"}
+              - {label: "End Date", name: "endDate", widget: "string"}
+              - {label: "Grade", name: "grade", widget: "string"}
+              - {label: "Logo", name: "logo", widget: "image"}
+      
+      - name: "projects"
+        label: "Projects"
+        file: "src/data/projects.json"
+        fields:
+          - label: "Projects"
+            name: "projects"
+            widget: "list"
+            fields:
+              - {label: "Title", name: "title", widget: "string"}
+              - {label: "Date", name: "date", widget: "string"}
+              - {label: "Description", name: "description", widget: "markdown"}
+              - label: "Tags"
+                name: "tags"
+                widget: "list"
+                field: {label: "Tag", name: "tag", widget: "string"}
+      
+      - name: "skills"
+        label: "Skills"
+        file: "src/data/skills.json"
+        fields:
+          - label: "Skill Categories"
+            name: "skills"
+            widget: "list"
+            fields:
+              - {label: "Category", name: "category", widget: "string"}
+              - label: "Items"
+                name: "items"
+                widget: "list"
+                field: {label: "Skill", name: "skill", widget: "string"}

@@ -1,0 +1,1292 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Turzo Roy — Cybersecurity Engineer</title>
+<meta name="description" content="Turzo Roy is a Cybersecurity Engineer specializing in digital forensics, threat hunting, SIEM/SOAR, VAPT, and penetration testing based in Dhaka, Bangladesh.">
+<meta name="keywords" content="Turzo Roy, Cybersecurity Engineer, SIEM, SOAR, VAPT, Penetration Testing, Dhaka, Bangladesh, CEH, Fortinet, IBM QRadar">
+<meta name="author" content="Turzo Roy">
+<meta name="robots" content="index, follow">
+<meta property="og:title" content="Turzo Roy — Cybersecurity Engineer">
+<meta property="og:description" content="Dedicated cybersecurity engineer specializing in SIEM, SOAR, VAPT, and threat hunting.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://turzo2134.github.io/">
+<meta property="og:image" content="https://turzo2134.github.io/images/myphoto.jpg">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="canonical" href="https://turzo2134.github.io/">
+<script type="application/ld+json">{"@context":"https://schema.org","@type":"Person","name":"Turzo Roy","jobTitle":"Cybersecurity Engineer","url":"https://turzo2134.github.io/","email":"turzo1027@gmail.com","sameAs":["https://github.com/Turzo2134","https://www.linkedin.com/in/turzoroy/","https://tryhackme.com/p/turzo.roy"]}</script>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+<style>
+*, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+:root {
+  --bg: #0a0a0f;
+  --s1: #111118;
+  --s2: #16161f;
+  --s3: #1c1c28;
+  --line: rgba(255,255,255,0.06);
+  --line2: rgba(255,255,255,0.12);
+  --a1: #6c63ff;
+  --a2: #00d4ff;
+  --a3: #ff6584;
+  --txt: #f2f2f8;
+  --txt2: #9898b0;
+  --txt3: #55556a;
+  --mono: 'Space Mono', monospace;
+  --sans: 'Space Grotesk', sans-serif;
+  --r: 12px;
+  --r2: 8px;
+}
+html { scroll-behavior: smooth; font-size: 16px; }
+body { background: var(--bg); color: var(--txt); font-family: var(--sans); min-height: 100vh; overflow-x: hidden; }
+
+/* ── LAYOUT ── */
+.shell { display: grid; grid-template-columns: 260px 1fr; min-height: 100vh; }
+
+/* ── SIDEBAR ── */
+.sidebar {
+  position: fixed; top: 0; left: 0; bottom: 0; width: 260px; z-index: 50;
+  background: var(--s1); border-right: 1px solid var(--line);
+  display: flex; flex-direction: column; padding: 0;
+  overflow-y: auto;
+}
+.sb-profile {
+  padding: 2rem 1.5rem 1.5rem;
+  border-bottom: 1px solid var(--line);
+}
+.sb-avatar {
+  width: 72px; height: 72px; border-radius: 50%;
+  overflow: hidden; margin-bottom: 1rem;
+  border: 2px solid var(--a1); position: relative;
+}
+.sb-avatar img { width: 100%; height: 100%; object-fit: cover; }
+.sb-avatar::after {
+  content: ''; position: absolute; inset: 0; border-radius: 50%;
+  background: linear-gradient(135deg, rgba(108,99,255,0.2), transparent);
+}
+.sb-name { font-size: 1rem; font-weight: 700; color: var(--txt); margin-bottom: 2px; }
+.sb-role { font-size: 0.72rem; color: var(--a2); font-family: var(--mono); letter-spacing: 0.04em; }
+.sb-status {
+  display: flex; align-items: center; gap: 6px;
+  margin-top: 0.75rem; font-size: 0.68rem; color: var(--txt3);
+}
+.status-dot {
+  width: 7px; height: 7px; border-radius: 50%; background: #22c55e;
+  box-shadow: 0 0 8px #22c55e; animation: pulse 2s ease infinite;
+}
+@keyframes pulse { 0%,100%{opacity:1} 50%{opacity:0.5} }
+
+.sb-nav { padding: 1rem 0; flex: 1; }
+.sb-nav-label {
+  font-size: 0.6rem; font-family: var(--mono); letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--txt3); padding: 0.5rem 1.5rem;
+  margin-top: 0.5rem;
+}
+.sb-link {
+  display: flex; align-items: center; gap: 0.75rem;
+  padding: 0.6rem 1.5rem; text-decoration: none;
+  color: var(--txt2); font-size: 0.82rem; font-weight: 500;
+  transition: all 0.2s; position: relative; cursor: pointer;
+}
+.sb-link:hover, .sb-link.active {
+  color: var(--txt); background: rgba(108,99,255,0.08);
+}
+.sb-link.active::before {
+  content: ''; position: absolute; left: 0; top: 0; bottom: 0;
+  width: 3px; background: var(--a1); border-radius: 0 2px 2px 0;
+}
+.sb-link-icon {
+  width: 32px; height: 32px; border-radius: var(--r2);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 0.85rem; background: var(--s2);
+  transition: background 0.2s;
+}
+.sb-link:hover .sb-link-icon, .sb-link.active .sb-link-icon {
+  background: rgba(108,99,255,0.15);
+}
+
+.sb-bottom {
+  padding: 1rem 1.5rem;
+  border-top: 1px solid var(--line);
+}
+.sb-social { display: flex; gap: 0.5rem; margin-bottom: 1rem; }
+.sb-social a {
+  width: 32px; height: 32px; border-radius: var(--r2);
+  background: var(--s2); border: 1px solid var(--line2);
+  display: flex; align-items: center; justify-content: center;
+  text-decoration: none; font-size: 0.8rem;
+  transition: all 0.2s; color: var(--txt2);
+}
+.sb-social a:hover { background: rgba(108,99,255,0.15); border-color: var(--a1); color: var(--txt); }
+.admin-trigger {
+  width: 100%; padding: 8px; border-radius: var(--r2);
+  background: transparent; border: 1px solid var(--line2);
+  color: var(--txt2); font-family: var(--mono); font-size: 0.65rem;
+  letter-spacing: 0.1em; cursor: pointer; transition: all 0.2s;
+  text-transform: uppercase;
+}
+.admin-trigger:hover { border-color: var(--a1); color: var(--a1); }
+
+/* ── MAIN ── */
+.main { margin-left: 260px; }
+
+/* ── HERO ── */
+.hero {
+  min-height: 100vh; display: grid;
+  grid-template-rows: 1fr auto;
+  padding: 0;
+  position: relative; overflow: hidden;
+}
+.hero-content {
+  display: grid; grid-template-columns: 1fr 380px;
+  gap: 0; align-items: stretch;
+}
+.hero-left {
+  padding: 4rem 3rem; display: flex; flex-direction: column;
+  justify-content: center; border-right: 1px solid var(--line);
+}
+.hero-tag {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  background: rgba(108,99,255,0.1); border: 1px solid rgba(108,99,255,0.3);
+  color: var(--a1); font-family: var(--mono); font-size: 0.65rem;
+  letter-spacing: 0.12em; padding: 5px 12px; border-radius: 100px;
+  margin-bottom: 2rem; width: fit-content;
+}
+.hero-tag::before { content: '●'; font-size: 0.4rem; }
+.hero-h1 {
+  font-size: clamp(3.5rem, 6vw, 5.5rem); font-weight: 700;
+  line-height: 1; letter-spacing: -0.03em; margin-bottom: 1.5rem;
+  color: var(--txt);
+}
+.hero-h1 em { font-style: normal; color: var(--a1); }
+.hero-sub {
+  font-size: 1rem; color: var(--txt2); line-height: 1.7;
+  max-width: 440px; margin-bottom: 2.5rem; font-weight: 400;
+}
+.hero-actions { display: flex; gap: 0.75rem; }
+.btn {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 10px 22px; border-radius: var(--r2); font-family: var(--sans);
+  font-size: 0.82rem; font-weight: 600; text-decoration: none;
+  cursor: pointer; transition: all 0.2s; border: none;
+}
+.btn-primary { background: var(--a1); color: #fff; }
+.btn-primary:hover { background: #5a52e8; transform: translateY(-1px); }
+.btn-secondary {
+  background: transparent; color: var(--txt2);
+  border: 1px solid var(--line2);
+}
+.btn-secondary:hover { border-color: var(--a1); color: var(--txt); background: rgba(108,99,255,0.06); }
+
+.hero-right {
+  display: flex; flex-direction: column;
+}
+.hero-photo {
+  flex: 1; position: relative; overflow: hidden;
+  background: var(--s1);
+}
+.hero-photo img {
+  width: 100%; height: 100%; object-fit: cover;
+  object-position: top center;
+  mix-blend-mode: luminosity; opacity: 0.9;
+}
+.hero-photo::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(to bottom, transparent 60%, var(--bg));
+}
+.hero-photo-overlay {
+  position: absolute; bottom: 0; left: 0; right: 0; z-index: 2;
+  padding: 1.5rem;
+}
+.hero-metrics {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 1px; background: var(--line);
+  border: 1px solid var(--line); border-top: none;
+}
+.metric {
+  background: var(--s1); padding: 1.25rem 1.5rem; text-align: center;
+}
+.metric-val {
+  font-size: 1.6rem; font-weight: 700; color: var(--txt);
+  font-family: var(--mono); display: block;
+}
+.metric-label { font-size: 0.65rem; color: var(--txt3); letter-spacing: 0.08em; margin-top: 2px; }
+
+/* ── SECTIONS ── */
+.section { padding: 4rem 3rem; border-bottom: 1px solid var(--line); }
+.section:last-child { border-bottom: none; }
+
+.section-header {
+  display: flex; align-items: flex-start; justify-content: space-between;
+  margin-bottom: 2.5rem;
+}
+.section-label {
+  display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;
+}
+.section-num {
+  font-family: var(--mono); font-size: 0.65rem; color: var(--a1);
+  background: rgba(108,99,255,0.1); border: 1px solid rgba(108,99,255,0.2);
+  padding: 2px 8px; border-radius: 4px;
+}
+.section-title {
+  font-size: clamp(1.4rem, 3vw, 2rem); font-weight: 700; color: var(--txt);
+  letter-spacing: -0.02em;
+}
+.section-desc { font-size: 0.85rem; color: var(--txt2); margin-top: 0.5rem; max-width: 500px; }
+
+/* ── ABOUT ── */
+.about-bento {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: auto auto;
+  gap: 1px; background: var(--line);
+  border: 1px solid var(--line); border-radius: var(--r);
+  overflow: hidden;
+}
+.bento-cell {
+  background: var(--s1); padding: 1.75rem;
+}
+.bento-cell.wide { grid-column: span 2; }
+.bento-cell p { font-size: 0.88rem; color: var(--txt2); line-height: 1.85; }
+.bento-cell p + p { margin-top: 0.75rem; }
+.bento-label {
+  font-family: var(--mono); font-size: 0.6rem; color: var(--a1);
+  letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 0.75rem;
+}
+.bento-icon { font-size: 2rem; margin-bottom: 0.75rem; display: block; }
+.bento-title { font-size: 1rem; font-weight: 600; color: var(--txt); margin-bottom: 0.4rem; }
+.bento-sub { font-size: 0.8rem; color: var(--txt2); }
+.bento-quote {
+  font-size: 1.05rem; color: var(--txt); line-height: 1.6;
+  font-weight: 500; font-style: italic;
+  border-left: 3px solid var(--a1); padding-left: 1rem;
+}
+
+/* ── EXPERIENCE ── */
+.exp-list { display: flex; flex-direction: column; gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; }
+.exp-item {
+  background: var(--s1); padding: 0;
+  transition: background 0.2s;
+}
+.exp-item-header {
+  display: grid; grid-template-columns: 1fr auto;
+  gap: 1rem; padding: 1.5rem 1.75rem;
+  cursor: pointer; align-items: start;
+}
+.exp-item-header:hover { background: rgba(108,99,255,0.04); }
+.exp-num {
+  font-family: var(--mono); font-size: 0.6rem; color: var(--a1);
+  margin-bottom: 0.5rem;
+}
+.exp-role { font-size: 0.95rem; font-weight: 600; color: var(--txt); margin-bottom: 0.25rem; }
+.exp-company { font-size: 0.8rem; color: var(--a2); }
+.exp-period {
+  font-family: var(--mono); font-size: 0.68rem; color: var(--txt3);
+  background: var(--s2); border: 1px solid var(--line2);
+  padding: 4px 10px; border-radius: 100px; white-space: nowrap; height: fit-content;
+}
+.exp-body {
+  padding: 0 1.75rem 1.5rem; display: none;
+}
+.exp-body.open { display: block; }
+.exp-bullets { list-style: none; }
+.exp-bullets li {
+  font-size: 0.82rem; color: var(--txt2); padding: 0.3rem 0;
+  padding-left: 1.25rem; position: relative; line-height: 1.6;
+}
+.exp-bullets li::before { content: '—'; position: absolute; left: 0; color: var(--a1); }
+.tag-row { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-top: 1rem; }
+.tag {
+  font-size: 0.65rem; padding: 3px 9px; border-radius: 4px;
+  background: var(--s2); border: 1px solid var(--line2);
+  color: var(--txt2); font-family: var(--mono);
+}
+.tag.blue { color: var(--a2); border-color: rgba(0,212,255,0.2); background: rgba(0,212,255,0.06); }
+.tag.purple { color: var(--a1); border-color: rgba(108,99,255,0.25); background: rgba(108,99,255,0.08); }
+.tag.pink { color: var(--a3); border-color: rgba(255,101,132,0.2); background: rgba(255,101,132,0.06); }
+
+/* ── EDUCATION ── */
+.edu-list { display: flex; flex-direction: column; gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; }
+.edu-item {
+  background: var(--s1); padding: 1.5rem 1.75rem;
+  display: grid; grid-template-columns: 56px 1fr; gap: 1.25rem; align-items: center;
+}
+.edu-logo-wrap {
+  width: 56px; height: 56px; border-radius: 10px;
+  background: var(--s2); border: 1px solid var(--line2);
+  display: flex; align-items: center; justify-content: center; overflow: hidden;
+}
+.edu-logo-wrap img { width: 40px; height: 40px; object-fit: contain; }
+.edu-degree { font-size: 0.88rem; font-weight: 600; color: var(--txt); margin-bottom: 3px; }
+.edu-school { font-size: 0.78rem; color: var(--a2); margin-bottom: 3px; }
+.edu-meta-row { display: flex; align-items: center; gap: 0.75rem; }
+.edu-period { font-size: 0.68rem; color: var(--txt3); font-family: var(--mono); }
+.edu-gpa {
+  font-size: 0.65rem; font-family: var(--mono); color: var(--a1);
+  background: rgba(108,99,255,0.08); border: 1px solid rgba(108,99,255,0.2);
+  padding: 2px 7px; border-radius: 4px;
+}
+
+/* ── CERTS ── */
+.certs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; margin-bottom: 2rem; }
+.cert-card {
+  background: var(--s1); padding: 1.25rem; display: flex; align-items: center; gap: 1rem;
+  transition: background 0.2s;
+}
+.cert-card:hover { background: var(--s2); }
+.cert-icon-wrap {
+  width: 40px; height: 40px; border-radius: 10px;
+  background: var(--s2); border: 1px solid var(--line2);
+  display: flex; align-items: center; justify-content: center; font-size: 1.1rem;
+  flex-shrink: 0;
+}
+.cert-name { font-size: 0.8rem; font-weight: 600; color: var(--txt); line-height: 1.3; }
+.cert-issuer { font-size: 0.68rem; color: var(--txt3); margin-top: 2px; }
+
+.partners-row { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-bottom: 2rem; }
+.partner-pill {
+  padding: 5px 14px; border-radius: 100px; font-size: 0.72rem;
+  background: var(--s1); border: 1px solid var(--line2); color: var(--txt2);
+  font-weight: 500; transition: all 0.2s;
+}
+.partner-pill:hover { border-color: var(--a1); color: var(--a1); }
+
+.badges-section-title {
+  font-size: 0.75rem; font-weight: 600; color: var(--txt2);
+  margin-bottom: 1rem; display: flex; align-items: center; gap: 0.5rem;
+}
+.badges-section-title::after { content: ''; flex: 1; height: 1px; background: var(--line); }
+.badges-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(64px, 1fr)); gap: 0.75rem; }
+.badge-wrap {
+  aspect-ratio: 1; border-radius: 10px; background: var(--s1);
+  border: 1px solid var(--line); display: flex; align-items: center;
+  justify-content: center; padding: 0.5rem;
+  transition: all 0.2s; cursor: default;
+}
+.badge-wrap:hover { border-color: var(--a1); background: rgba(108,99,255,0.06); transform: scale(1.05); }
+.badge-wrap img { width: 100%; height: 100%; object-fit: contain; }
+
+/* ── PROJECTS ── */
+.proj-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 1px; background: var(--line); border: 1px solid var(--line); border-radius: var(--r); overflow: hidden; }
+.proj-card {
+  background: var(--s1); padding: 1.75rem;
+  display: flex; flex-direction: column;
+  transition: background 0.2s; position: relative;
+}
+.proj-card:hover { background: var(--s2); }
+.proj-card-img {
+  width: 100%; height: 120px; object-fit: cover; border-radius: 8px;
+  margin-bottom: 1rem; border: 1px solid var(--line);
+}
+.proj-top { display: flex; align-items: flex-start; justify-content: space-between; gap: 1rem; margin-bottom: 0.5rem; }
+.proj-date { font-family: var(--mono); font-size: 0.62rem; color: var(--a2); }
+.proj-title { font-size: 0.9rem; font-weight: 600; color: var(--txt); line-height: 1.4; margin-bottom: 0.75rem; }
+.proj-desc { font-size: 0.78rem; color: var(--txt2); line-height: 1.7; flex: 1; margin-bottom: 1rem; }
+.proj-assoc { font-size: 0.7rem; color: var(--txt3); margin-bottom: 0.75rem; }
+
+/* ── SKILLS ── */
+.skills-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 2rem; }
+.skill-category { }
+.skill-category-title { font-size: 0.72rem; font-weight: 600; color: var(--txt2); margin-bottom: 1rem; font-family: var(--mono); letter-spacing: 0.08em; text-transform: uppercase; }
+.skill-list { display: flex; flex-direction: column; gap: 2px; }
+.skill-item {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 0.6rem 0.9rem; border-radius: var(--r2);
+  background: var(--s1); border: 1px solid var(--line);
+  font-size: 0.8rem; color: var(--txt2);
+  transition: all 0.15s;
+}
+.skill-item:hover { border-color: var(--a1); color: var(--txt); background: rgba(108,99,255,0.06); }
+
+/* ── CONTACT ── */
+.contact-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 3rem; align-items: start; }
+.contact-links-list { display: flex; flex-direction: column; gap: 0.5rem; margin-top: 1.5rem; }
+.contact-link {
+  display: flex; align-items: center; gap: 1rem; padding: 0.9rem 1rem;
+  background: var(--s1); border: 1px solid var(--line); border-radius: var(--r2);
+  text-decoration: none; color: var(--txt2); font-size: 0.82rem;
+  transition: all 0.2s;
+}
+.contact-link:hover { border-color: var(--a1); color: var(--txt); background: rgba(108,99,255,0.06); }
+.contact-link-icon {
+  width: 34px; height: 34px; border-radius: var(--r2);
+  background: var(--s2); display: flex; align-items: center;
+  justify-content: center; font-size: 0.9rem; flex-shrink: 0;
+}
+.contact-intro { font-size: 0.88rem; color: var(--txt2); line-height: 1.8; }
+
+.form { display: flex; flex-direction: column; gap: 0.75rem; }
+.form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+.field { display: flex; flex-direction: column; gap: 0.35rem; }
+.field label { font-size: 0.68rem; font-family: var(--mono); color: var(--txt3); letter-spacing: 0.08em; text-transform: uppercase; }
+.field input, .field textarea {
+  background: var(--s1); border: 1px solid var(--line2);
+  color: var(--txt); font-family: var(--sans); font-size: 0.82rem;
+  padding: 0.65rem 0.9rem; border-radius: var(--r2); outline: none;
+  transition: border-color 0.2s; resize: none;
+}
+.field input:focus, .field textarea:focus { border-color: var(--a1); }
+
+/* ── FOOTER ── */
+footer {
+  padding: 1.5rem 3rem; border-top: 1px solid var(--line);
+  display: flex; align-items: center; justify-content: space-between;
+  font-size: 0.72rem; color: var(--txt3); font-family: var(--mono);
+}
+
+/* ── ANIMATIONS ── */
+.reveal { opacity: 0; transform: translateY(16px); transition: opacity 0.5s ease, transform 0.5s ease; }
+.reveal.in { opacity: 1; transform: translateY(0); }
+
+/* ── ADMIN PANEL ── */
+#admin-panel {
+  position: fixed; inset: 0; z-index: 200;
+  background: rgba(0,0,0,0.7); display: none;
+  align-items: center; justify-content: center;
+  backdrop-filter: blur(8px);
+}
+#admin-panel.open { display: flex; }
+.adm-modal {
+  background: var(--s1); border: 1px solid var(--line2);
+  width: min(900px, 95vw); max-height: 88vh;
+  border-radius: var(--r); display: flex; flex-direction: column; overflow: hidden;
+}
+.adm-head {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1rem 1.5rem; border-bottom: 1px solid var(--line); flex-shrink: 0;
+}
+.adm-title { font-weight: 700; font-size: 0.9rem; color: var(--txt); }
+.adm-close { background: none; border: none; color: var(--txt2); font-size: 1.3rem; cursor: pointer; line-height: 1; transition: color 0.2s; }
+.adm-close:hover { color: #f43f5e; }
+.adm-body { display: flex; flex: 1; overflow: hidden; }
+.adm-sidebar { width: 180px; flex-shrink: 0; border-right: 1px solid var(--line); padding: 0.75rem 0; overflow-y: auto; }
+.adm-tab-btn {
+  display: flex; align-items: center; gap: 0.5rem;
+  width: 100%; padding: 0.6rem 1rem; background: none; border: none;
+  color: var(--txt2); font-family: var(--sans); font-size: 0.78rem;
+  cursor: pointer; text-align: left; transition: all 0.15s;
+  border-left: 2px solid transparent;
+}
+.adm-tab-btn:hover { background: rgba(108,99,255,0.06); color: var(--txt); }
+.adm-tab-btn.active { color: var(--a1); border-left-color: var(--a1); background: rgba(108,99,255,0.06); }
+.adm-content { flex: 1; overflow-y: auto; padding: 1.5rem; }
+.adm-section { display: none; }
+.adm-section.active { display: block; }
+.adm-section h3 { font-size: 0.85rem; font-weight: 700; color: var(--txt); margin-bottom: 1.25rem; }
+.adm-field { margin-bottom: 0.85rem; }
+.adm-label { display: block; font-size: 0.62rem; font-family: var(--mono); color: var(--txt3); text-transform: uppercase; letter-spacing: 0.1em; margin-bottom: 0.35rem; }
+.adm-input, .adm-textarea {
+  width: 100%; background: var(--bg); border: 1px solid var(--line2);
+  color: var(--txt); font-family: var(--sans); font-size: 0.8rem;
+  padding: 0.55rem 0.8rem; border-radius: var(--r2); outline: none;
+  transition: border-color 0.2s; resize: vertical;
+}
+.adm-input:focus, .adm-textarea:focus { border-color: var(--a1); }
+.adm-textarea { min-height: 80px; }
+.adm-grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 0.75rem; }
+.adm-save { background: var(--a1); color: #fff; border: none; padding: 8px 20px; border-radius: var(--r2); font-family: var(--sans); font-size: 0.78rem; font-weight: 600; cursor: pointer; transition: background 0.2s; margin-top: 0.5rem; }
+.adm-save:hover { background: #5a52e8; }
+.adm-add { background: transparent; border: 1px solid var(--line2); color: var(--txt2); font-family: var(--sans); font-size: 0.72rem; padding: 6px 14px; border-radius: var(--r2); cursor: pointer; margin-bottom: 1rem; transition: all 0.2s; }
+.adm-add:hover { border-color: var(--a1); color: var(--a1); }
+.adm-list-item { background: var(--bg); border: 1px solid var(--line); border-radius: var(--r2); padding: 0.65rem 0.9rem; margin-bottom: 0.5rem; display: flex; align-items: flex-start; gap: 0.75rem; }
+.adm-list-body { flex: 1; }
+.adm-list-title { font-size: 0.8rem; color: var(--txt); font-weight: 500; }
+.adm-list-sub { font-size: 0.7rem; color: var(--txt3); margin-top: 2px; }
+.adm-del { background: none; border: none; color: var(--txt3); cursor: pointer; font-size: 1rem; padding: 0; transition: color 0.15s; flex-shrink: 0; }
+.adm-del:hover { color: #f43f5e; }
+.adm-form-box { background: var(--bg); border: 1px solid var(--line); border-radius: var(--r2); padding: 1rem; margin-bottom: 0.75rem; display: none; }
+.adm-form-box.open { display: block; }
+.adm-export-box { background: rgba(108,99,255,0.06); border: 1px solid rgba(108,99,255,0.2); border-radius: var(--r2); padding: 1rem; font-size: 0.78rem; color: var(--txt2); line-height: 1.8; }
+.adm-export-box ol { margin-left: 1.1rem; margin-top: 0.5rem; }
+.adm-export-box li { margin-bottom: 0.3rem; }
+.adm-export-btn { width: 100%; margin-top: 0.75rem; padding: 9px; background: var(--s2); border: 1px solid var(--line2); border-radius: var(--r2); color: var(--txt); font-family: var(--sans); font-size: 0.78rem; cursor: pointer; transition: all 0.2s; }
+.adm-export-btn:hover { border-color: var(--a1); color: var(--a1); }
+.upload-zone {
+  border: 1px dashed var(--line2); border-radius: var(--r2);
+  padding: 1.25rem; text-align: center; cursor: pointer;
+  transition: all 0.2s; position: relative; background: var(--bg);
+}
+.upload-zone:hover { border-color: var(--a1); background: rgba(108,99,255,0.04); }
+.upload-zone input[type=file] { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
+.upload-preview { width: 100%; max-height: 160px; object-fit: cover; border-radius: var(--r2); margin-bottom: 0.5rem; display: none; }
+.upload-preview.show { display: block; }
+.upload-text { font-size: 0.75rem; color: var(--txt3); }
+.upload-text strong { color: var(--a1); display: block; margin-bottom: 3px; font-size: 0.72rem; }
+.upload-sm { display: inline-flex; align-items: center; gap: 0.4rem; background: var(--bg); border: 1px solid var(--line2); border-radius: var(--r2); padding: 5px 12px; font-size: 0.7rem; color: var(--txt2); cursor: pointer; transition: all 0.2s; position: relative; }
+.upload-sm:hover { border-color: var(--a1); color: var(--a1); }
+.upload-sm input[type=file] { position: absolute; inset: 0; opacity: 0; cursor: pointer; width: 100%; height: 100%; }
+
+.toast {
+  position: fixed; bottom: 2rem; right: 2rem; z-index: 999;
+  background: var(--s2); border: 1px solid var(--a1); color: var(--txt);
+  padding: 10px 18px; border-radius: var(--r2); font-size: 0.78rem;
+  transform: translateY(80px); opacity: 0; transition: all 0.3s; pointer-events: none;
+}
+.toast.show { transform: translateY(0); opacity: 1; }
+
+/* ── MOBILE ── */
+.mob-nav-toggle { display: none; position: fixed; top: 1rem; left: 1rem; z-index: 60; width: 40px; height: 40px; background: var(--s1); border: 1px solid var(--line2); border-radius: var(--r2); align-items: center; justify-content: center; cursor: pointer; flex-direction: column; gap: 4px; }
+.mob-nav-toggle span { display: block; width: 18px; height: 1.5px; background: var(--txt2); transition: all 0.3s; }
+
+@media (max-width: 900px) {
+  .shell { grid-template-columns: 1fr; }
+  .sidebar { transform: translateX(-100%); transition: transform 0.3s; }
+  .sidebar.open { transform: translateX(0); }
+  .main { margin-left: 0; }
+  .mob-nav-toggle { display: flex; }
+  .hero-content { grid-template-columns: 1fr; }
+  .hero-right { display: none; }
+  .hero-left { padding: 6rem 1.5rem 2rem; }
+  .section { padding: 3rem 1.5rem; }
+  .proj-grid { grid-template-columns: 1fr; }
+  .skills-layout { grid-template-columns: 1fr; }
+  .contact-layout { grid-template-columns: 1fr; }
+  .about-bento { grid-template-columns: 1fr; }
+  .bento-cell.wide { grid-column: span 1; }
+  .form-row { grid-template-columns: 1fr; }
+  footer { padding: 1.5rem; flex-direction: column; gap: 0.5rem; text-align: center; }
+  .adm-sidebar { width: 140px; }
+  .adm-grid2 { grid-template-columns: 1fr; }
+}
+@media (max-width: 500px) {
+  .adm-sidebar { display: none; }
+  .adm-content { padding: 1rem; }
+  .hero-h1 { font-size: 2.8rem; }
+}
+</style>
+</head>
+<body>
+
+<button class="mob-nav-toggle" id="mobToggle" onclick="toggleSidebar()">
+  <span></span><span></span><span></span>
+</button>
+
+<!-- SIDEBAR -->
+<aside class="sidebar" id="sidebar">
+  <div class="sb-profile">
+    <div class="sb-avatar">
+      <img id="profilePhotoEl" src="https://raw.githubusercontent.com/Turzo2134/turzo2134.github.io/main/images/myphoto.jpg" alt="Turzo Roy">
+    </div>
+    <div class="sb-name" id="sbName">Turzo Roy</div>
+    <div class="sb-role" id="sbRole">Cybersecurity Engineer</div>
+    <div class="sb-status"><span class="status-dot"></span> Available for opportunities</div>
+  </div>
+
+  <nav class="sb-nav">
+    <div class="sb-nav-label">Navigation</div>
+    <a class="sb-link active" href="#hero" onclick="closeSidebar()">
+      <span class="sb-link-icon">⌂</span> Home
+    </a>
+    <a class="sb-link" href="#about" onclick="closeSidebar()">
+      <span class="sb-link-icon">◉</span> About
+    </a>
+    <a class="sb-link" href="#experience" onclick="closeSidebar()">
+      <span class="sb-link-icon">◈</span> Experience
+    </a>
+    <a class="sb-link" href="#education" onclick="closeSidebar()">
+      <span class="sb-link-icon">◎</span> Education
+    </a>
+    <div class="sb-nav-label">Portfolio</div>
+    <a class="sb-link" href="#certs" onclick="closeSidebar()">
+      <span class="sb-link-icon">⊕</span> Certifications
+    </a>
+    <a class="sb-link" href="#projects" onclick="closeSidebar()">
+      <span class="sb-link-icon">◧</span> Projects
+    </a>
+    <a class="sb-link" href="#skills" onclick="closeSidebar()">
+      <span class="sb-link-icon">⊞</span> Skills
+    </a>
+    <div class="sb-nav-label">Connect</div>
+    <a class="sb-link" href="#contact" onclick="closeSidebar()">
+      <span class="sb-link-icon">◍</span> Contact
+    </a>
+  </nav>
+
+  <div class="sb-bottom">
+    <div class="sb-social" id="sbSocial">
+      <a href="https://github.com/Turzo2134" target="_blank" rel="noopener" title="GitHub">GH</a>
+      <a href="https://www.linkedin.com/in/turzoroy/" target="_blank" rel="noopener" title="LinkedIn">LI</a>
+      <a href="https://tryhackme.com/p/turzo.roy" target="_blank" rel="noopener" title="TryHackMe">TH</a>
+      <a href="mailto:turzo1027@gmail.com" title="Email">✉</a>
+    </div>
+    <button class="admin-trigger" onclick="openAdmin()">⚙ Admin Panel</button>
+  </div>
+</aside>
+
+<!-- MAIN -->
+<main class="main">
+
+  <!-- HERO -->
+  <section id="hero" class="hero">
+    <div class="hero-content">
+      <div class="hero-left">
+        <div class="hero-tag" id="heroTag">Cybersecurity Engineer</div>
+        <h1 class="hero-h1" id="heroH1">Turzo<br><em>Roy</em></h1>
+        <p class="hero-sub" id="heroSub">A dedicated cybersecurity engineer with deep expertise in SIEM, SOAR, VAPT, digital forensics, and threat hunting. Building robust defenses that keep pace with emerging threats.</p>
+        <div class="hero-actions">
+          <a href="#projects" class="btn btn-primary">View Projects</a>
+          <a href="#contact" class="btn btn-secondary">Get In Touch</a>
+        </div>
+      </div>
+      <div class="hero-right">
+        <div class="hero-photo">
+          <img src="https://raw.githubusercontent.com/Turzo2134/turzo2134.github.io/main/images/myphoto.jpg" alt="Turzo Roy" id="heroPhotoEl">
+        </div>
+      </div>
+    </div>
+    <div class="hero-metrics">
+      <div class="metric"><span class="metric-val" id="statYears">2+</span><div class="metric-label">Years Experience</div></div>
+      <div class="metric"><span class="metric-val" id="statProjects">7+</span><div class="metric-label">Enterprise Projects</div></div>
+      <div class="metric"><span class="metric-val" id="statCerts">3+</span><div class="metric-label">Certifications</div></div>
+      <div class="metric"><span class="metric-val" id="statBadges">20+</span><div class="metric-label">Badges Earned</div></div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="section">
+    <div class="section-header">
+      <div>
+        <div class="section-label"><span class="section-num">01</span></div>
+        <div class="section-title">About Me</div>
+      </div>
+    </div>
+    <div class="about-bento">
+      <div class="bento-cell wide">
+        <div class="bento-label">Overview</div>
+        <p>A dedicated and analytical Cybersecurity Engineer with a passion for digital forensics, threat hunting, and building secure systems. I thrive on deconstructing complex security challenges and architecting robust defenses to protect critical data and infrastructure.</p>
+        <p style="margin-top:0.75rem">Currently working at Smart Technologies (BD) Ltd, delivering comprehensive security solutions including SIEM, SOAR, VAPT, and vulnerability management for enterprise clients across Bangladesh.</p>
+      </div>
+      <div class="bento-cell">
+        <span class="bento-icon">🎯</span>
+        <div class="bento-title">Mission</div>
+        <div class="bento-sub">Stay one step ahead of emerging threats through continuous learning and rigorous hands-on practice in offensive and defensive security techniques.</div>
+      </div>
+      <div class="bento-cell">
+        <div class="bento-label">Philosophy</div>
+        <div class="bento-quote">"Security is not a product, but a process — and I'm here for the long game."</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- EXPERIENCE -->
+  <section id="experience" class="section">
+    <div class="section-header">
+      <div>
+        <div class="section-label"><span class="section-num">02</span></div>
+        <div class="section-title">Work Experience</div>
+      </div>
+    </div>
+    <div class="exp-list" id="experienceList"></div>
+  </section>
+
+  <!-- EDUCATION -->
+  <section id="education" class="section">
+    <div class="section-header">
+      <div>
+        <div class="section-label"><span class="section-num">03</span></div>
+        <div class="section-title">Education</div>
+      </div>
+    </div>
+    <div class="edu-list" id="educationList"></div>
+  </section>
+
+  <!-- CERTS -->
+  <section id="certs" class="section">
+    <div class="section-header">
+      <div>
+        <div class="section-label"><span class="section-num">04</span></div>
+        <div class="section-title">Certifications</div>
+      </div>
+    </div>
+    <div class="certs-grid" id="certsGrid"></div>
+    <div class="partners-row" id="partnersRow"></div>
+    <div class="badges-section-title">Achievement Badges</div>
+    <div class="badges-grid" id="badgesGrid"></div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="section">
+    <div class="section-header">
+      <div>
+        <div class="section-label"><span class="section-num">05</span></div>
+        <div class="section-title">Projects</div>
+      </div>
+    </div>
+    <div class="proj-grid" id="projectsGrid"></div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="section">
+    <div class="section-header">
+      <div>
+        <div class="section-label"><span class="section-num">06</span></div>
+        <div class="section-title">Technical Skills</div>
+      </div>
+    </div>
+    <div class="skills-layout" id="skillsLayout"></div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section">
+    <div class="section-header">
+      <div>
+        <div class="section-label"><span class="section-num">07</span></div>
+        <div class="section-title">Get In Touch</div>
+      </div>
+    </div>
+    <div class="contact-layout">
+      <div>
+        <p class="contact-intro">Open to new challenges, collaborations, and conversations about cybersecurity. Reach out through any of the channels below.</p>
+        <div class="contact-links-list" id="contactLinksList"></div>
+      </div>
+      <form class="form" onsubmit="handleContact(event)">
+        <div class="form-row">
+          <div class="field"><label>Name</label><input type="text" placeholder="Your name" required></div>
+          <div class="field"><label>Email</label><input type="email" placeholder="your@email.com" required></div>
+        </div>
+        <div class="field"><label>Message</label><textarea rows="5" placeholder="What's on your mind?" required></textarea></div>
+        <button type="submit" class="btn btn-primary" style="width:fit-content">Send Message →</button>
+      </form>
+    </div>
+  </section>
+
+  <footer>
+    <span>© 2025 Turzo Roy</span>
+    <span id="footerRole">Cybersecurity Engineer · Dhaka, Bangladesh</span>
+    <span>turzo1027@gmail.com</span>
+  </footer>
+
+</main>
+
+<div class="toast" id="toast"></div>
+
+<!-- ADMIN PANEL -->
+<div id="admin-panel">
+  <div class="adm-modal">
+    <div class="adm-head">
+      <span class="adm-title">Admin — Content Manager</span>
+      <button class="adm-close" onclick="closeAdmin()">×</button>
+    </div>
+    <div class="adm-body">
+      <div class="adm-sidebar">
+        <button class="adm-tab-btn active" onclick="admTab('hero',this)">🏠 Hero</button>
+        <button class="adm-tab-btn" onclick="admTab('experience',this)">💼 Experience</button>
+        <button class="adm-tab-btn" onclick="admTab('education',this)">🎓 Education</button>
+        <button class="adm-tab-btn" onclick="admTab('certs',this)">🏅 Certs</button>
+        <button class="adm-tab-btn" onclick="admTab('projects',this)">🛠 Projects</button>
+        <button class="adm-tab-btn" onclick="admTab('skills',this)">⚡ Skills</button>
+        <button class="adm-tab-btn" onclick="admTab('contact',this)">📬 Contact</button>
+        <button class="adm-tab-btn" onclick="admTab('export',this)">📤 Export</button>
+      </div>
+      <div class="adm-content">
+
+        <div class="adm-section active" id="tab-hero">
+          <h3>Hero Section</h3>
+          <div class="adm-field">
+            <label class="adm-label">Profile Photo</label>
+            <div class="upload-zone" onclick="document.getElementById('up-photo').click()">
+              <input type="file" id="up-photo" accept="image/*" style="display:none" onchange="upPhoto(event)">
+              <img id="up-photo-prev" class="upload-preview" src="" alt="">
+              <div class="upload-text"><strong>📷 Click to upload</strong>JPG, PNG, WebP — stored as base64</div>
+            </div>
+            <div style="display:flex;gap:0.5rem;align-items:center;margin-top:0.4rem">
+              <span style="font-size:0.65rem;color:var(--txt3)">or URL:</span>
+              <input class="adm-input" id="a-photo-url" placeholder="https://..." style="flex:1" oninput="prevPhotoUrl(this.value)">
+            </div>
+          </div>
+          <div class="adm-grid2">
+            <div class="adm-field"><label class="adm-label">Full Name</label><input class="adm-input" id="a-name"></div>
+            <div class="adm-field"><label class="adm-label">Job Title</label><input class="adm-input" id="a-title"></div>
+          </div>
+          <div class="adm-field"><label class="adm-label">Bio</label><textarea class="adm-textarea" id="a-bio"></textarea></div>
+          <div class="adm-grid2">
+            <div class="adm-field"><label class="adm-label">Years Exp.</label><input class="adm-input" id="a-stat-years"></div>
+            <div class="adm-field"><label class="adm-label">Projects</label><input class="adm-input" id="a-stat-projects"></div>
+            <div class="adm-field"><label class="adm-label">Certifications</label><input class="adm-input" id="a-stat-certs"></div>
+            <div class="adm-field"><label class="adm-label">Badges</label><input class="adm-input" id="a-stat-badges"></div>
+          </div>
+          <button class="adm-save" onclick="saveHero()">Save Hero</button>
+        </div>
+
+        <div class="adm-section" id="tab-experience">
+          <h3>Work Experience</h3>
+          <button class="adm-add" onclick="showForm('exp-form')">+ Add Position</button>
+          <div id="exp-list"></div>
+          <div class="adm-form-box" id="exp-form">
+            <div class="adm-field"><label class="adm-label">Job Title</label><input class="adm-input" id="exp-role" placeholder="Security Engineer"></div>
+            <div class="adm-field"><label class="adm-label">Company</label><input class="adm-input" id="exp-company" placeholder="Acme Corp"></div>
+            <div class="adm-grid2">
+              <div class="adm-field"><label class="adm-label">Start</label><input class="adm-input" id="exp-start" placeholder="Jan 2024"></div>
+              <div class="adm-field"><label class="adm-label">End</label><input class="adm-input" id="exp-end" placeholder="Present"></div>
+            </div>
+            <div class="adm-field"><label class="adm-label">Bullets (one per line)</label><textarea class="adm-textarea" id="exp-bullets" placeholder="Managed SIEM&#10;Conducted VAPT"></textarea></div>
+            <div class="adm-field"><label class="adm-label">Tags (comma separated)</label><input class="adm-input" id="exp-tags" placeholder="SIEM, SOAR"></div>
+            <div style="display:flex;gap:0.5rem">
+              <button class="adm-save" onclick="saveExp()">Save</button>
+              <button class="adm-add" onclick="hideForm('exp-form')" style="margin-bottom:0">Cancel</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="adm-section" id="tab-education">
+          <h3>Education</h3>
+          <button class="adm-add" onclick="showForm('edu-form')">+ Add Entry</button>
+          <div id="edu-list"></div>
+          <div class="adm-form-box" id="edu-form">
+            <div class="adm-field"><label class="adm-label">Degree</label><input class="adm-input" id="edu-degree" placeholder="Master's in Cyber Security"></div>
+            <div class="adm-field"><label class="adm-label">Institution</label><input class="adm-input" id="edu-school" placeholder="University of Dhaka"></div>
+            <div class="adm-grid2">
+              <div class="adm-field"><label class="adm-label">Period</label><input class="adm-input" id="edu-period" placeholder="2023 – 2024"></div>
+              <div class="adm-field"><label class="adm-label">GPA</label><input class="adm-input" id="edu-grade" placeholder="3.33"></div>
+            </div>
+            <div class="adm-field">
+              <label class="adm-label">Logo</label>
+              <div style="display:flex;gap:0.5rem;align-items:center">
+                <label class="upload-sm"><input type="file" accept="image/*" onchange="upEduLogo(event)">📁 Upload</label>
+                <span style="font-size:0.65rem;color:var(--txt3)">or</span>
+                <input class="adm-input" id="edu-logo" placeholder="https://..." style="flex:1">
+              </div>
+              <img id="edu-logo-prev" style="width:40px;height:40px;object-fit:contain;margin-top:0.4rem;display:none;border:1px solid var(--line);border-radius:6px;padding:3px" src="" alt="">
+            </div>
+            <div style="display:flex;gap:0.5rem">
+              <button class="adm-save" onclick="saveEdu()">Save</button>
+              <button class="adm-add" onclick="hideForm('edu-form')" style="margin-bottom:0">Cancel</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="adm-section" id="tab-certs">
+          <h3>Certifications</h3>
+          <button class="adm-add" onclick="showForm('cert-form')">+ Add Cert</button>
+          <div id="cert-list"></div>
+          <div class="adm-form-box" id="cert-form">
+            <div class="adm-grid2">
+              <div class="adm-field"><label class="adm-label">Cert Name</label><input class="adm-input" id="cert-name" placeholder="CEH, OSCP..."></div>
+              <div class="adm-field"><label class="adm-label">Issuer</label><input class="adm-input" id="cert-issuer" placeholder="EC-Council"></div>
+            </div>
+            <div class="adm-field"><label class="adm-label">Icon (emoji)</label><input class="adm-input" id="cert-icon" placeholder="🛡️"></div>
+            <div style="display:flex;gap:0.5rem">
+              <button class="adm-save" onclick="saveCert()">Save</button>
+              <button class="adm-add" onclick="hideForm('cert-form')" style="margin-bottom:0">Cancel</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="adm-section" id="tab-projects">
+          <h3>Projects</h3>
+          <button class="adm-add" onclick="showForm('proj-form')">+ Add Project</button>
+          <div id="proj-list"></div>
+          <div class="adm-form-box" id="proj-form">
+            <div class="adm-field"><label class="adm-label">Title</label><input class="adm-input" id="proj-title" placeholder="SOC Deployment at XYZ"></div>
+            <div class="adm-grid2">
+              <div class="adm-field"><label class="adm-label">Date</label><input class="adm-input" id="proj-date" placeholder="Mar 2024"></div>
+              <div class="adm-field"><label class="adm-label">Client/Org</label><input class="adm-input" id="proj-assoc" placeholder="Smart Technologies"></div>
+            </div>
+            <div class="adm-field"><label class="adm-label">Description</label><textarea class="adm-textarea" id="proj-desc" placeholder="Brief description..."></textarea></div>
+            <div class="adm-field"><label class="adm-label">Tags (comma separated)</label><input class="adm-input" id="proj-tags" placeholder="SIEM, SOAR"></div>
+            <div class="adm-field">
+              <label class="adm-label">Project Image (optional)</label>
+              <div style="display:flex;gap:0.5rem;align-items:center">
+                <label class="upload-sm"><input type="file" accept="image/*" onchange="upProjImg(event)">📁 Upload</label>
+                <span style="font-size:0.65rem;color:var(--txt3)">or</span>
+                <input class="adm-input" id="proj-img" placeholder="https://..." style="flex:1">
+              </div>
+              <img id="proj-img-prev" style="width:100%;max-height:80px;object-fit:cover;margin-top:0.4rem;display:none;border:1px solid var(--line);border-radius:6px" src="" alt="">
+            </div>
+            <div style="display:flex;gap:0.5rem">
+              <button class="adm-save" onclick="saveProj()">Save</button>
+              <button class="adm-add" onclick="hideForm('proj-form')" style="margin-bottom:0">Cancel</button>
+            </div>
+          </div>
+        </div>
+
+        <div class="adm-section" id="tab-skills">
+          <h3>Technical Skills</h3>
+          <div class="adm-field"><label class="adm-label">Skills (one per line)</label><textarea class="adm-textarea" id="a-skills" style="min-height:200px"></textarea></div>
+          <button class="adm-save" onclick="saveSkills()">Save Skills</button>
+        </div>
+
+        <div class="adm-section" id="tab-contact">
+          <h3>Contact Info</h3>
+          <div class="adm-field"><label class="adm-label">Email</label><input class="adm-input" id="a-email"></div>
+          <div class="adm-field"><label class="adm-label">GitHub URL</label><input class="adm-input" id="a-github"></div>
+          <div class="adm-field"><label class="adm-label">LinkedIn URL</label><input class="adm-input" id="a-linkedin"></div>
+          <div class="adm-field"><label class="adm-label">TryHackMe URL</label><input class="adm-input" id="a-tryhackme"></div>
+          <div class="adm-field"><label class="adm-label">Facebook URL</label><input class="adm-input" id="a-facebook"></div>
+          <button class="adm-save" onclick="saveContact()">Save Contact</button>
+        </div>
+
+        <div class="adm-section" id="tab-export">
+          <h3>Export &amp; Deploy</h3>
+          <div class="adm-export-box">
+            Changes are saved in your browser. Export and commit to GitHub to publish.
+            <ol>
+              <li>Click <strong>Export HTML</strong> below</li>
+              <li>Go to <code style="color:var(--a1)">Turzo2134/turzo2134.github.io</code></li>
+              <li>Replace <code style="color:var(--a1)">index.html</code> with the new file</li>
+              <li>GitHub deploys automatically in ~60s</li>
+            </ol>
+          </div>
+          <button class="adm-export-btn" onclick="exportHTML()">⬇ Export index.html</button>
+          <div style="margin-top:1.5rem">
+            <h3>Reset Data</h3>
+            <p style="font-size:0.75rem;color:var(--txt2);margin-bottom:0.5rem">Revert all content to defaults. Cannot be undone.</p>
+            <button class="adm-export-btn" style="border-color:#f43f5e;color:#f43f5e" onclick="resetData()">✕ Reset to Defaults</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
+<script>
+// ── DATA ──
+const DEFAULTS = {
+  hero: { name:'Turzo Roy', title:'Cybersecurity Engineer', bio:"A dedicated cybersecurity engineer with deep expertise in SIEM, SOAR, VAPT, digital forensics, and threat hunting. Building robust defenses that keep pace with emerging threats.", statYears:'2+', statProjects:'7+', statCerts:'3+', statBadges:'20+', profilePhoto:'https://raw.githubusercontent.com/Turzo2134/turzo2134.github.io/main/images/myphoto.jpg' },
+  experience: [
+    { id:1, role:'Engineer – Enterprise Solutions Cyber Security', company:'Smart Technologies (BD) Ltd', start:'May 2024', end:'Present', bullets:['Deliver comprehensive security solutions, including assessments, product recommendations, and implementations.','Implement, manage, and support VAPT, SIEM, NMS, and other cybersecurity solutions.','Configure, manage, and maintain FortiSIEM, FortiSOAR, and IBM QRadar.','Lead SOC implementation and management for enhanced incident detection and response.','Deploy and train teams on Tenable and Rapid7 products for vulnerability management.'], tags:['SIEM','SOAR','FortiSIEM','QRadar','VAPT','Tenable','Rapid7'] },
+    { id:2, role:'Technical Support Engineer (Intern)', company:'Infolink Limited', start:'Jan 2023', end:'Apr 2023', bullets:['Provided low-level network administration services.','Monitored overall network health and reported incidents.','Configured and troubleshot router and ONU devices.'], tags:['Networking','Linux','TCP/IP'] }
+  ],
+  education: [
+    { id:1, degree:"Master's degree, Information and Cyber Security", school:'University of Dhaka', period:'Jun 2023 – Dec 2024', grade:'3.33', logo:'https://raw.githubusercontent.com/Turzo2134/turzo2134.github.io/main/images/du.png' },
+    { id:2, degree:"Bachelor's degree, Computer Science", school:'American International University-Bangladesh', period:'Jan 2019 – May 2023', grade:'3.26', logo:'https://raw.githubusercontent.com/Turzo2134/turzo2134.github.io/main/images/aiub.png' },
+    { id:3, degree:'HSC, Science', school:'Birshreshtha Noor Mohammad Public College', period:'Feb 2016 – Dec 2018', grade:'4.33', logo:'https://raw.githubusercontent.com/Turzo2134/turzo2134.github.io/main/images/bnmpc.png' }
+  ],
+  certs: [
+    { id:1, name:'Certified Ethical Hacker (CEH)', issuer:'EC-Council', icon:'🛡️' },
+    { id:2, name:'Cisco Certified CyberOps Associate', issuer:'Cisco', icon:'🔗' },
+    { id:3, name:'IT Essentials', issuer:'Cisco', icon:'💻' }
+  ],
+  partners: ['Fortinet','IBM','Tenable','Rapid7','TryHackMe'],
+  badges: [
+    {name:'CEH Practical',img:'https://raw.githubusercontent.com/Turzo2134/turzo2134.github.io/main/images/CEHPRACTICALbadge.png'},
+    {name:'CyberOps',img:'https://raw.githubusercontent.com/Turzo2134/turzo2134.github.io/main/images/cyberopsbadge.png'},
+    {name:'IBM QRadar SIEM',img:'https://raw.githubusercontent.com/Turzo2134/turzo2134.github.io/main/images/ibm-qradar-siembadge.png'},
+    {name:'IBM QRadar Foundation',img:'https://raw.githubusercontent.com/Turzo2134/turzo2134.github.io/main/images/ibm-qradar-siem-foundationbadge.png'},
+    {name:'IBM QRadar Technical',img:'https://raw.githubusercontent.com/Turzo2134/turzo2134.github.io/main/images/ibm-qradar-siem-technicalbadge.png'},
+    {name:'IBM SOAR Foundation',img:'https://raw.githubusercontent.com/Turzo2134/turzo2134.github.io/main/images/ibm-qradar-soarfoundationbadge.png'},
+    {name:'OWASP Top 10',img:'https://raw.githubusercontent.com/Turzo2134/turzo2134.github.io/main/images/owasptop10badge.png'},
+    {name:'Metasploit',img:'https://raw.githubusercontent.com/Turzo2134/turzo2134.github.io/main/images/metasploitbadge.png'},
+    {name:'Linux',img:'https://raw.githubusercontent.com/Turzo2134/turzo2134.github.io/main/images/linuxbadge.png'},
+    {name:'Network Fundamentals',img:'https://raw.githubusercontent.com/Turzo2134/turzo2134.github.io/main/images/networkfundamentalsbadge.png'},
+    {name:'IT Essentials',img:'https://raw.githubusercontent.com/Turzo2134/turzo2134.github.io/main/images/itessentialbadge.png'},
+    {name:'Intro to Offensive Security',img:'https://raw.githubusercontent.com/Turzo2134/turzo2134.github.io/main/images/introtooffensivesecuritybadge.png'},
+    {name:'How The Web Works',img:'https://raw.githubusercontent.com/Turzo2134/turzo2134.github.io/main/images/howthewebworksbadge.png'},
+    {name:'Sword Apprentice',img:'https://raw.githubusercontent.com/Turzo2134/turzo2134.github.io/main/images/swordapprentice.png'},
+    {name:'Shield Apprentice',img:'https://raw.githubusercontent.com/Turzo2134/turzo2134.github.io/main/images/shieldapprentice.png'},
+    {name:'Hash Cracker',img:'https://raw.githubusercontent.com/Turzo2134/turzo2134.github.io/main/images/hashcrackerbadge.png'},
+    {name:'Webbed',img:'https://raw.githubusercontent.com/Turzo2134/turzo2134.github.io/main/images/webbedbadge.png'},
+    {name:'League Silver',img:'https://raw.githubusercontent.com/Turzo2134/turzo2134.github.io/main/images/league-silverbadge.png'},
+    {name:'Career Ready',img:'https://raw.githubusercontent.com/Turzo2134/turzo2134.github.io/main/images/careerready.png'},
+    {name:'ISC2',img:'https://raw.githubusercontent.com/Turzo2134/turzo2134.github.io/main/images/isc2.png'}
+  ],
+  projects: [
+    { id:1, title:'Nessus Expert & Burp Suite Professional Deployment at IPDC Finance Limited', date:'Jul 2024', assoc:'Smart Technologies (BD) Ltd', desc:'Led the successful deployment and configuration of Tenable Nessus and Burp Suite Professional. Conducted hands-on training covering policy-based scanning, vulnerability prioritization, and web app testing methodologies.', tags:['VAPT','Tenable Nessus','Burp Suite'] },
+    { id:2, title:'Metasploit Pro Implementation & Training Workshop at ibas+', date:'May 2024', assoc:'Smart Technologies (BD) Ltd', desc:'Implemented and delivered a comprehensive 3-day Metasploit Pro training focused on real-world offensive security techniques, including custom payload generation and post-exploitation.', tags:['Metasploit','Red Teaming','VAPT'] },
+    { id:3, title:'Manual Migration of Tenable Core + SecurityCenter at IBBL', date:'Mar 2024', assoc:'Smart Technologies (BD) Ltd', desc:'Performed a manual migration of Tenable Core + SecurityCenter from Core 7 to Core 8 at Islami Bank Bangladesh PLC, ensuring seamless continuity of vulnerability management operations.', tags:['Tenable.sc'] },
+    { id:4, title:'Bangladesh Police SOC Deployment — SIEM & SOAR Implementation', date:'Oct 2023 – Feb 2024', assoc:'Smart Technologies (BD) Ltd', desc:'Led the deployment and configuration of a full SOC for Bangladesh law enforcement. Configured SIEM for log collection and alerting, and SOAR to automate incident handling.', tags:['SIEM','SOAR','CTI','Compliance'] },
+    { id:5, title:'Strengthening Enterprise Infrastructure: A Holistic Approach', date:'Oct 2023 – Mar 2024', assoc:'University of Dhaka', desc:'Developed a cost-effective, open-source infrastructure security framework for SMEs, integrating WAZUH, OpenVAS, and pfSense for threat monitoring and incident response.', tags:['WAZUH','OpenVAS','pfSense','SIEM'] },
+    { id:6, title:'SSL Pinning Bypass Training for Eastern Bank PLC', date:'Feb 2024', assoc:'Smart Technologies (BD) Ltd', desc:"Conducted specialized training on SSL Pinning Bypass in mobile apps using Burp Suite and Frida, enhancing the bank's mobile security testing capabilities.", tags:['Burp Suite','Frida','Mobile Security'] },
+    { id:7, title:'Tenable.sc & Nessus Scanner Deployment at SIBL', date:'May 2024', assoc:'Smart Technologies (BD) Ltd', desc:'Deployed and configured Tenable.sc and Nessus Scanner on CentOS at Social Islami Bank PLC, enhancing vulnerability management capabilities and training internal teams.', tags:['Tenable.sc','Nessus Scanner'] }
+  ],
+  skills: ['Python','Bash','Linux','Nmap','Wireshark','Metasploit','Burp Suite','SIEM (FortiSIEM)','SOAR (FortiSOAR)','IBM QRadar','Tenable Nessus','Rapid7','Vulnerability Assessment','Incident Response','Cryptography','Digital Forensics','Threat Hunting','Security Automation'],
+  contact: { email:'turzo1027@gmail.com', github:'https://github.com/Turzo2134', linkedin:'https://www.linkedin.com/in/turzoroy/', tryhackme:'https://tryhackme.com/p/turzo.roy', facebook:'https://www.facebook.com/turzo.roy.435318/' }
+};
+
+function loadData(){ try { return JSON.parse(localStorage.getItem('portfolio_data')) || JSON.parse(JSON.stringify(DEFAULTS)); } catch(e){ return JSON.parse(JSON.stringify(DEFAULTS)); } }
+function saveData(d){ localStorage.setItem('portfolio_data', JSON.stringify(d)); }
+let DATA = loadData();
+
+// ── RENDER ──
+function render(){ rHero(); rExp(); rEdu(); rCerts(); rProjects(); rSkills(); rContact(); }
+
+function rHero(){
+  const h = DATA.hero;
+  const parts = h.name.split(' ');
+  document.getElementById('heroH1').innerHTML = `${parts[0]}<br><em>${parts.slice(1).join(' ')}</em>`;
+  document.getElementById('heroTag').textContent = h.title;
+  document.getElementById('heroSub').textContent = h.bio;
+  document.getElementById('statYears').textContent = h.statYears;
+  document.getElementById('statProjects').textContent = h.statProjects;
+  document.getElementById('statCerts').textContent = h.statCerts;
+  document.getElementById('statBadges').textContent = h.statBadges;
+  document.getElementById('sbName').textContent = h.name;
+  document.getElementById('sbRole').textContent = h.title;
+  document.getElementById('footerRole').textContent = h.title + ' · Dhaka, Bangladesh';
+  document.title = `${h.name} — ${h.title}`;
+  if(h.profilePhoto){
+    ['profilePhotoEl','heroPhotoEl'].forEach(id => { const el = document.getElementById(id); if(el) el.src = h.profilePhoto; });
+  }
+}
+
+function rExp(){
+  const tagCols = ['purple','blue','pink'];
+  document.getElementById('experienceList').innerHTML = DATA.experience.map((e,i) => `
+    <div class="exp-item">
+      <div class="exp-item-header" onclick="toggleExp(this)">
+        <div>
+          <div class="exp-num">EXP-${String(i+1).padStart(2,'0')}</div>
+          <div class="exp-role">${e.role}</div>
+          <div class="exp-company">${e.company}</div>
+        </div>
+        <div class="exp-period">${e.start} – ${e.end}</div>
+      </div>
+      <div class="exp-body${i===0?' open':''}">
+        <ul class="exp-bullets">${e.bullets.map(b=>`<li>${b}</li>`).join('')}</ul>
+        <div class="tag-row">${e.tags.map((t,ti)=>`<span class="tag ${tagCols[ti%3]}">${t}</span>`).join('')}</div>
+      </div>
+    </div>`).join('');
+}
+
+function toggleExp(header){
+  const body = header.nextElementSibling;
+  body.classList.toggle('open');
+}
+
+function rEdu(){
+  document.getElementById('educationList').innerHTML = DATA.education.map(e => `
+    <div class="edu-item reveal">
+      <div class="edu-logo-wrap">${e.logo ? `<img src="${e.logo}" alt="${e.school}" onerror="this.style.display='none'">` : '🎓'}</div>
+      <div>
+        <div class="edu-degree">${e.degree}</div>
+        <div class="edu-school">${e.school}</div>
+        <div class="edu-meta-row">
+          <span class="edu-period">${e.period}</span>
+          <span class="edu-gpa">GPA ${e.grade}</span>
+        </div>
+      </div>
+    </div>`).join('');
+  observe('.reveal');
+}
+
+function rCerts(){
+  document.getElementById('certsGrid').innerHTML = DATA.certs.map(c => `
+    <div class="cert-card reveal">
+      <div class="cert-icon-wrap">${c.icon||'🏅'}</div>
+      <div><div class="cert-name">${c.name}</div><div class="cert-issuer">${c.issuer}</div></div>
+    </div>`).join('');
+  document.getElementById('partnersRow').innerHTML = DATA.partners.map(p => `<span class="partner-pill">${p}</span>`).join('');
+  document.getElementById('badgesGrid').innerHTML = DATA.badges.map(b => `
+    <div class="badge-wrap" title="${b.name}"><img src="${b.img}" alt="${b.name}" loading="lazy" onerror="this.style.opacity='0.2'"></div>`).join('');
+  observe('.reveal');
+}
+
+function rProjects(){
+  const tagCols = ['purple','blue','pink'];
+  document.getElementById('projectsGrid').innerHTML = DATA.projects.map((p,i) => `
+    <div class="proj-card reveal">
+      ${p.img ? `<img class="proj-card-img" src="${p.img}" alt="${p.title}">` : ''}
+      <div class="proj-top"><div class="proj-date">${p.date}</div></div>
+      ${p.assoc ? `<div class="proj-assoc">${p.assoc}</div>` : ''}
+      <div class="proj-title">${p.title}</div>
+      <div class="proj-desc">${p.desc}</div>
+      <div class="tag-row">${p.tags.map((t,ti)=>`<span class="tag ${tagCols[ti%3]}">${t}</span>`).join('')}</div>
+    </div>`).join('');
+  observe('.reveal');
+}
+
+function rSkills(){
+  const half = Math.ceil(DATA.skills.length / 2);
+  const left = DATA.skills.slice(0, half);
+  const right = DATA.skills.slice(half);
+  document.getElementById('skillsLayout').innerHTML = `
+    <div class="skill-category">
+      <div class="skill-category-title">Core Competencies</div>
+      <div class="skill-list">${left.map(s=>`<div class="skill-item reveal">${s}</div>`).join('')}</div>
+    </div>
+    <div class="skill-category">
+      <div class="skill-category-title">Tools &amp; Platforms</div>
+      <div class="skill-list">${right.map(s=>`<div class="skill-item reveal">${s}</div>`).join('')}</div>
+    </div>`;
+  observe('.reveal');
+}
+
+function rContact(){
+  const c = DATA.contact;
+  const links = [
+    c.email ? { href:`mailto:${c.email}`, icon:'✉', label:c.email } : null,
+    c.github ? { href:c.github, icon:'⌥', label:'GitHub' } : null,
+    c.linkedin ? { href:c.linkedin, icon:'💼', label:'LinkedIn' } : null,
+    c.tryhackme ? { href:c.tryhackme, icon:'🔓', label:'TryHackMe' } : null,
+    c.facebook ? { href:c.facebook, icon:'📘', label:'Facebook' } : null,
+  ].filter(Boolean);
+  document.getElementById('contactLinksList').innerHTML = links.map(l =>
+    `<a href="${l.href}" class="contact-link" target="${l.href.startsWith('mailto')?'_self':'_blank'}" rel="noopener">
+      <span class="contact-link-icon">${l.icon}</span>${l.label}</a>`).join('');
+  // Update sidebar socials
+  const sb = document.getElementById('sbSocial');
+  if(sb){
+    sb.innerHTML = [
+      c.github ? `<a href="${c.github}" target="_blank" rel="noopener" title="GitHub">GH</a>` : '',
+      c.linkedin ? `<a href="${c.linkedin}" target="_blank" rel="noopener" title="LinkedIn">LI</a>` : '',
+      c.tryhackme ? `<a href="${c.tryhackme}" target="_blank" rel="noopener" title="TryHackMe">TH</a>` : '',
+      c.email ? `<a href="mailto:${c.email}" title="Email">✉</a>` : '',
+    ].join('');
+  }
+}
+
+// ── OBSERVER ──
+function observe(sel){
+  const io = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+  },{ threshold:0.08 });
+  document.querySelectorAll(sel).forEach(el=>{ if(!el.classList.contains('in')) io.observe(el); });
+}
+
+// ── NAV ──
+function toggleSidebar(){ document.getElementById('sidebar').classList.toggle('open'); }
+function closeSidebar(){ document.getElementById('sidebar').classList.remove('open'); }
+window.addEventListener('scroll',()=>{
+  const sy = window.scrollY + 100;
+  document.querySelectorAll('section[id]').forEach(s=>{
+    const a = document.querySelector(`.sb-link[href="#${s.id}"]`);
+    if(a){ s.offsetTop <= sy && s.offsetTop+s.offsetHeight > sy ? a.classList.add('active') : a.classList.remove('active'); }
+  });
+});
+
+// ── ADMIN ──
+function openAdmin(){ document.getElementById('admin-panel').classList.add('open'); fillAdminFields(); }
+function closeAdmin(){ document.getElementById('admin-panel').classList.remove('open'); }
+document.getElementById('admin-panel').addEventListener('click',function(e){ if(e.target===this) closeAdmin(); });
+
+function admTab(name, el){
+  document.querySelectorAll('.adm-section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.adm-tab-btn').forEach(b=>b.classList.remove('active'));
+  document.getElementById('tab-'+name).classList.add('active');
+  if(el) el.classList.add('active');
+  fillLists();
+}
+
+function fillAdminFields(){
+  const h = DATA.hero;
+  document.getElementById('a-name').value = h.name;
+  document.getElementById('a-title').value = h.title;
+  document.getElementById('a-bio').value = h.bio;
+  document.getElementById('a-stat-years').value = h.statYears;
+  document.getElementById('a-stat-projects').value = h.statProjects;
+  document.getElementById('a-stat-certs').value = h.statCerts;
+  document.getElementById('a-stat-badges').value = h.statBadges;
+  if(h.profilePhoto && h.profilePhoto.startsWith('data:')){
+    const prev = document.getElementById('up-photo-prev');
+    prev.src = h.profilePhoto; prev.classList.add('show');
+  } else if(h.profilePhoto){
+    document.getElementById('a-photo-url').value = h.profilePhoto;
+  }
+  document.getElementById('a-skills').value = DATA.skills.join('\n');
+  const c = DATA.contact;
+  ['email','github','linkedin','tryhackme','facebook'].forEach(k=>{
+    const el = document.getElementById('a-'+k); if(el) el.value = c[k]||'';
+  });
+  fillLists();
+}
+
+function fillLists(){
+  const tagCols=['purple','blue','pink'];
+  document.getElementById('exp-list').innerHTML = DATA.experience.map(e=>`
+    <div class="adm-list-item"><div class="adm-list-body"><div class="adm-list-title">${e.role}</div><div class="adm-list-sub">${e.company} · ${e.start} – ${e.end}</div></div>
+    <button class="adm-del" onclick="delItem('experience',${e.id})">✕</button></div>`).join('');
+  document.getElementById('edu-list').innerHTML = DATA.education.map(e=>`
+    <div class="adm-list-item"><div class="adm-list-body"><div class="adm-list-title">${e.school}</div><div class="adm-list-sub">${e.degree}</div></div>
+    <button class="adm-del" onclick="delItem('education',${e.id})">✕</button></div>`).join('');
+  document.getElementById('cert-list').innerHTML = DATA.certs.map(c=>`
+    <div class="adm-list-item"><div class="adm-list-body"><div class="adm-list-title">${c.icon} ${c.name}</div><div class="adm-list-sub">${c.issuer}</div></div>
+    <button class="adm-del" onclick="delItem('certs',${c.id})">✕</button></div>`).join('');
+  document.getElementById('proj-list').innerHTML = DATA.projects.map(p=>`
+    <div class="adm-list-item"><div class="adm-list-body"><div class="adm-list-title">${p.title}</div><div class="adm-list-sub">${p.date}</div></div>
+    <button class="adm-del" onclick="delItem('projects',${p.id})">✕</button></div>`).join('');
+}
+
+function showForm(id){ document.getElementById(id).classList.add('open'); }
+function hideForm(id){ document.getElementById(id).classList.remove('open'); }
+function delItem(type,id){ DATA[type]=DATA[type].filter(i=>i.id!==id); saveData(DATA); render(); fillLists(); toast('Deleted'); }
+
+function saveHero(){
+  DATA.hero = { name:$('a-name'), title:$('a-title'), bio:$('a-bio'), statYears:$('a-stat-years'), statProjects:$('a-stat-projects'), statCerts:$('a-stat-certs'), statBadges:$('a-stat-badges'), profilePhoto:DATA.hero.profilePhoto||'' };
+  const url = $('a-photo-url'); if(url) DATA.hero.profilePhoto = url;
+  saveData(DATA); render(); toast('Hero saved!');
+}
+function saveSkills(){
+  DATA.skills = document.getElementById('a-skills').value.split('\n').map(s=>s.trim()).filter(Boolean);
+  saveData(DATA); render(); toast('Skills saved!');
+}
+function saveContact(){
+  DATA.contact = { email:$('a-email'), github:$('a-github'), linkedin:$('a-linkedin'), tryhackme:$('a-tryhackme'), facebook:$('a-facebook') };
+  saveData(DATA); render(); toast('Contact saved!');
+}
+function saveExp(){
+  const role = $('exp-role'); if(!role) return;
+  DATA.experience.unshift({ id:Date.now(), role, company:$('exp-company'), start:$('exp-start'), end:$('exp-end'), bullets:document.getElementById('exp-bullets').value.split('\n').map(s=>s.trim()).filter(Boolean), tags:$('exp-tags').split(',').map(s=>s.trim()).filter(Boolean) });
+  saveData(DATA); render(); fillLists(); hideForm('exp-form');
+  ['exp-role','exp-company','exp-start','exp-end','exp-bullets','exp-tags'].forEach(id=>document.getElementById(id).value='');
+  toast('Experience added!');
+}
+function saveEdu(){
+  const school = $('edu-school'); if(!school) return;
+  DATA.education.push({ id:Date.now(), degree:$('edu-degree'), school, period:$('edu-period'), grade:$('edu-grade'), logo:window._pendingEduLogo||$('edu-logo') });
+  window._pendingEduLogo = null;
+  saveData(DATA); render(); fillLists(); hideForm('edu-form');
+  ['edu-degree','edu-school','edu-period','edu-grade','edu-logo'].forEach(id=>document.getElementById(id).value='');
+  const p=document.getElementById('edu-logo-prev'); if(p) p.style.display='none';
+  toast('Education added!');
+}
+function saveCert(){
+  const name=$('cert-name'); if(!name) return;
+  DATA.certs.push({ id:Date.now(), name, issuer:$('cert-issuer'), icon:$('cert-icon')||'🏅' });
+  saveData(DATA); render(); fillLists(); hideForm('cert-form');
+  ['cert-name','cert-issuer','cert-icon'].forEach(id=>document.getElementById(id).value='');
+  toast('Cert added!');
+}
+function saveProj(){
+  const title=$('proj-title'); if(!title) return;
+  DATA.projects.unshift({ id:Date.now(), title, date:$('proj-date'), assoc:$('proj-assoc'), desc:$('proj-desc'), tags:$('proj-tags').split(',').map(s=>s.trim()).filter(Boolean), img:window._pendingProjImg||$('proj-img')||null });
+  window._pendingProjImg = null;
+  saveData(DATA); render(); fillLists(); hideForm('proj-form');
+  ['proj-title','proj-date','proj-assoc','proj-desc','proj-tags','proj-img'].forEach(id=>document.getElementById(id).value='');
+  const p=document.getElementById('proj-img-prev'); if(p) p.style.display='none';
+  toast('Project added!');
+}
+
+function $(id){ return document.getElementById(id)?.value||''; }
+
+function exportHTML(){
+  const d=JSON.stringify(DATA), html=document.documentElement.outerHTML.replace(/let DATA=loadData\(\);/,`localStorage.setItem('portfolio_data',JSON.stringify(${d}));let DATA=loadData();`);
+  const a=document.createElement('a'); a.href=URL.createObjectURL(new Blob([html],{type:'text/html'})); a.download='index.html'; a.click(); toast('Exported!');
+}
+function resetData(){ if(confirm('Reset all content to defaults?')){ DATA=JSON.parse(JSON.stringify(DEFAULTS)); saveData(DATA); render(); fillAdminFields(); toast('Reset!'); } }
+function handleContact(e){
+  e.preventDefault();
+  const email=DATA.contact.email||'turzo1027@gmail.com', name=e.target[0].value, em=e.target[1].value, msg=e.target[2].value;
+  window.location.href=`mailto:${email}?subject=Portfolio Contact from ${name}&body=${encodeURIComponent(msg+'\n\nFrom: '+name+'\nEmail: '+em)}`;
+  toast('Opening mail client...');
+}
+function toast(msg){ const t=document.getElementById('toast'); t.textContent=msg; t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),2400); }
+
+// ── PHOTO UPLOADS ──
+function f2b(file){ return new Promise((res,rej)=>{ const r=new FileReader(); r.onload=e=>res(e.target.result); r.onerror=rej; r.readAsDataURL(file); }); }
+async function upPhoto(event){
+  const file=event.target.files[0]; if(!file) return;
+  const b64=await f2b(file); DATA.hero.profilePhoto=b64; saveData(DATA);
+  const prev=document.getElementById('up-photo-prev'); prev.src=b64; prev.classList.add('show');
+  ['profilePhotoEl','heroPhotoEl'].forEach(id=>{ const el=document.getElementById(id); if(el) el.src=b64; });
+  toast('Photo updated!');
+}
+function prevPhotoUrl(url){ if(!url) return; const p=document.getElementById('up-photo-prev'); p.src=url; p.classList.add('show'); }
+async function upEduLogo(event){
+  const file=event.target.files[0]; if(!file) return; const b64=await f2b(file); window._pendingEduLogo=b64;
+  const p=document.getElementById('edu-logo-prev'); p.src=b64; p.style.display='block'; toast('Logo ready');
+}
+async function upProjImg(event){
+  const file=event.target.files[0]; if(!file) return; const b64=await f2b(file); window._pendingProjImg=b64;
+  const p=document.getElementById('proj-img-prev'); p.src=b64; p.style.display='block'; toast('Image ready');
+}
+
+// ── INIT ──
+document.addEventListener('DOMContentLoaded',()=>{
+  render();
+  observe('.reveal');
+  // Accordion: open first exp by default handled in rExp
+});
+</script>
+</body>
+</html>

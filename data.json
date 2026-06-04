@@ -1,0 +1,71 @@
+{
+  "meta": {
+    "title": "Your Name — Portfolio",
+    "favicon": "✦"
+  },
+  "hero": {
+    "name": "Your Name",
+    "tagline": "Designer & Developer",
+    "bio": "I craft thoughtful digital experiences at the intersection of design and engineering. Currently open to new opportunities.",
+    "location": "Dhaka, Bangladesh",
+    "avatar": ""
+  },
+  "links": [
+    { "label": "GitHub",   "url": "https://github.com/yourusername",   "icon": "github" },
+    { "label": "LinkedIn", "url": "https://linkedin.com/in/yourusername", "icon": "linkedin" },
+    { "label": "Email",    "url": "mailto:you@example.com",             "icon": "mail" }
+  ],
+  "skills": [
+    "React", "TypeScript", "Node.js", "Python", "Figma", "Tailwind CSS", "PostgreSQL", "Docker"
+  ],
+  "projects": [
+    {
+      "title": "Project Alpha",
+      "description": "A full-stack web app that helps teams manage async workflows with real-time collaboration.",
+      "tags": ["React", "Node.js", "PostgreSQL"],
+      "url": "https://github.com/yourusername/project-alpha",
+      "live": "https://project-alpha.vercel.app",
+      "featured": true
+    },
+    {
+      "title": "Data Lens",
+      "description": "An open-source dashboard for visualising CSV and JSON data without writing any code.",
+      "tags": ["Python", "D3.js", "FastAPI"],
+      "url": "https://github.com/yourusername/data-lens",
+      "live": "",
+      "featured": true
+    },
+    {
+      "title": "CLI Toolkit",
+      "description": "A collection of productivity scripts and shell utilities for power users.",
+      "tags": ["Bash", "Python"],
+      "url": "https://github.com/yourusername/cli-toolkit",
+      "live": "",
+      "featured": false
+    }
+  ],
+  "experience": [
+    {
+      "company": "Acme Corp",
+      "role": "Senior Frontend Engineer",
+      "period": "2023 – Present",
+      "bullets": [
+        "Led redesign of the core dashboard, improving load time by 40%",
+        "Mentored 3 junior engineers and introduced component-driven design system",
+        "Shipped 12 product features across two quarters"
+      ]
+    },
+    {
+      "company": "StartupXYZ",
+      "role": "Full-Stack Developer",
+      "period": "2021 – 2023",
+      "bullets": [
+        "Built and scaled backend API from 0 to 50k daily active users",
+        "Integrated third-party payment system handling $1M+ in monthly transactions"
+      ]
+    }
+  ],
+  "footer": {
+    "text": "Built with care — source on GitHub."
+  }
+}

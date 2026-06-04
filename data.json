@@ -1,0 +1,78 @@
+{
+  "meta": {
+    "title": "Turzo Roy — Cybersecurity Engineer",
+    "favicon": "🛡"
+  },
+  "hero": {
+    "name": "Turzo Roy",
+    "tagline": "SOC Engineer & Penetration Tester",
+    "quote": "Most organizations don't discover a breach until the attacker is already gone. I make sure they never get that far.",
+    "bio": "Cybersecurity Engineer with 2+ years of hands-on experience in enterprise SOC environments. Specializing in incident response, penetration testing, threat hunting, and vulnerability management at Smart Technologies (BD) Ltd — working across multi-client enterprise environments.",
+    "location": "Dhaka, Bangladesh",
+    "available": true,
+    "avatar": "images/avatar.jpg",
+    "email": "turzo1027@gmail.com",
+    "linkedin": "https://linkedin.com/in/turzoroy"
+  },
+  "stats": [
+    { "value": "2+",  "label": "Years SOC Experience" },
+    { "value": "L2",  "label": "SOC Analyst Level"    },
+    { "value": "5+",  "label": "Certifications"       },
+    { "value": "VAPT","label": "Specialty"             }
+  ],
+  "skills": {
+    "Blue Team":   ["IBM QRadar", "FortiSIEM", "SIEM Monitoring", "Alert Triage", "Digital Forensics", "Threat Hunting", "Incident Response", "Log Analysis", "CTI"],
+    "Red Team":    ["Metasploit Pro", "Burp Suite Professional", "Nessus", "Nmap", "VAPT", "Vulnerability Assessment", "AV Evasion", "Phishing Campaigns"],
+    "Frameworks":  ["MITRE ATT&CK", "NIST CSF", "OWASP Top 10", "Detection Engineering"],
+    "Other":       ["Technical Training", "SIEM Operations", "Remediation Guidance", "Multi-client SOC"]
+  },
+  "certifications": [
+    { "name": "Certified SOC Analyst (CSA)",                         "issuer": "EC-Council",      "year": "2024", "badge": "images/certs/csa.jpg"      },
+    { "name": "Certified Ethical Hacker (CEH)",                      "issuer": "EC-Council",      "year": "2024", "badge": "images/certs/ceh.jpg"      },
+    { "name": "IBM QRadar SIEM Foundation",                          "issuer": "IBM",             "year": "2024", "badge": "images/certs/qradar.jpg"   },
+    { "name": "Cyber Security 101",                                   "issuer": "TryHackMe",       "year": "2024", "badge": "images/certs/thm.jpg"      },
+    { "name": "Certified Cybersecurity Educator Professional (CCEP)", "issuer": "Red Team Leaders","year": "2024", "badge": "images/certs/ccep.jpg"     },
+    { "name": "Rapid7 Sales Professional: Foundation",               "issuer": "Rapid7",          "year": "2024", "badge": "images/certs/rapid7.jpg"   }
+  ],
+  "experience": [
+    {
+      "company": "Smart Technologies (BD) Ltd",
+      "role": "SOC Engineer / Penetration Tester",
+      "period": "2022 – Present",
+      "type": "Full-time",
+      "logo": "images/companies/smart-tech.jpg",
+      "bullets": [
+        "L2 SOC Analyst operating across multi-client enterprise environments",
+        "SIEM monitoring, alert triage, threat hunting, and digital forensics using IBM QRadar & FortiSIEM",
+        "Conducting VAPT engagements, vulnerability assessments, and remediation guidance",
+        "Applying MITRE ATT&CK and NIST CSF frameworks for detection engineering",
+        "Delivered 3-day intensive Metasploit Pro training covering AV evasion, SMB exploitation, brute force, phishing, and forensic trace removal",
+        "Technical training delivery on SIEM operations, ethical hacking, and OWASP Top 10"
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "University of Dhaka",
+      "degree": "Master's Degree",
+      "field": "Cyber Security",
+      "period": "Completed 2024",
+      "logo": "images/education/du.jpg"
+    }
+  ],
+  "achievements": [
+    { "title": "TryHackMe Silver League",   "detail": "1st Place — Silver League Badge",    "icon": "trophy"  },
+    { "title": "First Security Article",    "detail": "John the Ripper Basics on Medium",   "icon": "pen"     },
+    { "title": "2,476 Followers",           "detail": "LinkedIn Security Community",         "icon": "network" },
+    { "title": "Enterprise SOC Operations", "detail": "Multi-client security operations",    "icon": "shield"  }
+  ],
+  "links": [
+    { "label": "LinkedIn", "url": "https://linkedin.com/in/turzoroy",  "icon": "linkedin" },
+    { "label": "Email",    "url": "mailto:turzo1027@gmail.com",         "icon": "mail"     },
+    { "label": "Medium",   "url": "https://medium.com",                "icon": "pen"      },
+    { "label": "TryHackMe","url": "https://tryhackme.com",             "icon": "flag"     }
+  ],
+  "footer": {
+    "text": "Defending enterprise networks — one alert at a time."
+  }
+}

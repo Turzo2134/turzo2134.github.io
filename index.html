@@ -1,0 +1,986 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Mono:ital,wght@0,400;0,700;1,400&family=Syne:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <style>
+    /* ── Reset ──────────────────────────────────────────────── */
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+
+    /* ── Tokens ─────────────────────────────────────────────── */
+    :root {
+      --bg:        #080c0a;
+      --bg-2:      #0d1410;
+      --bg-3:      #111810;
+      --line:      #1c2820;
+      --line-2:    #243320;
+      --green:     #00ff88;
+      --green-dim: #00cc6a;
+      --green-mute:#0a3020;
+      --amber:     #ffaa00;
+      --red:       #ff4466;
+      --text:      #d4e8d4;
+      --text-2:    #6a8a6a;
+      --text-3:    #334433;
+      --mono:      'Space Mono', 'Courier New', monospace;
+      --display:   'Syne', sans-serif;
+    }
+
+    body {
+      font-family: var(--display);
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      overflow-x: hidden;
+      cursor: default;
+    }
+
+    /* ── Grid background ─────────────────────────────────────── */
+    body::before {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background-image:
+        linear-gradient(var(--line) 1px, transparent 1px),
+        linear-gradient(90deg, var(--line) 1px, transparent 1px);
+      background-size: 48px 48px;
+      pointer-events: none;
+      z-index: 0;
+      opacity: 0.5;
+    }
+
+    /* ── Scanline overlay ────────────────────────────────────── */
+    body::after {
+      content: '';
+      position: fixed;
+      inset: 0;
+      background: repeating-linear-gradient(
+        0deg,
+        transparent,
+        transparent 2px,
+        rgba(0,0,0,0.08) 2px,
+        rgba(0,0,0,0.08) 4px
+      );
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    * { position: relative; z-index: 1; }
+
+    /* ── Loader ─────────────────────────────────────────────── */
+    #loader {
+      position: fixed;
+      inset: 0;
+      background: var(--bg);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      z-index: 1000;
+      gap: 16px;
+      transition: opacity 0.6s;
+    }
+    #loader.out { opacity: 0; pointer-events: none; }
+    .loader-text {
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      color: var(--green);
+      letter-spacing: 0.1em;
+    }
+    .loader-bar {
+      width: 200px;
+      height: 2px;
+      background: var(--line-2);
+      border-radius: 2px;
+      overflow: hidden;
+    }
+    .loader-bar-fill {
+      height: 100%;
+      background: var(--green);
+      width: 0%;
+      transition: width 1.2s cubic-bezier(0.4,0,0.2,1);
+      box-shadow: 0 0 12px var(--green);
+    }
+
+    /* ── Nav ─────────────────────────────────────────────────── */
+    nav {
+      position: sticky; top: 0;
+      border-bottom: 1px solid var(--line-2);
+      background: rgba(8,12,10,0.85);
+      backdrop-filter: blur(16px);
+      z-index: 100;
+      padding: 0 40px;
+    }
+    .nav-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      height: 56px;
+    }
+    .nav-brand {
+      font-family: var(--mono);
+      font-size: 0.8rem;
+      color: var(--green);
+      letter-spacing: 0.06em;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .nav-brand::before {
+      content: '>';
+      color: var(--green-dim);
+      animation: blink 1.2s step-end infinite;
+    }
+    @keyframes blink { 0%,100%{opacity:1} 50%{opacity:0} }
+    .nav-links {
+      display: flex;
+      gap: 32px;
+      list-style: none;
+    }
+    .nav-links a {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      letter-spacing: 0.1em;
+      color: var(--text-2);
+      text-decoration: none;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--green); }
+    .nav-status {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--text-2);
+    }
+    .status-dot {
+      width: 6px; height: 6px;
+      border-radius: 50%;
+      background: var(--green);
+      box-shadow: 0 0 8px var(--green);
+      animation: pulse 2s ease-in-out infinite;
+    }
+    .status-dot.unavailable { background: var(--text-3); box-shadow: none; animation: none; }
+    @keyframes pulse {
+      0%,100%{ box-shadow: 0 0 4px var(--green); }
+      50%{ box-shadow: 0 0 16px var(--green), 0 0 32px rgba(0,255,136,0.3); }
+    }
+
+    /* ── Layout ─────────────────────────────────────────────── */
+    .wrap {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 40px;
+    }
+    @media (max-width: 640px) { .wrap { padding: 0 20px; } nav { padding: 0 20px; } }
+
+    /* ── Hero ────────────────────────────────────────────────── */
+    #hero {
+      padding: 100px 0 80px;
+      border-bottom: 1px solid var(--line-2);
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr auto;
+      gap: 60px;
+      align-items: start;
+    }
+    @media (max-width: 768px) { .hero-grid { grid-template-columns: 1fr; } }
+    .hero-tag {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--green);
+      letter-spacing: 0.15em;
+      text-transform: uppercase;
+      margin-bottom: 24px;
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    .hero-tag::before { content: '[ '; color: var(--text-3); }
+    .hero-tag::after  { content: ' ]'; color: var(--text-3); }
+    .hero-name {
+      font-size: clamp(3.5rem, 7vw, 6rem);
+      font-weight: 800;
+      line-height: 0.95;
+      letter-spacing: -0.03em;
+      color: #fff;
+      margin-bottom: 8px;
+    }
+    .hero-name .accent { color: var(--green); }
+    .hero-role {
+      font-family: var(--mono);
+      font-size: 0.85rem;
+      color: var(--text-2);
+      margin-bottom: 36px;
+      letter-spacing: 0.04em;
+    }
+    .hero-quote {
+      font-size: 1rem;
+      color: var(--text-2);
+      font-style: italic;
+      font-weight: 400;
+      border-left: 2px solid var(--green);
+      padding-left: 20px;
+      margin-bottom: 36px;
+      line-height: 1.7;
+      max-width: 560px;
+    }
+    .hero-bio {
+      font-size: 0.925rem;
+      color: var(--text-2);
+      line-height: 1.8;
+      max-width: 560px;
+      margin-bottom: 40px;
+      font-weight: 400;
+    }
+    .hero-cta {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+    .btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 10px 22px;
+      font-family: var(--mono);
+      font-size: 0.75rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      text-decoration: none;
+      border: 1px solid var(--line-2);
+      border-radius: 3px;
+      color: var(--text-2);
+      background: transparent;
+      transition: all 0.2s;
+    }
+    .btn svg { width: 13px; height: 13px; stroke: currentColor; fill: none; flex-shrink: 0; }
+    .btn:hover { border-color: var(--green); color: var(--green); background: rgba(0,255,136,0.05); }
+    .btn.primary { border-color: var(--green); color: var(--green); }
+    .btn.primary:hover { background: var(--green); color: var(--bg); }
+
+    /* Avatar block */
+    .hero-avatar-wrap {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+    }
+    .hero-avatar {
+      width: 200px; height: 200px;
+      border-radius: 3px;
+      border: 1px solid var(--line-2);
+      object-fit: cover;
+      object-position: center top;
+      filter: grayscale(20%) contrast(1.05);
+      box-shadow: 0 0 40px rgba(0,255,136,0.08), inset 0 0 20px rgba(0,255,136,0.03);
+    }
+    .hero-avatar-fallback {
+      width: 200px; height: 200px;
+      border-radius: 3px;
+      border: 1px solid var(--line-2);
+      background: var(--bg-3);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 4rem;
+      color: var(--green);
+      font-weight: 800;
+    }
+    .hero-location {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--text-3);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      text-align: center;
+    }
+
+    /* Stats strip */
+    .stats-strip {
+      margin-top: 64px;
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      border: 1px solid var(--line-2);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    @media (max-width: 640px) { .stats-strip { grid-template-columns: repeat(2, 1fr); } }
+    .stat-item {
+      padding: 24px 20px;
+      border-right: 1px solid var(--line-2);
+      background: var(--bg-2);
+    }
+    .stat-item:last-child { border-right: none; }
+    .stat-value {
+      font-size: 2rem;
+      font-weight: 800;
+      color: var(--green);
+      line-height: 1;
+      margin-bottom: 6px;
+      font-family: var(--display);
+    }
+    .stat-label {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--text-3);
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+    }
+
+    /* ── Section ─────────────────────────────────────────────── */
+    section { padding: 80px 0; border-bottom: 1px solid var(--line-2); }
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+      margin-bottom: 52px;
+    }
+    .section-num {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--green);
+      letter-spacing: 0.1em;
+    }
+    .section-title {
+      font-size: 1.6rem;
+      font-weight: 700;
+      color: #fff;
+      letter-spacing: -0.02em;
+    }
+    .section-line {
+      flex: 1;
+      height: 1px;
+      background: var(--line-2);
+    }
+
+    /* ── Skills ─────────────────────────────────────────────── */
+    .skills-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      background: var(--line-2);
+      border: 1px solid var(--line-2);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    @media (max-width: 640px) { .skills-grid { grid-template-columns: 1fr; } }
+    .skill-group {
+      background: var(--bg-2);
+      padding: 28px;
+    }
+    .skill-group-label {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--green);
+      margin-bottom: 16px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .skill-group-label::before { content: '//'; color: var(--text-3); }
+    .skill-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+    }
+    .skill-tag {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      padding: 4px 10px;
+      border: 1px solid var(--line-2);
+      border-radius: 2px;
+      color: var(--text-2);
+      background: var(--bg);
+      transition: all 0.15s;
+    }
+    .skill-tag:hover { border-color: var(--green); color: var(--green); }
+
+    /* ── Certifications ─────────────────────────────────────── */
+    .certs-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 1px;
+      background: var(--line-2);
+      border: 1px solid var(--line-2);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    @media (max-width: 768px) { .certs-grid { grid-template-columns: repeat(2, 1fr); } }
+    @media (max-width: 480px) { .certs-grid { grid-template-columns: 1fr; } }
+    .cert-card {
+      background: var(--bg-2);
+      padding: 24px;
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+      transition: background 0.2s;
+    }
+    .cert-card:hover { background: var(--bg-3); }
+    .cert-badge-wrap {
+      width: 48px; height: 48px;
+      border: 1px solid var(--line-2);
+      border-radius: 2px;
+      overflow: hidden;
+      background: var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.5rem;
+      flex-shrink: 0;
+    }
+    .cert-badge-wrap img { width: 100%; height: 100%; object-fit: contain; }
+    .cert-name {
+      font-size: 0.875rem;
+      font-weight: 600;
+      color: #fff;
+      line-height: 1.3;
+    }
+    .cert-meta {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--text-3);
+      letter-spacing: 0.08em;
+    }
+    .cert-year {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--green);
+      margin-top: auto;
+    }
+
+    /* ── Experience ─────────────────────────────────────────── */
+    .exp-item {
+      border: 1px solid var(--line-2);
+      border-radius: 3px;
+      background: var(--bg-2);
+      overflow: hidden;
+    }
+    .exp-item + .exp-item { margin-top: 1px; }
+    .exp-header {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      padding: 28px 32px;
+      border-bottom: 1px solid var(--line-2);
+      background: var(--bg-3);
+    }
+    .exp-logo {
+      width: 44px; height: 44px;
+      border: 1px solid var(--line-2);
+      border-radius: 2px;
+      overflow: hidden;
+      background: var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      flex-shrink: 0;
+    }
+    .exp-logo img { width: 100%; height: 100%; object-fit: contain; }
+    .exp-info { flex: 1; }
+    .exp-role {
+      font-size: 1.05rem;
+      font-weight: 700;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+    .exp-company-period {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--text-3);
+      letter-spacing: 0.06em;
+    }
+    .exp-company-period strong { color: var(--green); font-weight: 400; }
+    .exp-type {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      padding: 3px 10px;
+      border: 1px solid var(--green-mute);
+      color: var(--green-dim);
+      border-radius: 2px;
+    }
+    .exp-body { padding: 28px 32px; }
+    .exp-bullets {
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+      list-style: none;
+    }
+    .exp-bullets li {
+      font-size: 0.9rem;
+      color: var(--text-2);
+      padding-left: 20px;
+      position: relative;
+      line-height: 1.65;
+    }
+    .exp-bullets li::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: var(--green);
+      font-size: 0.7rem;
+      top: 3px;
+    }
+
+    /* ── Education ──────────────────────────────────────────── */
+    .edu-item {
+      border: 1px solid var(--line-2);
+      border-radius: 3px;
+      background: var(--bg-2);
+      padding: 28px 32px;
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+    .edu-logo {
+      width: 52px; height: 52px;
+      border: 1px solid var(--line-2);
+      border-radius: 2px;
+      background: var(--bg);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      flex-shrink: 0;
+      overflow: hidden;
+    }
+    .edu-logo img { width: 100%; height: 100%; object-fit: contain; }
+    .edu-degree { font-size: 1.05rem; font-weight: 700; color: #fff; margin-bottom: 4px; }
+    .edu-meta {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--text-3);
+      letter-spacing: 0.06em;
+    }
+    .edu-meta strong { color: var(--green-dim); font-weight: 400; }
+
+    /* ── Achievements ────────────────────────────────────────── */
+    .achieve-grid {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 1px;
+      background: var(--line-2);
+      border: 1px solid var(--line-2);
+      border-radius: 3px;
+      overflow: hidden;
+    }
+    @media (max-width: 560px) { .achieve-grid { grid-template-columns: 1fr; } }
+    .achieve-card {
+      background: var(--bg-2);
+      padding: 28px;
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      transition: background 0.2s;
+    }
+    .achieve-card:hover { background: var(--bg-3); }
+    .achieve-icon {
+      font-size: 1.5rem;
+      line-height: 1;
+      flex-shrink: 0;
+      filter: grayscale(1) brightness(0.6);
+    }
+    .achieve-title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      color: #fff;
+      margin-bottom: 4px;
+    }
+    .achieve-detail {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--text-3);
+      letter-spacing: 0.05em;
+    }
+
+    /* ── Footer ─────────────────────────────────────────────── */
+    footer {
+      padding: 40px 0;
+      border-top: 1px solid var(--line-2);
+    }
+    .footer-inner {
+      max-width: 1100px;
+      margin: 0 auto;
+      padding: 0 40px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    @media (max-width: 640px) { .footer-inner { padding: 0 20px; } }
+    .footer-text {
+      font-family: var(--mono);
+      font-size: 0.7rem;
+      color: var(--text-3);
+      letter-spacing: 0.06em;
+    }
+    .footer-text span { color: var(--green); }
+    .footer-year {
+      font-family: var(--mono);
+      font-size: 0.65rem;
+      color: var(--text-3);
+    }
+
+    /* ── Reveal animation ────────────────────────────────────── */
+    .reveal {
+      opacity: 0;
+      transform: translateY(20px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    .reveal.in { opacity: 1; transform: none; }
+  </style>
+</head>
+<body>
+
+<!-- Loader -->
+<div id="loader">
+  <div class="loader-text" id="loader-msg">INITIALIZING PORTFOLIO...</div>
+  <div class="loader-bar"><div class="loader-bar-fill" id="loader-fill"></div></div>
+</div>
+
+<!-- Nav -->
+<nav>
+  <div class="nav-inner">
+    <div class="nav-brand" id="nav-brand">turzo.roy</div>
+    <ul class="nav-links">
+      <li><a href="#skills">Skills</a></li>
+      <li><a href="#certs">Certs</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#contact">Contact</a></li>
+    </ul>
+    <div class="nav-status">
+      <div class="status-dot" id="status-dot"></div>
+      <span id="status-text">AVAILABLE</span>
+    </div>
+  </div>
+</nav>
+
+<!-- Hero -->
+<section id="hero">
+  <div class="wrap">
+    <div class="hero-grid">
+      <div>
+        <div class="hero-tag" id="hero-tag">Cybersecurity Engineer</div>
+        <h1 class="hero-name" id="hero-name"></h1>
+        <p class="hero-role" id="hero-role"></p>
+        <blockquote class="hero-quote" id="hero-quote"></blockquote>
+        <p class="hero-bio" id="hero-bio"></p>
+        <div class="hero-cta" id="hero-cta"></div>
+      </div>
+      <div class="hero-avatar-wrap">
+        <div id="hero-avatar-container"></div>
+        <p class="hero-location" id="hero-location"></p>
+      </div>
+    </div>
+    <div class="stats-strip" id="stats-strip"></div>
+  </div>
+</section>
+
+<!-- Skills -->
+<section id="skills">
+  <div class="wrap">
+    <div class="section-header reveal">
+      <span class="section-num">01</span>
+      <h2 class="section-title">Skills & Tools</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="skills-grid reveal" id="skills-grid"></div>
+  </div>
+</section>
+
+<!-- Certifications -->
+<section id="certs">
+  <div class="wrap">
+    <div class="section-header reveal">
+      <span class="section-num">02</span>
+      <h2 class="section-title">Certifications</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="certs-grid reveal" id="certs-grid"></div>
+  </div>
+</section>
+
+<!-- Experience -->
+<section id="experience">
+  <div class="wrap">
+    <div class="section-header reveal">
+      <span class="section-num">03</span>
+      <h2 class="section-title">Experience</h2>
+      <div class="section-line"></div>
+    </div>
+    <div id="experience-list" class="reveal"></div>
+  </div>
+</section>
+
+<!-- Education -->
+<section id="education">
+  <div class="wrap">
+    <div class="section-header reveal">
+      <span class="section-num">04</span>
+      <h2 class="section-title">Education</h2>
+      <div class="section-line"></div>
+    </div>
+    <div id="education-list" class="reveal"></div>
+  </div>
+</section>
+
+<!-- Achievements -->
+<section id="achievements">
+  <div class="wrap">
+    <div class="section-header reveal">
+      <span class="section-num">05</span>
+      <h2 class="section-title">Achievements</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="achieve-grid reveal" id="achieve-grid"></div>
+  </div>
+</section>
+
+<!-- Contact -->
+<section id="contact">
+  <div class="wrap">
+    <div class="section-header reveal">
+      <span class="section-num">06</span>
+      <h2 class="section-title">Contact</h2>
+      <div class="section-line"></div>
+    </div>
+    <div class="reveal">
+      <p style="font-family:var(--mono);font-size:0.75rem;color:var(--text-2);margin-bottom:28px;letter-spacing:0.04em;">
+        Currently open to Senior Cybersecurity Engineer, SOC Analyst (L2/L3), and Penetration Tester roles.
+      </p>
+      <div style="display:flex;flex-wrap:wrap;gap:12px;" id="contact-links"></div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="footer-inner">
+    <p class="footer-text" id="footer-text"></p>
+    <p class="footer-year" id="footer-year"></p>
+  </div>
+</footer>
+
+<script>
+  /* ── Icons ───────────────────────────────────────────────── */
+  const ICONS = {
+    linkedin: `<svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/><rect x="2" y="9" width="4" height="12"/><circle cx="4" cy="4" r="2"/></svg>`,
+    mail:     `<svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/></svg>`,
+    pen:      `<svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>`,
+    flag:     `<svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M4 15s1-1 4-1 5 2 8 2 4-1 4-1V3s-1 1-4 1-5-2-8-2-4 1-4 1z"/><line x1="4" y1="22" x2="4" y2="15"/></svg>`,
+    shield:   `<svg viewBox="0 0 24 24" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>`,
+  };
+
+  const ACHIEVE_ICONS = {
+    trophy:  '🏆',
+    pen:     '📝',
+    network: '🌐',
+    shield:  '🛡️',
+  };
+
+  /* ── Loader sequence ─────────────────────────────────────── */
+  const loaderMsgs = ['LOADING THREAT INTELLIGENCE...', 'BYPASSING PERIMETER DEFENSES...', 'PORTFOLIO DECRYPTED.'];
+  let msgI = 0;
+  const loaderMsg  = document.getElementById('loader-msg');
+  const loaderFill = document.getElementById('loader-fill');
+
+  requestAnimationFrame(() => { loaderFill.style.width = '100%'; });
+  setTimeout(() => { loaderMsg.textContent = loaderMsgs[1]; }, 400);
+  setTimeout(() => { loaderMsg.textContent = loaderMsgs[2]; }, 900);
+
+  /* ── Main ────────────────────────────────────────────────── */
+  async function init() {
+    const res  = await fetch('data.json?t=' + Date.now());
+    const data = await res.json();
+    render(data);
+    setTimeout(() => {
+      document.getElementById('loader').classList.add('out');
+      setTimeout(() => document.getElementById('loader').remove(), 700);
+      setupReveal();
+    }, 1400);
+  }
+
+  function render(d) {
+    /* meta */
+    document.title = d.meta.title;
+    const fav = document.createElement('link');
+    fav.rel = 'icon';
+    fav.href = `data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg'><text y='1em' font-size='14'>${d.meta.favicon}</text></svg>`;
+    document.head.appendChild(fav);
+
+    /* nav */
+    document.getElementById('nav-brand').textContent = d.hero.name.toLowerCase().replace(' ', '.') + ' >';
+
+    /* status */
+    const dot  = document.getElementById('status-dot');
+    const stxt = document.getElementById('status-text');
+    if (!d.hero.available) { dot.classList.add('unavailable'); stxt.textContent = 'UNAVAILABLE'; }
+
+    /* hero */
+    document.getElementById('hero-tag').textContent      = d.hero.tagline;
+    const [fn, ...rest] = d.hero.name.split(' ');
+    document.getElementById('hero-name').innerHTML = fn + ' <span class="accent">' + rest.join(' ') + '</span>';
+    document.getElementById('hero-role').textContent     = '// ' + d.hero.tagline + ' — ' + d.hero.location;
+    document.getElementById('hero-quote').textContent    = '"' + d.hero.quote + '"';
+    document.getElementById('hero-bio').textContent      = d.hero.bio;
+    document.getElementById('hero-location').textContent = '📍 ' + d.hero.location;
+
+    /* avatar */
+    const ac = document.getElementById('hero-avatar-container');
+    if (d.hero.avatar) {
+      const img = document.createElement('img');
+      img.src = d.hero.avatar;
+      img.alt = d.hero.name;
+      img.className = 'hero-avatar';
+      img.onerror = () => { img.replaceWith(fallbackAvatar(d.hero.name)); };
+      ac.appendChild(img);
+    } else {
+      ac.appendChild(fallbackAvatar(d.hero.name));
+    }
+
+    /* hero links */
+    const cta = document.getElementById('hero-cta');
+    d.links.forEach((l, i) => {
+      const a = document.createElement('a');
+      a.href   = l.url;
+      a.target = l.url.startsWith('mailto') ? '_self' : '_blank';
+      a.rel    = 'noopener';
+      a.className = 'btn' + (i === 0 ? ' primary' : '');
+      a.innerHTML = (ICONS[l.icon] || '') + l.label;
+      cta.appendChild(a);
+    });
+
+    /* stats */
+    const ss = document.getElementById('stats-strip');
+    d.stats.forEach(s => {
+      const el = document.createElement('div');
+      el.className = 'stat-item';
+      el.innerHTML = `<div class="stat-value">${s.value}</div><div class="stat-label">${s.label}</div>`;
+      ss.appendChild(el);
+    });
+
+    /* skills */
+    const sg = document.getElementById('skills-grid');
+    Object.entries(d.skills).forEach(([cat, tags]) => {
+      const g = document.createElement('div');
+      g.className = 'skill-group';
+      g.innerHTML = `<div class="skill-group-label">${cat}</div><div class="skill-tags">${tags.map(t => `<span class="skill-tag">${t}</span>`).join('')}</div>`;
+      sg.appendChild(g);
+    });
+
+    /* certs */
+    const cg = document.getElementById('certs-grid');
+    d.certifications.forEach(c => {
+      const el = document.createElement('div');
+      el.className = 'cert-card';
+      let badgeHTML = c.badge
+        ? `<div class="cert-badge-wrap"><img src="${c.badge}" alt="${c.issuer}" onerror="this.parentElement.textContent='🏅'"/></div>`
+        : `<div class="cert-badge-wrap">🏅</div>`;
+      el.innerHTML = `${badgeHTML}<div class="cert-name">${c.name}</div><div class="cert-meta">${c.issuer}</div><div class="cert-year">${c.year}</div>`;
+      cg.appendChild(el);
+    });
+
+    /* experience */
+    const el = document.getElementById('experience-list');
+    d.experience.forEach(e => {
+      const item = document.createElement('div');
+      item.className = 'exp-item';
+      let logoHTML = e.logo
+        ? `<div class="exp-logo"><img src="${e.logo}" alt="${e.company}" onerror="this.parentElement.textContent='🏢'"/></div>`
+        : `<div class="exp-logo">🏢</div>`;
+      item.innerHTML = `
+        <div class="exp-header">
+          ${logoHTML}
+          <div class="exp-info">
+            <div class="exp-role">${e.role}</div>
+            <div class="exp-company-period"><strong>${e.company}</strong> &nbsp;·&nbsp; ${e.period}</div>
+          </div>
+          <span class="exp-type">${e.type}</span>
+        </div>
+        <div class="exp-body">
+          <ul class="exp-bullets">${e.bullets.map(b => `<li>${b}</li>`).join('')}</ul>
+        </div>`;
+      el.appendChild(item);
+    });
+
+    /* education */
+    const edu = document.getElementById('education-list');
+    d.education.forEach(e => {
+      const item = document.createElement('div');
+      item.className = 'edu-item';
+      let logoHTML = e.logo
+        ? `<div class="edu-logo"><img src="${e.logo}" alt="${e.institution}" onerror="this.parentElement.textContent='🎓'"/></div>`
+        : `<div class="edu-logo">🎓</div>`;
+      item.innerHTML = `
+        ${logoHTML}
+        <div>
+          <div class="edu-degree">${e.degree} · ${e.field}</div>
+          <div class="edu-meta"><strong>${e.institution}</strong> &nbsp;·&nbsp; ${e.period}</div>
+        </div>`;
+      edu.appendChild(item);
+    });
+
+    /* achievements */
+    const ag = document.getElementById('achieve-grid');
+    d.achievements.forEach(a => {
+      const el = document.createElement('div');
+      el.className = 'achieve-card';
+      el.innerHTML = `
+        <div class="achieve-icon">${ACHIEVE_ICONS[a.icon] || '⭐'}</div>
+        <div>
+          <div class="achieve-title">${a.title}</div>
+          <div class="achieve-detail">${a.detail}</div>
+        </div>`;
+      ag.appendChild(el);
+    });
+
+    /* contact */
+    const cl = document.getElementById('contact-links');
+    d.links.forEach((l, i) => {
+      const a = document.createElement('a');
+      a.href      = l.url;
+      a.target    = l.url.startsWith('mailto') ? '_self' : '_blank';
+      a.rel       = 'noopener';
+      a.className = 'btn' + (i === 0 ? ' primary' : '');
+      a.innerHTML = (ICONS[l.icon] || '') + l.label;
+      cl.appendChild(a);
+    });
+
+    /* footer */
+    document.getElementById('footer-text').innerHTML = '<span>// </span>' + d.footer.text;
+    document.getElementById('footer-year').textContent = '© ' + new Date().getFullYear() + ' ' + d.hero.name;
+  }
+
+  function fallbackAvatar(name) {
+    const el = document.createElement('div');
+    el.className = 'hero-avatar-fallback';
+    el.textContent = name.split(' ').map(n => n[0]).join('');
+    return el;
+  }
+
+  function setupReveal() {
+    const obs = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('in'); obs.unobserve(e.target); } });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+  }
+
+  init().catch(e => {
+    document.getElementById('loader-msg').textContent = '⚠ ERROR: ' + e.message;
+  });
+</script>
+</body>
+</html>
